@@ -1,0 +1,50 @@
+# Sphinx ビルドディレクトリ
+_build/
+build/
+doctrees/
+
+# Generated files
+.doctrees
+.buildinfo
+
+# Sphinx自動生成ファイル
+_autosummary/
+
+# Python関連
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# エディタ関連
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS固有のファイル
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
