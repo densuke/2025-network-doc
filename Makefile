@@ -14,6 +14,11 @@ help:
 
 .PHONY: help Makefile
 
+
+serve:
+	uv run sphinx-autobuild -b html --host 0.0.0.0 --port 8000 \
+		--watch source --ignore "*.pyc" \
+		source build/html
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
