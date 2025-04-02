@@ -6,12 +6,10 @@
 ネットワーク(2025)関連資料 documentation
 ========================================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
-
+こちらは2025年度の科目「ネットワーク」の補助資料です。
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   environments/index.rst
