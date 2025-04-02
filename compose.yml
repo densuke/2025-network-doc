@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: docker
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app:cached
+    ports:
+      - "8000:8000"
+      
