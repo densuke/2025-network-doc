@@ -43,6 +43,8 @@ RUN <<EOF
 curl -fsSL https://astral.sh/uv/install.sh | bash
 EOF
 
+ENV PATH="/root/.local/bin:${PATH}"
+
 # Set Python 3 as the default python
 RUN ln -sf /usr/bin/python3 /usr/bin/python
 
