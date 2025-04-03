@@ -1,0 +1,35 @@
+# Sphinxを用いたドキュメントのビルド
+
+# 発火対象は以下とする
+# - mainブランチのsources以下へのコミット(プッシュ)
+# - mainブランチへのプルリクエストのマージ
+# - 手動
+
+# ただし、手動での発火は、workflow_dispatchを指定する必要がある
+# そのため、手動での発火は、workflow_dispatchを指定する必要がある
+name: Build Sphinx Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'sources/**'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      # uvツールのインストール
+      - name: Install UV python manager
+        run: |
+          curl -sSL https://raw.githubusercontent.com/uvtools/uv/main/install.sh | bash
+          echo 'export PATH="$HOME/.uv/bin:$PATH"' >> $GITHUB_ENV
+      - name: build HTML docs
+        run: |
+          make clean
+          make html
