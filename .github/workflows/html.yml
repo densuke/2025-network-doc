@@ -27,7 +27,7 @@ jobs:
       # uvツールのインストール
       - name: Install UV python manager
         run: |
-          curl -sSL https://raw.githubusercontent.com/uvtools/uv/main/install.sh | bash
+          curl -sSL curl -LsSf https://astral.sh/uv/install.sh | bash -e
           echo 'export PATH="$HOME/.uv/bin:$PATH"' >> $GITHUB_ENV
       - name: build HTML docs
         run: |
