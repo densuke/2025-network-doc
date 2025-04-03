@@ -8,7 +8,8 @@
 3. Googleドライブの画面に切り替わり、ファイル一覧が表示されます。
    ![](images/gd-dists.png)
 4. OVAファイル({file}`ネットワーク(2025).ova`)が表示されているので、名前の部分を右クリック(もしくは右の3点ボタン)から {menuselection}`ダウンロード` を選択します。
-   ![](imaged/gd-download.png)
+   ![](images/gd-dowload.png)
+   
 5. ファイルサイズが大きいため **ファイルのウィルススキャンを実行できません** と出ますが、そのまま {menuselection}`エラーを無視してダウンロード` をクリックします。
    ![](images/gd-download-force.png)
 
