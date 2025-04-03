@@ -1,0 +1,33 @@
+# Sphinxを用いたドキュメントのビルド(PDF)
+
+# 発火対象は以下とする
+# - mainブランチのsources以下へのコミット(プッシュ)
+# - mainブランチへのプルリクエストのマージ
+# - 手動
+
+# ただし、手動での発火は、workflow_dispatchを指定する必要がある
+# そのため、手動での発火は、workflow_dispatchを指定する必要がある
+name: Build Sphinx Documentation(PDF)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'sources/**'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: create compose env
+        run: |
+          docker compose create
+      - name: build PDF doc
+        run: |
+          docker compose run app make latexpdf
+        
