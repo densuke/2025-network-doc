@@ -31,3 +31,19 @@ html_static_path = ['_static']
 # -- LaTeX経由PDF出力の設定 ------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 latex_docclass = {'manual': 'jsbook'}
+latex_elements = {
+    'papersize': 'a4paper',
+    'pointsize': '11pt',
+    'preamble': r"""
+        \usepackage{hyperref}
+        \hypersetup{
+            colorlinks=true,
+            linkcolor=blue,
+            filecolor=magenta,      
+            urlcolor=blue,
+            pdftitle={\@title},
+            pdfpagemode=FullScreen,
+            }
+    """
+}
+    
