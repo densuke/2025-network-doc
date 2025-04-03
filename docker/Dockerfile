@@ -77,5 +77,3 @@ echo 'export PATH=/opt/texlive/bin/x86_64-linux:$PATH' >> /etc/bash.bashrc
 echo 'export PATH=/opt/texlive/bin/x86_64-linux:$PATH' >> /etc/profile
 EOM
 
-# Set working directory
-WORKDIR /app
