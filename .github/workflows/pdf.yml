@@ -29,5 +29,5 @@ jobs:
           docker compose create
       - name: build PDF doc
         run: |
-          docker compose run app make latexpdf
+          docker compose run -w /app app make latexpdf
         
