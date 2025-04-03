@@ -57,7 +57,7 @@ set -x
 mkdir -p /tmp/texlive
 cd /tmp/texlive
 # Download the TeXLive installer
-curl -L -O http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+curl -L -O https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar xvzf install-tl-unx.tar.gz
 mv install-tl-*/ install-tl.d
 cd install-tl.d
