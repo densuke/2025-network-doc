@@ -24,9 +24,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: change ownership
-        run: |
-          sudo chown -vR $(id -u):$(id -g) .
       - name: build HTML docs
         run: |
-          docker compose run -w /app app make clean html
+          # install uv
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          # add PATH
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          make clean html
