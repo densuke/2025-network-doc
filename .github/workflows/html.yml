@@ -24,12 +24,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      # uvツールのインストール
-      - name: Install UV python manager
-        run: |
-          curl -sSL curl -LsSf https://astral.sh/uv/install.sh | bash -e
-          echo 'export PATH="$HOME/.uv/bin:$PATH"' >> $GITHUB_ENV
       - name: build HTML docs
         run: |
-          make clean
-          make html
+          docker compose run app make clean
+          docker compose run app make html
