@@ -32,6 +32,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: image pull(quietly)
+        run: |
+          docker compose pull app --quiet
       - name: build PDF doc
         run: |
           sudo chown -R $USER /app
