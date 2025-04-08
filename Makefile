@@ -15,8 +15,8 @@ help:
 .PHONY: help Makefile
 
 clean:
-	[ -d build ] && rm -fr build
-	[ -d .venv ] && rm -fr .venv
+	rm -fr build
+	rm -fr .venv
 
 serve:
 	ENV=$$HOME/.local/bin:$$PATH \
