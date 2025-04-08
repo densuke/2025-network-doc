@@ -34,7 +34,7 @@ jobs:
         uses: actions/checkout@v4
       - name: build PDF doc
         run: |
-          set -x
+          sudo chown -R $USER /app
           docker compose run app make clean latexpdf
       - name: upload PDF as Artifact
         uses: actions/upload-artifact@v4
