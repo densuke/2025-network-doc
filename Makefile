@@ -19,7 +19,6 @@ clean:
 	rm -fr .venv
 
 serve:
-	ENV=$$HOME/.local/bin:$$PATH \
 	uv run sphinx-autobuild -b html --host 0.0.0.0 --port 8000 \
 		--watch source --ignore "*.pyc" \
 		source build/html
