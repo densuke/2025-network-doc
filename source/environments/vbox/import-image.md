@@ -42,25 +42,25 @@
 怪しい操作をしたときに迅速に戻せるよう、スナップショットを作っておくことは正しい選択と考えられます。
 
 1. VM名「ネットワーク(2025)」を選択し、横にある3点ボタンを左クリックし {menuselection}`スナップショット` を選択します。
-   ![](images/call-snapshot.png)
+   - ![](images/call-snapshot.png)
 2. 初期状態では「最新の状態」という名前が出ているので、上にある {menuselection}`作成` をクリックします。
-   ![](images/create-snapshot.png)
+   - ![](images/create-snapshot.png)
 3. スナップショットの名前を入力します、日時情報などは不要です。例えば「初期状態」でいいでしょう。
    入力後、 {menuselection}`OK` をクリックします。
-   ![](images/create-snapshot-naming.png)
+   - ![](images/create-snapshot-naming.png)
 4. スナップショットが作成され、「最新の状態」がぶら下がった状態になります。
-    ![](images/snapshot-created.png)
+   - ![](images/snapshot-created.png)
 
 再び3点ボタンから{menuselection}`詳細`に戻せば元の画面に戻ります。
 
 何かあった時の「復元」は、スナップショットのメニューから行います。
 
 1. 戻したい状態(例えば「初期状態」)を選択し、右クリックで {menuselection}`復元` を選択します。
-   ![](images/revert-start.png)
+   - ![](images/revert-start.png)
 2. 復元の確認が出るので、確認して進めます。
    - 「現在のマシンの状態のスナップショットを作成」のチェックを外しておいてください。
      - チェックを付けていると現状に対するスナップショットの名前が求められます。
    - {menuselection}`復元` をクリックします。
-   ![](images/revert-check.png)
+      - ![](images/revert-check.png)
 
 これで指定した状態に戻ります。
