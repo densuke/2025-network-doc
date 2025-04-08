@@ -46,4 +46,13 @@ latex_elements = {
             }
     """
 }
-    
+latex_show_urls = 'footnote'
+latex_show_pagerefs = True
+latex_use_latex_multicolumn = True
+# 出力されるファイル名(LaTeX -> PDF)
+master_doc = 'index'
+latex_documents = [
+    (master_doc, 'network2025.tex', 'ネットワーク(2025)関連資料', author, 'manual'),
+]
+# 図表の配置を可能な限り同じページで中央寄せにする
+latex_elements['figure_align'] = 'H'
