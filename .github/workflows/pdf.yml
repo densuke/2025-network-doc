@@ -39,7 +39,7 @@ jobs:
         run: |
           sudo chown -R $USER .
           docker compose up -d
-          sleep 2
+          sleep 10
           docker compose exec app sudo groupadd $(id -g) $(id -gn)
           docker compose exec app sudo useradd -u $(id -u) -g $(id -g) -m $(id -un)
           docker compose exec app sudo chown -R $(id -u):$(id -g) /app
