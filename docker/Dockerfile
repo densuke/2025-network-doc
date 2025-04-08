@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:jammy AS base
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -38,18 +38,12 @@ apt-get clean
 rm -rf /var/lib/apt/lists/*
 EOF
 
-# Install uv
-RUN <<EOF
-curl -fsSL https://astral.sh/uv/install.sh | bash
-EOF
+FROM base as texlive
+# # Set Python 3 as the default python
+# RUN ln -sf /usr/bin/python3 /usr/bin/python
 
-ENV PATH="/root/.local/bin:${PATH}"
-
-# Set Python 3 as the default python
-RUN ln -sf /usr/bin/python3 /usr/bin/python
-
-# Check Python version
-RUN python3 --version
+# # Check Python version
+# RUN python3 --version
 
 # TeXLiveのインストール、TeXLiveのサイトから最新のinstall-tlを取得して行う
 # 作業の際、余計なデータが残らないように、install-tlは/tmp以下にダウンロードして展開し、呼び出す
@@ -81,4 +75,26 @@ echo "export PATH=/opt/texlive/bin/$(uname -m)-linux:$PATH" >> /etc/profile
 set -x
 PATH="/opt/texlive/bin/$(uname -m)-linux:$PATH" which latexmk # テスト
 EOM
+
+FROM texlive
+ARG USERNAME="worker"
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+# Create a non-root user
+RUN <<EOM
+groupadd --gid ${USER_GID} ${USERNAME}
+useradd --uid ${USER_UID} --gid ${USER_GID} -m -s /bin/bash ${USERNAME}
+echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+EOM
+
+USER ${USERNAME}
+# install uv
+ENV PATH="/home/${USERNAME}/.local/bin:${PATH}"
+RUN <<EOM
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv version
+EOM
+
+
 
