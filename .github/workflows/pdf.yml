@@ -1,9 +1,11 @@
 # Sphinxを用いたドキュメントのビルド(PDF)
 
 # 発火対象は以下とする
-# - mainブランチのsources以下へのコミット(プッシュ)
-# - mainブランチへのプルリクエストのマージ
-# - 手動
+# - 手動(latestとして公開)
+# - mainブランチへのpushもしくはpull_request
+#   - リリース名 latest として公開する
+# - "vX.X.X"のタグがpushされたとき
+#   - リリース名をタブ名として公開する
 
 # ただし、手動での発火は、workflow_dispatchを指定する必要がある
 # そのため、手動での発火は、workflow_dispatchを指定する必要がある
@@ -12,6 +14,8 @@ name: Build Sphinx Documentation(PDF)
 on:
   push:
     branches: [ main ]
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
     paths:
       - 'sources/**'
   pull_request:
@@ -30,4 +34,21 @@ jobs:
       - name: build PDF doc
         run: |
           docker compose run -w /app app make latexpdf
-        
+      - name: upload PDF as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: doc-pdf
+          path: build/latex/*.pdf
+      # リリース処理: 本ファイル冒頭のルールに従い、リリースバージョンを設定する
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        with:
+          tag_name: ${{ (github.ref_type == 'tag') && github.ref || 'latest' }}
+          release_name: ${{ (github.ref_type == 'tag') && github.ref || 'latest' }}
+          files: build/latex/*.pdf
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
