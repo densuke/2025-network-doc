@@ -4,6 +4,8 @@ services:
     #   context: docker
     #   dockerfile: Dockerfile
     image: ghcr.io/densuke/sphinx-texlive:1743748074
+    user: worker
+    workdir: /app
     volumes:
       - .:/app:cached
     ports:
