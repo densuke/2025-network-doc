@@ -63,7 +63,8 @@ curl -L -O https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar xvzf install-tl-unx.tar.gz
 mv install-tl-*/ install-tl.d
 cd install-tl.d
-./install-tl --profile=/docker/texlive.profile --lang=ja --repository=https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/systems/texlive/tlnet/
+#./install-tl --profile=/docker/texlive.profile --lang=ja --repository=https://ftp.yz.yamagata-u.ac.jp/pub/CTAN/systems/texlive/tlnet/
+./install-tl --profile=/docker/texlive.profile --lang=ja
 hash -r
 tlmgr install wrapfig capt-of framed upquote needspace \
     tabulary varwidth titlesec latexmk cmap float wrapfig \
