@@ -43,7 +43,10 @@
 	// "shutdownAction": "none",
 
 	// Uncomment the next line to run commands after the container is created.
-	"postCreateCommand": "make serve"
+	"postCreateCommand": "make serve",
+	"features": {
+		"ghcr.io/devcontainers-extra/features/actionlint:1": {}
+	}
 
 	// Configure tool-specific properties.
 	// "customizations": {},

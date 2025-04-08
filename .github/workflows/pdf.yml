@@ -42,11 +42,11 @@ jobs:
       # リリース処理: 本ファイル冒頭のルールに従い、リリースバージョンを設定する
       - name: Create Release
         id: create_release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         with:
           tag_name: ${{ (github.ref_type == 'tag') && github.ref || 'latest' }}
-          release_name: ${{ (github.ref_type == 'tag') && github.ref || 'latest' }}
+          # release_name: ${{ (github.ref_type == 'tag') && github.ref || 'latest' }}
           files: build/latex/*.pdf
           draft: false
           prerelease: false
