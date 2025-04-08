@@ -24,6 +24,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: change ownership
+        run: |
+          sudo chown -vR $(id -u):$(id -g) /app
       - name: build HTML docs
         run: |
           docker compose run -w /app app make clean html
