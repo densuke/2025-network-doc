@@ -26,5 +26,4 @@ jobs:
         uses: actions/checkout@v4
       - name: build HTML docs
         run: |
-          docker compose run app make clean
-          docker compose run app make html
+          docker compose run -w /app app make clean html
