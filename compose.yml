@@ -1,8 +1,9 @@
 services:
   app:
-    build:
-      context: docker
-      dockerfile: Dockerfile
+    # build:
+    #   context: docker
+    #   dockerfile: Dockerfile
+    image: ghcr.io/densuke/sphinx-texlive:1743748074
     volumes:
       - .:/app:cached
     ports:
