@@ -3,7 +3,7 @@ services:
     # build:
     #   context: docker
     #   dockerfile: Dockerfile
-    image: ghcr.io/densuke/sphinx-texlive:1743748074
+    image: ghcr.io/densuke/sphinx-texlive:1744093846
     volumes:
       - .:/app:cached
     ports:
