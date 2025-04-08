@@ -7,8 +7,8 @@ SPHINXOPTS    ?=
 SPHINXBUILD   ?= uv run sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
+
 # Update PATH to include ~/.local/bin during build
-export PATH := $(HOME)/.local/bin:$(PATH)
 # Put it first so that "make" without argument is like "make help".
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
@@ -16,8 +16,10 @@ help:
 .PHONY: help Makefile
 
 clean:
-	rm -fr build
-	rm -fr .venv
+	pwd
+	ls -l
+	rm -vfr build
+	rm -vfr .venv
 
 serve:
 	uv run sphinx-autobuild -b html --host 0.0.0.0 --port 8000 \

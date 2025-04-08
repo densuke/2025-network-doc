@@ -28,15 +28,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: create compose env
-        run: |
-          docker compose create
       - name: build PDF doc
         run: |
           set -x
-          chown -R 1000:1000 .
-          docker compose run ls -l /
-          docker compose run -w /app app make clean latexpdf
+          docker compose run app make clean latexpdf
       - name: upload PDF as Artifact
         uses: actions/upload-artifact@v4
         with:
