@@ -11,6 +11,10 @@
 # そのため、手動での発火は、workflow_dispatchを指定する必要がある
 name: Build Sphinx Documentation(PDF)
 
+# ビルド時に書き込みが必要なので権限を設定
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ main ]
