@@ -38,8 +38,12 @@ jobs:
       - name: build PDF doc
         run: |
           sudo chown -R $USER .
-          mkdir -pv .venv  # test(error)
-          docker compose run app make clean latexpdf
+          docker compose up -d
+          sleep 2
+          docker compose exec app sudo groupadd $(id -g) $(id -gn)
+          docker compose exec app sudo useradd -u $(id -u) -g $(id -g) -m $(id -un)
+          docker compose exec app sudo chown -R $(id -u):$(id -g) /app
+          docker compose exec app make clean latexpdf
       - name: upload PDF as Artifact
         uses: actions/upload-artifact@v4
         with:
