@@ -76,7 +76,9 @@ EOM
 
 # /opt/texlive/2023/bin/x86_64-linuxにパスを通すようにシェルのスタートアップを書き換え
 RUN <<EOM
-echo 'export PATH=/opt/texlive/bin/x86_64-linux:$PATH' >> /etc/bash.bashrc
-echo 'export PATH=/opt/texlive/bin/x86_64-linux:$PATH' >> /etc/profile
+echo "export PATH=/opt/texlive/bin/$(uname -m)-linux:$PATH" >> /etc/bash.bashrc
+echo "export PATH=/opt/texlive/bin/$(uname -m)-linux:$PATH" >> /etc/profile
+set -x
+PATH="/opt/texlive/bin/$(uname -m)-linux:$PATH" which latexmk # テスト
 EOM
 
