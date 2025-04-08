@@ -14,6 +14,9 @@ help:
 
 .PHONY: help Makefile
 
+clean:
+	[ -d build ] && rm -fr build
+	[ -d .venv ] && rm -fr .venv
 
 serve:
 	uv run sphinx-autobuild -b html --host 0.0.0.0 --port 8000 \
