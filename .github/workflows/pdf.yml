@@ -33,7 +33,7 @@ jobs:
           docker compose create
       - name: build PDF doc
         run: |
-          docker compose run app make latexpdf
+          docker compose run -w /app app make latexpdf
       - name: upload PDF as Artifact
         uses: actions/upload-artifact@v4
         with:
