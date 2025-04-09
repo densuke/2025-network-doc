@@ -38,12 +38,39 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      # リリース時のバージョンを設定する
+      # タグにより本アクションが発火した場合はタグ名がリリースバージョンとなる
+      # mainブランチがタグと無関係に発火した場合はlatestとする
+      # バージョンはsource/conf.pyに記載する
       - name: build HTML docs
         run: |
           # install uv
           curl -LsSf https://astral.sh/uv/install.sh | sh
           # add PATH
           echo "$HOME/.local/bin" >> $GITHUB_PATH
+          
+          # リリース情報を設定
+          if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            RELEASE="${{ github.ref_name }}"
+          else
+            # コミットIDの先頭7桁を取得
+            COMMIT_ID="${{ github.sha }}"
+            SHORT_COMMIT="${COMMIT_ID:0:7}"
+            RELEASE="latest-${SHORT_COMMIT}"
+          fi
+          echo "RELEASE=$RELEASE" >> $GITHUB_ENV
+          
+          # conf.pyのリリース情報を更新
+          if [ -f sources/conf.py ]; then
+            # releaseが存在する場合は更新、存在しない場合は追加
+            if grep -q "^release\s*=" sources/conf.py; then
+              sed -i "s/^release\s*=.*$/release = \"${RELEASE}\"/" sources/conf.py
+            else
+              # ファイル末尾に追加
+              echo -e "\n# リリースバージョン\nrelease = \"${RELEASE}\"" >> sources/conf.py
+            fi
+          fi
+          
           make clean html
       - name: setup GitHub Pages
         uses: actions/configure-pages@v5

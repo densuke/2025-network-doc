@@ -76,6 +76,28 @@ jobs:
             fancyvrb booktabs parskip 
       - name: build PDF doc
         run: |
+          # リリース情報を設定
+          if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            RELEASE="${{ github.ref_name }}"
+          else
+            # コミットIDの先頭7桁を取得
+            COMMIT_ID="${{ github.sha }}"
+            SHORT_COMMIT="${COMMIT_ID:0:7}"
+            RELEASE="latest-${SHORT_COMMIT}"
+          fi
+          echo "RELEASE=$RELEASE" >> $GITHUB_ENV
+          
+          # conf.pyのリリース情報を更新
+          if [ -f sources/conf.py ]; then
+            # releaseが存在する場合は更新、存在しない場合は追加
+            if grep -q "^release\s*=" sources/conf.py; then
+              sed -i "s/^release\s*=.*$/release = \"${RELEASE}\"/" sources/conf.py
+            else
+              # ファイル末尾に追加
+              echo -e "\n# リリースバージョン\nrelease = \"${RELEASE}\"" >> sources/conf.py
+            fi
+          fi
+          
           make latexpdf
 
       - name: upload PDF as Artifact
