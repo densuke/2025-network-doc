@@ -78,6 +78,7 @@ jobs:
         run: |
           # リリース情報を設定
           if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            # タグリファレンスから"refs/tags/"を除去して純粋なタグ名のみを使用
             RELEASE="${{ github.ref_name }}"
           else
             # ブランチ名を取得
@@ -114,7 +115,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: ${{ !env.ACT }} && github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         with:
-          tag_name: ${{ (github.ref_type == 'tag') && github.ref || 'latest' }}
+          tag_name: ${{ (github.ref_type == 'tag') && github.ref_name || 'latest' }}
           # release_name: ${{ (github.ref_type == 'tag') && github.ref || 'latest' }}
           files: build/latex/*.pdf
           draft: false
