@@ -56,7 +56,8 @@ jobs:
             # ブランチ名を取得
             BRANCH_NAME="${{ github.ref_name }}"
             # コミットIDの先頭7桁を取得
-            SHORT_COMMIT="${{ github.sha:0:7 }}"
+            COMMIT_ID="${{ github.sha }}"
+            SHORT_COMMIT="${COMMIT_ID:0:7}"
             RELEASE="${BRANCH_NAME}-${SHORT_COMMIT}"
           fi
           echo "RELEASE=$RELEASE" >> $GITHUB_ENV
