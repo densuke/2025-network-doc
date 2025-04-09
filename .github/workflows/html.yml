@@ -27,12 +27,18 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-
+  
 permissions:
   contents: write
   pages: write
   id-token: write
 
+# 複数回actionsが動かないようにする
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+  
 
 jobs:
   build:

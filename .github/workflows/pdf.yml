@@ -26,6 +26,12 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+# 複数回actionsが動かないようにする
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
