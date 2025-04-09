@@ -10,3 +10,5 @@
    :maxdepth: 1
 
    vbox/index
+   vscode/index
+   linux/index
