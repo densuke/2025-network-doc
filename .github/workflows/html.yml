@@ -18,6 +18,11 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pages: write
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,3 +36,11 @@ jobs:
           # add PATH
           echo "$HOME/.local/bin" >> $GITHUB_PATH
           make clean html
+      - name: setup GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: upload Artifact(build/html)
+        uses: actions/upload-artifact@v3
+        with:
+          path: build/html
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
