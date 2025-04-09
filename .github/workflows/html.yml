@@ -9,9 +9,19 @@
 # そのため、手動での発火は、workflow_dispatchを指定する必要がある
 name: Build Sphinx Documentation
 
+# on:
+#   push:
+#     branches: [ main ]
+#     paths:
+#       - 'sources/**'
+#   pull_request:
+#     branches: [ main ]
+#   workflow_dispatch:
 on:
   push:
     branches: [ main ]
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
     paths:
       - 'sources/**'
   pull_request:
