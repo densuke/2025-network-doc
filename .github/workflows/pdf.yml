@@ -32,19 +32,48 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: image pull(quietly)
+      - name: setup uv
         run: |
-          docker compose pull app --quiet
+          # install uv
+          curl -LsSf https://astral.sh/uv/install.sh | sh
+          # add PATH
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: check TeXLive tool
+          # latexmkがパス上にあって呼び出せるかをチェックする、成否に関係なく進行し、結果(パスor空文字)を記録して後で使う
+        id: check_texlive
+        run: |
+          set -e
+          # latexmkがパス上にあって呼び出せるかをチェックする、成否に関係なく進行し、結果(パスor空文字)を記録して後で使う
+          if command -v latexmk &> /dev/null; then
+            echo "latexmk is installed"
+            echo "latexmk_path=$(command -v latexmk)" >> $GITHUB_OUTPUT
+          else
+            echo "latexmk is not installed"
+            echo "latexmk_path=" >> $GITHUB_OUTPUT
+          fi
+      - name: setup texlive
+        # この処理は、texliveがインストールされていない場合にのみ実行される
+        if: steps.check_texlive.outputs.latexmk_path == ''
+        run: |
+          set -x
+          wget -O- https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | tar xz
+          mv install-tl-* install-tl
+          cd install-tl
+          set -e
+          ./install-tl --profile ../docker/texlive.profile
+          # "/opt/texlive/bin/アークテクチャ"にGITHUB_OUTPUTに保存しておく
+          # これをPATHに追加することで、texliveが使えるようになる
+          echo "PATH=/opt/texlive/bin/$(uname -m)-$(uname -s | tr A-Z a-z):$PATH" >> $GITHUB_ENV
+          PATH=/opt/texlive/bin/$(uname -m)-$(uname -s | tr A-Z a-z):$PATH
+          tlmgr install wrapfig capt-of framed upquote needspace \
+            tabulary varwidth titlesec latexmk cmap float wrapfig \
+            fancyvrb booktabs parskip 
       - name: build PDF doc
         run: |
-          sudo chown -R $USER .
-          docker compose up -d
-          sleep 10
-          docker compose exec app sudo groupadd $(id -g) $(id -gn)
-          docker compose exec app sudo useradd -u $(id -u) -g $(id -g) -m $(id -un)
-          docker compose exec app sudo chown -R $(id -u):$(id -g) /app
-          docker compose exec app make clean latexpdf
+          make latexpdf
+
       - name: upload PDF as Artifact
+        if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v4
         with:
           name: doc-pdf
@@ -53,7 +82,7 @@ jobs:
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        if: ${{ !env.ACT }} && github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         with:
           tag_name: ${{ (github.ref_type == 'tag') && github.ref || 'latest' }}
           # release_name: ${{ (github.ref_type == 'tag') && github.ref || 'latest' }}
