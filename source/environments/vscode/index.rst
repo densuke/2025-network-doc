@@ -9,6 +9,10 @@ Visual Studio Code
 
 なお本資料の中では、特に区別の必要が無ければ、 **vscode** と短縮表記しています。
 
+```{note}
+この作業は一度行えば大丈夫です。
+```
+
 .. toctree::
    :maxdepth: 1
 
