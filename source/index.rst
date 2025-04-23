@@ -21,4 +21,4 @@
    environments/index.rst
    git/index.rst
    w01-intro/index.rst
-   
+   w02-layer1/index.rst
