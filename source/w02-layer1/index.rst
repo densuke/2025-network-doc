@@ -13,3 +13,4 @@
     layer1.md
     ethernet.md
     wireless.md
+    w04-layer2/index.rst
