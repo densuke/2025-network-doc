@@ -13,3 +13,6 @@
    assign.md
    clone.md
    configcheck.md
+   ex1.md
+   ex2.md
+   test.md
