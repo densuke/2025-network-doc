@@ -14,3 +14,4 @@
     ethernet.md
     wireless.md
     w04-layer2/index.rst
+    w05-ip/index.rst
