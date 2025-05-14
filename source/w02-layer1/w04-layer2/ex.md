@@ -87,10 +87,10 @@ $ sudo tcpdump -c 10 -w dump.pcap
 
 ## 取得したパケットを解析してみる
 
-取得したパケットの解析は、やはり `tcudump` にて行えます。
+取得したパケットの解析は、やはり `tcpdump` にて行えます。
 
 ```bash
-$ tcpdump -r dump.pcap
+tcpdump -r dump.pcap
 ```
 
 ```{note}
