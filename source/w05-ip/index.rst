@@ -12,3 +12,4 @@ IP層は、データをパケットに分割し、宛先のIPアドレスに基�
     ip.md
     ipv4.md
     priv.md
+    routing.md
