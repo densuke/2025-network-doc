@@ -23,7 +23,7 @@
    w01-intro/index.rst
    w02-layer1/index.rst
    w03-testing/index.rst
-   w05-ip/index.rst
+   ip/index.rst
 
 ソースについて
 ========================
