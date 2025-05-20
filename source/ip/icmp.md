@@ -194,7 +194,7 @@ Request timeout for icmp_seq 1
     - ICMPのTypeは`11`(TTL expired)
     - ICMPのCodeは`0`
 
-IPパケットヘッダに含まれている送信元(゠ルーターのIP)から、どこのルーターで止まったかがわかるという仕組みです。
+IPパケットヘッダに含まれている送信元(= ルーターのIP)から、どこのルーターで止まったかがわかるという仕組みです。
 
 ## tracerouteコマンド
 
