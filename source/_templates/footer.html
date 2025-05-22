@@ -1,0 +1,10 @@
+{# Sphinx HTML footer template #}
+{% extends "sphinx_rtd_theme/footer.html" %}
+
+{% block footer %}
+  {{ super() }}
+  <div style="font-size: small; text-align: right; margin-top: 1em;">
+    ビルドブランチ: {{ branch_name | default('unknown') }}<br>
+    最新タグ: {{ tag_name | default('unknown') }}
+  </div>
+{% endblock %}
