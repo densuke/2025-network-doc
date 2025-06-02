@@ -14,3 +14,4 @@ IP層は、データをパケットに分割し、宛先のIPアドレスに基�
     priv.md
     routing.md
     icmp.md
+    ipv6.md
