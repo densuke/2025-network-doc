@@ -4,7 +4,8 @@
 
 このページは、おまけのリソース情報がある際に追加されます。
 
-.. toctree:: 目次
+.. toctree:: 
+    :caption: 目次
     :maxdepth: 1
 
     etherheader-proto.md
