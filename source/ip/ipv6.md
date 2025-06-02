@@ -70,7 +70,9 @@ IPv4の当時、ネットワークの利用に対して、セキュリティは�
 実際、httpsのプロトコルが発表されてしばらくして、"SSLアクセラレーター"なるパーツが登場していたこともあります。当時の演算性能では大量の接続を捌こうとすると性能面に問題が出ていたということでしょう。
 現在では、CPU周辺で暗号化にまつわる処理が追加されたこともあり、特別なハードウェアを用意しなくても基本的に対応できています。
 
+```{raw} html
 <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/152816fb.efa02e6a.152816fc.bf3ec274/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwaysas%2F10006146%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/152816fb.efa02e6a.152816fc.bf3ec274/?me_id=1281142&item_id=10006146&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fwaysas%2Fcabinet%2Fitem%2Fkakucyou%2Faep1000.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/152816fb.efa02e6a.152816fc.bf3ec274/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwaysas%2F10006146%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">AEP1000 AEP Systems SSLアクセラレータ 64bit PCI対応【中古】</a><br><span >価格：9,800円（税込、送料無料)</span> <span style="color:#BBB">(2025/6/2時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/152816fb.efa02e6a.152816fc.bf3ec274/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwaysas%2F10006146%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/152816fb.efa02e6a.152816fc.bf3ec274/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwaysas%2F10006146%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+```
 
 ```
 
@@ -205,7 +207,7 @@ IPv6では、**ヘッダのサイズが固定されている**ため、ルータ
 
 ````{note}
 Traffic ClassやFlow labelは実際ほとんど使われておりません。
-試しに`scape`を使って作ってみると、初期値はゼロで埋め尽くされています。
+試しに`scapy`を使って作ってみると、初期値はゼロで埋め尽くされています。
 
 ```python
 >>> IPv6(dst="::1").show()
@@ -267,11 +269,11 @@ IPv6のアドレス空間は非常に広いため、IPv6と違って個別の機
     - グローバルユニキャストアドレスは、インターネット上で一意に識別されるアドレスです。
 - リンクローカルユニキャストアドレス
     - リンクローカルユニキャストアドレスは、同一データリンク内でのみ有効なアドレスです。
-    - 先頭ビットが`1111 1110 10`で始まるアドレスです。
+    - 先頭ビットが`1111 1110 10` (`FE80::/10`)で始まるアドレスです。
 - ユニークローカルアドレス
     - ユニークローカルアドレスは、プライベートネットワーク内で使用されるアドレスです。
     - NATやVPNの内側などで利用します
-    - 先頭ビットが`1111 1100`で始まるアドレスです。
+    - 先頭ビットが`1111 1100` (`FC00/7`)で始まるアドレスです。
 - その他
     - ループバックアドレスは、`::1`で表され、ローカルホストを指します。
     - マルチキャストアドレスは `FF00::/8` で始まるアドレスで、特定のグループにデータを送信するために使用されます。
