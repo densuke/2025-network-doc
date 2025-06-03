@@ -23,7 +23,7 @@ UDPは、アプリケーション開発者に対して、必要な機能を自�
 UDPのヘッダーは『IPの層をそのまま引き上げたようなもの』と言われることがあります。
 どのような構造かというと、こうなっています。
 
-```{figure} images/udp.png
+```{figure} /transport/images/udp.png
 
 UDPのヘッダー構造[^udp-header]
 ```
