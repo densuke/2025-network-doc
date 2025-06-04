@@ -21,7 +21,7 @@ IPv4は、1980年代に開発され、インターネットの基盤として広
 IPv4では、32ビットのアドレス空間を提供しています。
 これにより、32ビットである約43億のアドレス空間を用いることができたわけですが、同時に『上限が約43億』ということもあり、インターネットが普及した現代においてはアドレスが不足しています。
 
-- IANAによるアドレス配布(グループの割り当て)は、2011年に終了しています。
+- IANAによるアドレス配布(グループの割り当て)は、2011年に終了しています[^iana-exhaust]。
 - 各地域のRIR(Regional Internet Registry)によるアドレス配布も、2015年には枯渇しています。
 - その後も、各国のISP(インターネットサービスプロバイダ)などが独自にアドレスを割り当てているものの、IPv4アドレスは枯渇しています。
 
@@ -32,6 +32,9 @@ IPv4では、32ビットのアドレス空間を提供しています。
 各RIRでは、定期的(毎日)その情報がリストとして公開されるようになっています。
 
 - [ARINでの例(最新版)](https://ftp.arin.net/pub/stats/arin/delegated-arin-extended-latest)
+
+
+[^iana-exhaust]: IANA (Internet Assigned Numbers Authority): インターネットにおけるIPアドレスやドメイン名などの資源を管理する国際的な組織
 ```
 
 そういったこともあってか、IPv6では128ビットのアドレス空間となりました。
@@ -58,7 +61,7 @@ IPv6アドレスは、16ビット毎をコロン(`:`)で区切って表記され
 
 IPv4の当時、ネットワークの利用に対して、セキュリティはあまり積極的に取り組まれていないという状況でした。
 
-```{note}
+````{note}
 セキュリティへの取り組みがIPv4時代は足りなかったというのは、現在の状況からものであり、当時の状況として考えれば致し方ない部分は当然あります。
 
 - 例えば、IPv4の開発当時は、インターネットはまだ小規模であり、セキュリティの脅威も少なかった。
@@ -74,7 +77,7 @@ IPv4の当時、ネットワークの利用に対して、セキュリティは�
 <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/ichiba/152816fb.efa02e6a.152816fc.bf3ec274/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwaysas%2F10006146%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://hbb.afl.rakuten.co.jp/hgb/152816fb.efa02e6a.152816fc.bf3ec274/?me_id=1281142&item_id=10006146&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fwaysas%2Fcabinet%2Fitem%2Fkakucyou%2Faep1000.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;display: block;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/152816fb.efa02e6a.152816fc.bf3ec274/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwaysas%2F10006146%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;">AEP1000 AEP Systems SSLアクセラレータ 64bit PCI対応【中古】</a><br><span >価格：9,800円（税込、送料無料)</span> <span style="color:#BBB">(2025/6/2時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/ichiba/152816fb.efa02e6a.152816fc.bf3ec274/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwaysas%2F10006146%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0" ></a><a href="https://hb.afl.rakuten.co.jp/ichiba/152816fb.efa02e6a.152816fc.bf3ec274/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fwaysas%2F10006146%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowLCJhbXAiOmZhbHNlfQ==" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff!important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;"> 楽天で購入 </div></a></div></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
 ```
 
-```
+````
 
 また、IPv4では、ペイロード(上位レイヤーに渡すデータ実体)にはセキュリティ的な取り組みは行われて折らず、そのまま内容が確認できてしまいます。
 そのため、通信内容や改ざんが容易に行えてしまう状況でした。
@@ -87,16 +90,17 @@ IPsecは、IPのレベルでの暗号化を実現しており、ペイロード�
 
 [^ipsec-use]: 設定の複雑さなどもあってか、拠点間VPNなどの限定された用途意外で使われることはほとんどありませんでした。
 
-そのため、IPv6では、プロトコル設計においてIPsecを必須とすることとしようとしました(RFC2460)。ですがその後推奨(SHOULD)のレベルに変更されてしまい、IPv6でも必須ではなくなりました[^ipv6-ipsec]。
+そのため、IPv6では、プロトコル設計においてIPsecを必須とすることとしようとしました(RFC2460においては必須(MUST)扱い)。ですがその後改訂(RFC4294等)において推奨(SHOULD)のレベルに変更されました。
+そして、現在での標準(RFC8200)ではIPv6サポートは必須ではなくなりました[^ipv6-ipsec]。
 
 
-[^ipv6-ipsec]: それだけ暗号化を根底から行おうとすると大変なのですね。
+[^ipv6-ipsec]: それだけ暗号化を根底から行おうとすると大変なのですね。結局IPsecはオプションヘッダにて扱うようになっています。
 
 これ以外にも、セキュリティに関わる取り組みが追加されています。
 
 - ネットワーク設定の際の制御メッセージを悪用した攻撃が考えられて、フィルタリングや監視の機能がサポートされました(ルーターにおけるRAガードやDHCPv6対策など)
 - ランダムアドレスを生成することでプライバシーを高める機能がサポートされました(RFC4941)
-- 近隣対策(Neighbor Discovery Protocol; ARPのIPv6版みたいなもの)において、セキュリティを高めるための機能が追加されました(RFC3971)
+- 近隣探索(Neighbor Discovery Protocol; NDP、ARPのIPv6版みたいなもの)において、セキュリティを高めるための機能が追加されました(RFC3971)
 - その他
 
 ### ネットワークの複雑化
@@ -263,24 +267,24 @@ IPv6アドレスの表記は、RFC 5952で定義されています。
 ## IPv6アドレスの種類
 
 IPv6のアドレス空間は非常に広いため、IPv6と違って個別の機器に割り当てて不足するようなことは考えられません。
+IPv6のアドレス空間は非常に広いため、IPv4と違って個別の機器に割り当てても不足するようなことは考えにくいです。
 ですが、通信の効率化などの目的で、いくつかの用途別のアドレス空間を定義しています。
 
-- グローバルユニキャストアドレス
     - グローバルユニキャストアドレスは、インターネット上で一意に識別されるアドレスです。
-- リンクローカルユニキャストアドレス
     - リンクローカルユニキャストアドレスは、同一データリンク内でのみ有効なアドレスです。
-    - 先頭ビットが`1111 1110 10` (`FE80::/10`)で始まるアドレスです。
+    - 先頭ビットが`1111 1110 10`で始まるアドレスです。
 - ユニークローカルアドレス
     - ユニークローカルアドレスは、プライベートネットワーク内で使用されるアドレスです。
     - NATやVPNの内側などで利用します
-    - 先頭ビットが`1111 1100` (`FC00/7`)で始まるアドレスです。
+    - 先頭ビットが`1111 1100`で始まるアドレスです。
 - その他
     - ループバックアドレスは、`::1`で表され、ローカルホストを指します。
-    - マルチキャストアドレスは `FF00::/8` で始まるアドレスで、特定のグループにデータを送信するために使用されます。
+    - マルチキャストアドレスは `ff00::/8` で始まるアドレスで、特定のグループにデータを送信するために使用されます。
 
 ## IPv6パケットの分割処理
 
 IPv6では、パケットの分割処理は事前に『経路MTU探索を行う』ことで分割させないという方針が採られています。
-しかし、組込機器のようにリソース制限が厳しく、処理が難しい場合を考慮して、最小のMTUは1280として、探索を省略して1280オクテットずつに分割して送信することが認められています[^mtu1280]。
+しかし、組み込み機器のようにリソース制限が厳しく、経路MTU探索の処理が難しい場合を考慮して、IPv6の最小MTUサイズである1280オクテットを前提として、探索を省略し、必要であれば送信元で1280オクテットに分割して送信することが認められています[^mtu1280]。
 
 [^mtu1280]: この場合、万一より小さなMTUを求めるデータリンクがあった場合は分割が発生することがあります。現実的な問題としてこれより小さいMTUのデータリンクはそうそうお目にかかれません。
+
