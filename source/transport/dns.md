@@ -9,23 +9,23 @@ DNSは、ドメイン名をIPアドレスに変換するための階層的なシ
 - ルートDNSサーバ
 - TLD（トップレベルドメイン）サーバ
 - 権威DNSサーバ
-- DNSリゾルバ（キャッシュサーバー
+- DNSリゾルバ（キャッシュサーバー)
 - クライアント
 
 ```{mermaid}
 flowchart TD
     Client[クライアント]
     Resolver[DNSリゾルバ]
-    Root[ルートDNSサーバー
-    TLD[TLDサーバー
-    Authoritative[権威DNSサーバー
-    DNS_Server[DNSサーバー
+    Root[ルートDNSサーバー]
+    TLD[TLDサーバー]
+    Authoritative[権威DNSサーバー]
+    DNS_Server[DNSサーバー]
 
     Client -->|DNSリクエスト| Resolver
     Resolver -->|問い合わせ| DNS_Server
     DNS_Server -->|応答| Resolver
-    Root -->|TLDサーバー報| DNS_Server
-    TLD -->|権威サーバー報| DNS_Server
+    Root -->|TLDサーバー情報| DNS_Server
+    TLD -->|権威サーバー情報| DNS_Server
     Authoritative -->|最終的な応答/ヒント| DNS_Server
     Resolver -->|応答| Client
     DNS_Server -->|問い合わせ| Root
