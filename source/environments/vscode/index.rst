@@ -1,4 +1,4 @@
-.. _VS code-index:
+.. _vs-code-index:
 
 =========================
 Visual Studio Code
