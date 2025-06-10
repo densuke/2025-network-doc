@@ -10,3 +10,4 @@
 
     etherheader-proto.md
     ipheader-proto.md
+    storage-full.md
