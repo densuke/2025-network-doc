@@ -2,11 +2,11 @@
 
 特に複雑なものはありません。
 
-## vscodeのダウンロード
+## VS codeのダウンロード
 
 [https://code.visualstudio.com/Download](https://code.visualstudio.com/Download)からダウンロードします。
 
-![ダウンロードページ](images/vscode-dlpage.png)
+![ダウンロードページ](images/VS code-dlpage.png)
 ※ macOS版の方もこのページからダウンロードできます。
 
 Windowsを使っている方は、Windows(x86_64)のインストーラーをダウンロードします。細かい選択肢もありますが、単純に {menuselection}`Windows10, 11` を選択すればインストーラーがダウンロードされます。
@@ -19,11 +19,11 @@ Windowsを使っている方は、Windows(x86_64)のインストーラーをダ�
 
 インストールの途中で、以下の確認がでることがあります。
 
-![](images/vscode-install-option.png)
+![](images/VS code-install-option.png)
 
 - デスクトップ上にアイコンを作るかは趣味に任せます
 - ファイル・ディレクトリに対するコンテキストメニュー(右クリック)に含めるかも趣味に任せます
-- `PATH`に追加するかは、コマンドラインからvscodeを起動したい場合はチェックを入れます
+- `PATH`に追加するかは、コマンドラインからVS codeを起動したい場合はチェックを入れます
   - 普通コマンドライン(ターミナル)を使うはずなので、チェックが入っているとすごく助かるかと思います
   - 次の起動時(もしくはログイン時)に有効となります
 
