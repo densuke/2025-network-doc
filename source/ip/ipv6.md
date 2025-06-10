@@ -179,7 +179,7 @@ IPv4のヘッダ構造(Wikipediaより引用)
 
 IPv4と比較すると、サイズこそ長くなっている(アドレス自体がが無いため)ですが、ヘッダサイズが原則固定となるように設定されています[^ipv6-header]。
 
-```{figure} images/ipv6-header.svg
+```{figure} images/ipv6-header.png
 
 IPv6のヘッダ構造(Wikipediaより引用)
 ```
