@@ -12,3 +12,4 @@
    port.md
    udp.md
    tcp.md
+   dns.md
