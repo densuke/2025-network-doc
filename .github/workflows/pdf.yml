@@ -44,10 +44,15 @@ jobs:
           curl -LsSf https://astral.sh/uv/install.sh | sh
           # add PATH
           echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: nodeおよびnpmのインストール
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
       - name: Install mermaid-cli
         run: |
           npm install -g @mermaid-js/mermaid-cli
-          echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
+          # echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
           if ! command -v mmdc &> /dev/null; then
             echo "mmdc is not installed"
             exit 1
