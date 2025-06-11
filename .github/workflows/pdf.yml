@@ -48,7 +48,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-          cache: 'npm'
+          cache: 'false'
       - name: Install mermaid-cli
         run: |
           npm install -g @mermaid-js/mermaid-cli
