@@ -48,11 +48,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
-          cache: 'false'
+          cache: 'npm'
       - name: Install mermaid-cli
         run: |
-          npm install -g @mermaid-js/mermaid-cli
-          # echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
+          npm install --include=dev
+          echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
           if ! command -v mmdc &> /dev/null; then
             echo "mmdc is not installed"
             exit 1
