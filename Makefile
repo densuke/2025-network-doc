@@ -19,7 +19,7 @@ clean:
 	pwd
 	ls -l
 	rm -vfr build
-	rm -vfr .venv
+	#rm -vfr .venv
 
 serve:
 	uv run sphinx-autobuild -b html --host 0.0.0.0 --port 8000 \

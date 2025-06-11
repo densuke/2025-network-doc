@@ -8,10 +8,9 @@ VirtualBoxがインストールされている場合、起動すると更新の�
 ## インストーラーの入手
 
 インストーラーは以下の場所から入手できます。
-
-- [VirtualBoxのダウンロードページ](https://www.virtualbox.org/wiki/Downloads)
-    - [VirtualBoxのリリースノート](https://www.virtualbox.org/wiki/Changelog)
-    - 利用しているOSにあわせてダウンロード(Windows上で使うならWindows host版をダウンロード)
+- 公式サイト: [VirtualBoxのダウンロードページ](https://www.virtualbox.org/wiki/Downloads)
+- リリースノート: [VirtualBoxのリリースノート](https://www.virtualbox.org/wiki/Changelog)
+- 利用しているOSにあわせてダウンロード(Windows上で使うならWindows host版をダウンロード)
 
 ![ダウンロードページ(2025/4/3現在)](images/download-site.png)
 
