@@ -77,7 +77,13 @@ jobs:
       - name: Install mermaid-cli
         run: |
           npm install -g @mermaid-js/mermaid-cli
-          echo "$(npm bin -g)" >> $GITHUB_PATH
+          echo "PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
+          if ! command -v mmdc &> /dev/null; then
+            echo "mmdc is not installed"
+            exit 1
+          else
+            echo "mmdc is installed"
+          fi
 
       - name: build PDF doc
         run: |
