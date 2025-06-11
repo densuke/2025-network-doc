@@ -13,3 +13,4 @@
    udp.md
    tcp.md
    dns.md
+   dhcp.md
