@@ -51,6 +51,7 @@ jobs:
       - name: Install mermaid-cli
         run: |
           npm install --include=dev
+          PATH=$PWD/node_modules/.bin:$PATH
           echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
           if ! command -v mmdc &> /dev/null; then
             echo "mmdc is not installed"
