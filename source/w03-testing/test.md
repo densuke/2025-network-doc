@@ -10,12 +10,12 @@
 クリックして詳細を出してみましょう。
 失敗したテストを選んでみると、失敗したところに移動します。
 
-![](/images/test-failed-results.png)
+![](images/test-failed-results.png)
 
 test2-1,test2-2は成功しているようですが、test1が失敗しているようですね。
 それっぽいテストの部分を戻って選択してみましょう。
 
-![](/images/result-ex1.png)
+![](images/result-ex1.png)
 
 ```
 Run classroom-resources/autograding-io-grader@v1

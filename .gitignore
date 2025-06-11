@@ -48,3 +48,6 @@ var/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# node.js(npm)のモジュール
+node_modules/

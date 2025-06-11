@@ -50,15 +50,15 @@
 `ネットワーク 授業資料 <https://densuke.github.io/2025-network-doc/>`_ © 2025 by `SATO Daisuke <https://github.com/densuke>`_ 
 is licensed under `Creative Commons Attribution-ShareAlike 4.0 International <https://creativecommons.org/licenses/by-sa/4.0/>`_
 
-.. image:: https://mirrors.creativecommons.org/presskit/icons/cc.svg
+.. image:: https://mirrors.creativecommons.org/presskit/icons/cc.png
    :alt: Creative Commons
    :height: 16px
    :width: 16px
-.. image:: https://mirrors.creativecommons.org/presskit/icons/by.svg
+.. image:: https://mirrors.creativecommons.org/presskit/icons/by.png
    :alt: BY
    :height: 16px
    :width: 16px
-.. image:: https://mirrors.creativecommons.org/presskit/icons/sa.svg
+.. image:: https://mirrors.creativecommons.org/presskit/icons/sa.png
    :alt: SA
    :height: 16px
    :width: 16px

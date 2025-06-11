@@ -44,6 +44,21 @@ jobs:
           curl -LsSf https://astral.sh/uv/install.sh | sh
           # add PATH
           echo "$HOME/.local/bin" >> $GITHUB_PATH
+      - name: nodeおよびnpmのインストール
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - name: Install mermaid-cli
+        run: |
+          npm install --include=dev
+          PATH=$PWD/node_modules/.bin:$PATH
+          echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
+          if ! command -v mmdc &> /dev/null; then
+            echo "mmdc is not installed"
+            exit 1
+          else
+            echo "mmdc is installed"
+          fi
       - name: check TeXLive tool
           # latexmkがパス上にあって呼び出せるかをチェックする、成否に関係なく進行し、結果(パスor空文字)を記録して後で使う
         id: check_texlive

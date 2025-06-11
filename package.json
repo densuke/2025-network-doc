@@ -1,0 +1,22 @@
+{
+  "name": "network-doc",
+  "version": "1.0.0",
+  "description": "ネットワーク(2025年度)向け資料",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/densuke/2025-network-doc.git"
+  },
+  "author": "",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/densuke/2025-network-doc/issues"
+  },
+  "homepage": "https://github.com/densuke/2025-network-doc#readme",
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "github:mermaid-js/mermaid-cli"
+  }
+}
