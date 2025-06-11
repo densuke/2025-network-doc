@@ -3,7 +3,7 @@ services:
     # build:
     #   context: docker
     #   dockerfile: Dockerfile
-    image: ghcr.io/densuke/sphinx-texlive:1744610599
+    image: ghcr.io/densuke/sphinx-texlive:1749629055
 
     #user: worker
     volumes:
