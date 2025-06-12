@@ -45,7 +45,7 @@ $ gh auth login
 ![GitHubのデバイス認証](images/gh-confirmation.png)
 
 これで、 **Congratulations, you're all set!** と表示されれば完了です。
-vscodeのターミナルに戻ると、プロンプトに戻っています。
+VS codeのターミナルに戻ると、プロンプトに戻っています。
 
 ```bash
 ✓ Authentication complete.

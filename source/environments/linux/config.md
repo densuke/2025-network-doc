@@ -6,7 +6,7 @@
 
 
 つづいて、リモート接続の設定を行います。
-vscodeをインストールしていると、ターミナルで `code` コマンドが使えるようになります。
+VS codeをインストールしていると、ターミナルで `code` コマンドが使えるようになります。
 これを使って、設定ファイルを作成します。
 
 ```{note}
@@ -21,7 +21,7 @@ PS> mkdir $HOME/.ssh
 PS> code $HOME/.ssh/config
 ```
 
-これでvscodeが起動し、 `$HOME/.ssh/config` ファイルが開きます。
+これでVS codeが起動し、 `$HOME/.ssh/config` ファイルが開きます。
 なんらかの都合で作成済みであれば、中身が出力されます。新規であれば空っぽの状態です。
 
 ![空の.ssh](images/dotssh-empty.png)

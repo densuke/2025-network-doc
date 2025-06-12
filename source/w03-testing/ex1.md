@@ -110,7 +110,7 @@
   - 各自の課題リポジトリに移動できます
 - GitHubのトップページから、`Your repositories`を選択
 - `git`コマンドを使って確認する
-  - vscode(リモート接続中)のターミナルにて {command}`git remote -v` でリモートのURLを確認する
+  - VS code(リモート接続中)のターミナルにて {command}`git remote -v` でリモートのURLを確認する
   - ![](images/git-remote.png)
 
 リポジトリ上で、ファイル名のところを探すと、最後のコミットメッセージでわかると思います。

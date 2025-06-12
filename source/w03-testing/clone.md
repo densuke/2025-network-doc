@@ -1,7 +1,7 @@
 # コードの取得(Clone)
 
 ではコードの取得です。
-vscodeをリモート(network)に繋いだ上で、コマンドパレットからのコマンド "Git: Clone" を呼び出します。
+VS codeをリモート(network)に繋いだ上で、コマンドパレットからのコマンド "Git: Clone" を呼び出します。
 ここで先程コピーしているURLをペーストしてください。
 ![](images/gc-paste-url.png)
 

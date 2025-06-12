@@ -2,7 +2,7 @@
   "name": "network-doc",
   "version": "1.0.0",
   "description": "ネットワーク(2025年度)向け資料",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
