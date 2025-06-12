@@ -31,9 +31,11 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# 作業中に書き込めるよう権限を設定
+# ビルド時にnode_modelesディレクトリを作ることになるので、コンテンツに対するアクセス権限を設定する必要があります。
 permissions:
   contents: write
+  # packages: write
+  # id-token: write
 
 jobs:    
   build:
