@@ -37,6 +37,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: 所有権調整
+        run: |
+          # 所有権を調整
+          sudo chown -R $USER:$USER .
+          # Dockerのグループに追加
+          sudo usermod -aG docker $USER
       - name: build PDF doc
         run: |
           # リリース情報を設定
@@ -64,7 +70,7 @@ jobs:
             fi
           fi
           
-          docker compose run --user root app make distclean latexpdf
+          docker compose runapp make distclean latexpdf
 
       - name: upload PDF as Artifact
         if: ${{ !env.ACT }}
