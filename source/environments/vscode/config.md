@@ -8,7 +8,7 @@
 VS codeを利用するときに重要なものとして『コマンドパレット』があります。
 Windowsの場合、{kbd}`Ctrl-Shift-P`で出すことができるものです。
 
-![コマンドパレットを出したところ](images/VS code-command.png)
+![コマンドパレットを出したところ](images/vscode-command.png)
 
 コマンドパレットで命令を渡すことが多いので、少し使えば頻繁に使うショートカットになっています。
 
@@ -29,14 +29,14 @@ Windowsの場合、{kbd}`Ctrl-Shift-P`で出すことができるものです。
 完了すると、反映させるためにVS codeの再起動が求められます。
 {menuselection}`Restart` を押すと再起動して日本語表記になります。
 
-![日本語表記に切り替わった状況](images/VS code-display-japanese.png)
+![日本語表記に切り替わった状況](images/vscode-display-japanese.png)
 
 ## リモート接続拡張
 
 この科目では、VirtualBoxで起動したLinux仮想マシンに接続して各種練習に使います。
 そのために仮想マシンに接続するための拡張を設定しておく必要があります。
 
-1. サイドパネルにある機能拡張アイコンをクリックします(四角形4つのアイコン) ![機能拡張ボタン](images/VS code-ext.png)
+1. サイドパネルにある機能拡張アイコンをクリックします(四角形4つのアイコン) ![機能拡張ボタン](images/vscode-ext.png)
 2. 検索に`remote`と入れると、名称にremoteを含むものがリストアップされます
 3. 一覧から **Remote - SSH** を探して {menuselection}`インストール` を押してインストールしてください
 

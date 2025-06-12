@@ -6,7 +6,7 @@
 
 [https://code.visualstudio.com/Download](https://code.visualstudio.com/Download)からダウンロードします。
 
-![ダウンロードページ](images/VS code-dlpage.png)
+![ダウンロードページ](images/vscode-dlpage.png)
 ※ macOS版の方もこのページからダウンロードできます。
 
 Windowsを使っている方は、Windows(x86_64)のインストーラーをダウンロードします。細かい選択肢もありますが、単純に {menuselection}`Windows10, 11` を選択すればインストーラーがダウンロードされます。
@@ -19,7 +19,7 @@ Windowsを使っている方は、Windows(x86_64)のインストーラーをダ�
 
 インストールの途中で、以下の確認がでることがあります。
 
-![](images/VS code-install-option.png)
+![](images/vscode-install-option.png)
 
 - デスクトップ上にアイコンを作るかは趣味に任せます
 - ファイル・ディレクトリに対するコンテキストメニュー(右クリック)に含めるかも趣味に任せます
