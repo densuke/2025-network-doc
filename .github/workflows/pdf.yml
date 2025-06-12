@@ -31,12 +31,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-# ビルド時にnode_modelesディレクトリを作ることになるので、コンテンツに対するアクセス権限を設定する必要があります。
-permissions:
-  contents: write
-  # packages: write
-  # id-token: write
-
 jobs:    
   build:
     runs-on: ubuntu-latest
