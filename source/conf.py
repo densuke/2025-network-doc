@@ -40,7 +40,7 @@ latex_elements = {
         \hypersetup{
             colorlinks=true,
             linkcolor=blue,
-            filecolor=magenta,      
+            filecolor=magenta,
             urlcolor=blue,
             pdftitle={\@title},
             pdfpagemode=FullScreen,

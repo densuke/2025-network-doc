@@ -1,5 +1,5 @@
 付録
-===============
+---------------
 
 
 このページは、おまけのリソース情報がある際に追加されます。
@@ -10,3 +10,4 @@
 
     etherheader-proto.md
     ipheader-proto.md
+    storage-full.md

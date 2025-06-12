@@ -1,7 +1,7 @@
 {
   "name": "network-doc",
   "version": "1.0.0",
-  "description": "ドキュメントの変換用ツール",
+  "description": "ネットワーク(2025年度)向け資料",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
