@@ -64,7 +64,7 @@ jobs:
             fi
           fi
           
-          docker compose run app make distclean latexpdf
+          docker compose run --user root app make distclean latexpdf
 
       - name: upload PDF as Artifact
         if: ${{ !env.ACT }}
