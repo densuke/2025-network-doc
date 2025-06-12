@@ -63,11 +63,10 @@ jobs:
               echo -e "\n# リリースバージョン\nrelease = \"${RELEASE}\"" >> sources/conf.py
             fi
           fi
-          
-          rm -fr node_modules
-          mkdir -p node_modules && sudo chown $USER:$USER node_modules
-          docker compose run app make clean latexpdf
-
+          # ソースコードを app コンテナの/tmp/ディレクトリにコピーする
+          docker compose run app mkdir -p /tmp/sources
+          docker compose run app cp -r . /tmp/sources
+          docker compose run -w /tmp/sources  app make latexpdf
       - name: upload PDF as Artifact
         if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v4
