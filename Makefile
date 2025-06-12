@@ -32,20 +32,17 @@ serve:
 
 setup:
 	# uvとnpmの準備
-	command -v uv >/dev/null || pip install uv --break-system-packages
+	command -v uv >/dev/null || pip install uv || pip install uv --break-system-packages
 	. $${HOME}/.nvm/nvm.sh || command -v npm >/dev/null || curl -L https://www.npmjs.com/install.sh | sh
+	[ -f $${HOME}/.nvm/nvm.sh ] && . $${HOME}/.nvm/nvm.sh ; \
+		nvm install --lts; \
+		nvm use --lts
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile setup
 	set -e; \
 	. $${HOME}/.nvm/nvm.sh; \
-	PATH=$${HOME}/.local/bin:$$PATH; \
-	PATH=/opt/texlive/bin/$$(uname -m)-$$(uname -s | tr A-Z a-z):$$PATH; \
-	export PATH; \
+	export PATH=$${HOME}/.local/bin:/opt/texlive/bin/$$(uname -m)-$$(uname -s | tr A-Z a-z):$$PATH; \
 	npm install --verbose; \
-	echo "====="; echo "PATH: $$PATH"; echo "====="; \
-	command -v latexmk ; \
-	echo $(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O);  \
-	sleep 10; \
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
