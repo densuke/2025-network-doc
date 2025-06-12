@@ -1,8 +1,8 @@
 {
   "name": "network-doc",
   "version": "1.0.0",
-  "description": "## このドキュメントは?",
-  "main": "index.js",
+  "description": "ドキュメントの変換用ツール",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/densuke/2025-network-doc#readme",
   "dependencies": {
-    "@mermaid-js/mermaid-cli": "github:mermaid-js/mermaid-cli"
+    "@mermaid-js/mermaid-cli": "github:mermaid-js/mermaid-cli#v10.5.0"
   }
 }
