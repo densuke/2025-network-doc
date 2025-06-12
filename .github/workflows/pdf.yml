@@ -38,57 +38,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: setup uv
-        run: |
-          # install uv
-          curl -LsSf https://astral.sh/uv/install.sh | sh
-          # add PATH
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
-      - name: nodeおよびnpmのインストール
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'lts/*'
-      - name: Install mermaid-cli
-        run: |
-          npm install --include=dev
-          PATH=$PWD/node_modules/.bin:$PATH
-          echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
-          if ! command -v mmdc &> /dev/null; then
-            echo "mmdc is not installed"
-            exit 1
-          else
-            echo "mmdc is installed"
-          fi
-      - name: check TeXLive tool
-          # latexmkがパス上にあって呼び出せるかをチェックする、成否に関係なく進行し、結果(パスor空文字)を記録して後で使う
-        id: check_texlive
-        run: |
-          set -e
-          # latexmkがパス上にあって呼び出せるかをチェックする、成否に関係なく進行し、結果(パスor空文字)を記録して後で使う
-          if command -v latexmk &> /dev/null; then
-            echo "latexmk is installed"
-            echo "latexmk_path=$(command -v latexmk)" >> $GITHUB_OUTPUT
-          else
-            echo "latexmk is not installed"
-            echo "latexmk_path=" >> $GITHUB_OUTPUT
-          fi
-      - name: setup texlive
-        # この処理は、texliveがインストールされていない場合にのみ実行される
-        if: steps.check_texlive.outputs.latexmk_path == ''
-        run: |
-          set -x
-          wget -O- https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | tar xz
-          mv install-tl-* install-tl
-          cd install-tl
-          set -e
-          ./install-tl --profile ../docker/texlive.profile
-          # "/opt/texlive/bin/アークテクチャ"にGITHUB_OUTPUTに保存しておく
-          # これをPATHに追加することで、texliveが使えるようになる
-          echo "PATH=/opt/texlive/bin/$(uname -m)-$(uname -s | tr A-Z a-z):$PATH" >> $GITHUB_ENV
-          PATH=/opt/texlive/bin/$(uname -m)-$(uname -s | tr A-Z a-z):$PATH
-          tlmgr install wrapfig capt-of framed upquote needspace \
-            tabulary varwidth titlesec latexmk cmap float wrapfig \
-            fancyvrb booktabs parskip 
       - name: build PDF doc
         run: |
           # リリース情報を設定
@@ -116,7 +65,7 @@ jobs:
             fi
           fi
           
-          make latexpdf
+          docker compose run app make latexpdf
 
       - name: upload PDF as Artifact
         if: ${{ !env.ACT }}
