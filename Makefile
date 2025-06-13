@@ -38,16 +38,19 @@ setup: node_modules/.ok
 
 node_modules/.ok:
 	# node.jsまわり(nvm,npm)のセットアップ→必要となるモジュールのインストール
-	. $${HOME}/.nvm/nvm.sh || command -v npm >/dev/null || curl -L https://www.npmjs.com/install.sh | sh
-	[ -f "$${HOME}/.nvm/nvm.sh" ] && . "$${HOME}/.nvm/nvm.sh"
-	if command -v nvm >/dev/null; then
-		nvm install --lts
-		nvm use --lts
-		npm install --verbose
-		touch node_modules/.ok
-	else
-		echo "警告: nvm コマンドが見つかりません。npm関連の処理が期待通りに動作しない可能性があります。" >&2
+	if [ -f "$${HOME}/.nvm/nvm.sh" ]; then \
+		echo "nvm is already installed."; \
+	else \
+		echo "Installing nvm..."; \
+		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash; \
 	fi
+	# . $${HOME}/.nvm/nvm.sh || command -v npm >/dev/null || curl -L https://www.npmjs.com/install.sh | sh
+	[ -f "$${HOME}/.nvm/nvm.sh" ] && . "$${HOME}/.nvm/nvm.sh"; \
+	command -v nvm >/dev/null || exit 1; \
+	nvm install --lts; \
+	nvm use --lts; \
+	npm install --verbose
+	touch node_modules/.ok
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
