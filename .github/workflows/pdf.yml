@@ -77,7 +77,7 @@ jobs:
           # 成果物の受け取りを行う(PDF部分のみ)
           mkdir -pv build/latex
           #docker compose $COMPOSE_FILES cp -L app:/tmp/app/build/latex/*.pdf build/latex/
-          docker compose $COMPOSE_FILES copy app:/tmp/app/build/latex/*.pdf ./build/latex/
+          docker compose $COMPOSE_FILES cp app:/tmp/app/build/latex/*.pdf ./build/latex/
           # コンテナを停止する
           docker compose $COMPOSE_FILES down --remove-orphans
       - name: upload PDF as Artifact
