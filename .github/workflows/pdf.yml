@@ -63,8 +63,9 @@ jobs:
               echo -e "\n# リリースバージョン\nrelease = \"${RELEASE}\"" >> sources/conf.py
             fi
           fi
+          COMPOSE_FILES="-f compose.yml -f compose-pdfwf.yml"
           # コンテナをバックグラウンドで起動する
-          docker compose -f compose.yml -f compose-pdfwf.yml up -d 
+          docker compose $COMPOSE_FILES up -d
           # コンテナ内でソースコード一式を/tmp/appにコピーする
           docker compose $COMPOSE_FILES exec app rsync -av --exclude='.git' /app/ /tmp/app/
           # コピー先でビルドを実行する
