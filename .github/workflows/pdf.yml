@@ -64,11 +64,11 @@ jobs:
             fi
           fi
           # コンテナをバックグラウンドで起動する
-          docker compose up -d -- tail -f /dev/null
+          docker compose -f compose.yml -f compose-pdfwf.yml up -d 
           # コンテナ内でソースコード一式を/tmp/appにコピーする
-          docker compose exec app sh -c "cp -r /app /tmp/"
-          docker compose exec app -w /tmp/app -- make latexpdf
-          docker compose cp -L app:/tmp/app/build/latex/*.pdf build/latex/
+          docker compose -f compose.yml -f compose-pdfwf.ymlexec app sh -c "cp -r /app /tmp/"
+          docker compose -f compose.yml -f compose-pdfwf.yml exec app -w /tmp/app -- make latexpdf
+          docker compose -f compose.yml -f compose-pdfwf.yml cp -L app:/tmp/app/build/latex/*.pdf build/latex/
           docker compose down 
       - name: upload PDF as Artifact
         if: ${{ !env.ACT }}
