@@ -24,7 +24,7 @@ endef
 
 .PHONY: help clean distclean serve setup-uv node_modules
 
-help:
+help: setup-uv
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 clean:
@@ -57,7 +57,7 @@ node_modules/.ok: package.json package-lock.json
 	npm install --verbose; \
 	touch node_modules/.ok
 
-html: setup-uv
+html: setup-uv Makefile
 	set -e; \
 	export PATH=$${HOME}/.local/bin:$$PATH; \
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
