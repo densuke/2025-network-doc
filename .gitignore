@@ -32,6 +32,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+.uv-installed
 
 # エディタ関連
 .idea/
