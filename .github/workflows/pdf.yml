@@ -70,6 +70,8 @@ jobs:
           docker compose $COMPOSE_FILES exec app rsync -av --exclude='.git' /app/ /tmp/app/
           # コピー先でビルドを実行する
           docker compose $COMPOSE_FILES exec app make -C /tmp/app latexpdf
+          # 成果物の受け取りを行う(PDF部分のみ)
+          mkdir -pv build/latex
           docker compose $COMPOSE_FILES cp -L app:/tmp/app/build/latex/*.pdf build/latex/
           # コンテナを停止する
           docker compose $COMPOSE_FILES down --remove-orphans
