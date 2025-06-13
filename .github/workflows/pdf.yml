@@ -63,10 +63,13 @@ jobs:
               echo -e "\n# リリースバージョン\nrelease = \"${RELEASE}\"" >> sources/conf.py
             fi
           fi
-          # ソースコードを app コンテナの/tmp/ディレクトリにコピーする
-          docker compose run app mkdir -p /tmp/sources
-          docker compose run app cp -r . /tmp/sources
-          docker compose run -w /tmp/sources  app make latexpdf
+          # コンテナをバックグラウンドで起動する
+          docker compose up -d -- tail -f /dev/null
+          # コンテナ内でソースコード一式を/tmp/appにコピーする
+          docker compose exec app sh -c "cp -r /app /tmp/"
+          docker compose exec app -w /tmp/app -- make latexpdf
+          docker compose cp -L app:/tmp/app/build/latex/*.pdf build/latex/
+          docker compose down 
       - name: upload PDF as Artifact
         if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v4
