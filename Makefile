@@ -30,13 +30,21 @@ serve:
 		--watch source --ignore "*.pyc" \
 		source build/html
 
-setup:
-	# uvとnpmの準備
+setup: node_modules
+	# uv
 	command -v uv >/dev/null || pip install uv || pip install uv --break-system-packages
+
+node_modules: package.json package-lock.json
+	# node.jsまわり(nvm,npm)のセットアップ→必要となるモジュールのインストール
 	. $${HOME}/.nvm/nvm.sh || command -v npm >/dev/null || curl -L https://www.npmjs.com/install.sh | sh
-	[ -f $${HOME}/.nvm/nvm.sh ] && . $${HOME}/.nvm/nvm.sh ; \
-		nvm install --lts; \
+	[ -f "$${HOME}/.nvm/nvm.sh" ] && . "$${HOME}/.nvm/nvm.sh"
+	if command -v nvm >/dev/null; then
+		nvm install --lts
 		nvm use --lts
+		npm install --verbose
+	else
+		echo "警告: nvm コマンドが見つかりません。npm関連の処理が期待通りに動作しない可能性があります。" >&2
+	fi
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
@@ -44,5 +52,4 @@ setup:
 	set -e; \
 	. $${HOME}/.nvm/nvm.sh; \
 	export PATH=$${HOME}/.local/bin:/opt/texlive/bin/$$(uname -m)-$$(uname -s | tr A-Z a-z):$$PATH; \
-	npm install --verbose; \
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
