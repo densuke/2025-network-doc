@@ -66,10 +66,12 @@ jobs:
           # コンテナをバックグラウンドで起動する
           docker compose -f compose.yml -f compose-pdfwf.yml up -d 
           # コンテナ内でソースコード一式を/tmp/appにコピーする
-          docker compose -f compose.yml -f compose-pdfwf.yml exec app rsync -av --exclude='.git' /app/ /tmp/app/
-          docker compose -f compose.yml -f compose-pdfwf.yml exec app make -C /tmp/app latexpdf
-          docker compose -f compose.yml -f compose-pdfwf.yml cp -L app:/tmp/app/build/latex/*.pdf build/latex/
-          docker compose down 
+          docker compose $COMPOSE_FILES exec app rsync -av --exclude='.git' /app/ /tmp/app/
+          # コピー先でビルドを実行する
+          docker compose $COMPOSE_FILES exec app make -C /tmp/app latexpdf
+          docker compose $COMPOSE_FILES cp -L app:/tmp/app/build/latex/*.pdf build/latex/
+          # コンテナを停止する
+          docker compose $COMPOSE_FILES down --remove-orphans
       - name: upload PDF as Artifact
         if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v4
