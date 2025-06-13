@@ -36,7 +36,7 @@ setup: node_modules/.ok
 	uv venv
 	uv sync
 
-node_modules/.ok: package.json package-lock.json
+node_modules/.ok: package.json
 	# node.jsまわり(nvm,npm)のセットアップ→必要となるモジュールのインストール
 	. $${HOME}/.nvm/nvm.sh || command -v npm >/dev/null || curl -L https://www.npmjs.com/install.sh | sh
 	[ -f "$${HOME}/.nvm/nvm.sh" ] && . "$${HOME}/.nvm/nvm.sh"
