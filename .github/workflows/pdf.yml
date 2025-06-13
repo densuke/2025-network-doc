@@ -67,7 +67,11 @@ jobs:
           # コンテナをバックグラウンドで起動する
           docker compose $COMPOSE_FILES up -d
           # コンテナ内でソースコード一式を/tmp/appにコピーする
-          docker compose $COMPOSE_FILES exec app rsync -av --exclude='.git' /app/ /tmp/app/
+          docker compose $COMPOSE_FILES exec app rsync -av \
+            --exclude='.git' \
+            --exclude='.venv' \
+            --exclude='node_modules' \
+            /app/ /tmp/app/
           # コピー先でビルドを実行する
           docker compose $COMPOSE_FILES exec app make -C /tmp/app latexpdf
           # 成果物の受け取りを行う(PDF部分のみ)
