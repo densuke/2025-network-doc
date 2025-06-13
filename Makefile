@@ -33,8 +33,6 @@ serve:
 setup: node_modules/.ok
 	# uv
 	command -v uv >/dev/null || pip install uv || pip install uv --break-system-packages
-	uv venv
-	uv sync
 
 node_modules/.ok:
 	# node.jsまわり(nvm,npm)のセットアップ→必要となるモジュールのインストール
