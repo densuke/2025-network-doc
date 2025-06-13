@@ -50,6 +50,7 @@ node_modules: node_modules/.ok
 
 node_modules/.ok: package.json package-lock.json
 	$(call nvm_setup)
+	. "$${HOME}/.nvm/nvm.sh"; \
 	npm install --verbose
 	touch node_modules/.ok
 
