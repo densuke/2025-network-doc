@@ -8,6 +8,7 @@ BUILDDIR      = build
 
 # --- nvmセットアップ関数 ---
 define nvm_setup
+	set -e; \
 	if [ ! -f "$${HOME}/.nvm/nvm.sh" ]; then \
 		echo "nvm をインストールします..."; \
 		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash; \
@@ -43,24 +44,28 @@ serve: setup-uv
 setup-uv: .uv-installed
 
 .uv-installed:
-	command -v uv >/dev/null || pip install uv --break-system-packages
+	set -e; \
+	command -v uv >/dev/null || pip install uv --break-system-packages; \
 	touch .uv-installed
 
 node_modules: node_modules/.ok
 
 node_modules/.ok: package.json package-lock.json
-	$(call nvm_setup)
+	set -e; \
+	$(call nvm_setup); \
 	. "$${HOME}/.nvm/nvm.sh"; \
-	npm install --verbose
+	npm install --verbose; \
 	touch node_modules/.ok
 
 html: setup-uv
+	set -e; \
 	export PATH=$${HOME}/.local/bin:$$PATH; \
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 # Sphinx の make mode 用キャッチオールターゲット
 %:
 	make setup-uv node_modules
+	set -e; \
 	export PATH=$${HOME}/.local/bin:$$(pwd)/node_modules/.bin:/opt/texlive/bin/$$(uname -m)-$$(uname -s | tr A-Z a-z):$$PATH; \
 	. "$${HOME}/.nvm/nvm.sh"; \
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
