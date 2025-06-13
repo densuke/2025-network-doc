@@ -1,0 +1,4 @@
+# もともとのcompose.ymlに上書き起動させるためのものです。
+services:
+  app:
+    command: tail -f /dev/null
