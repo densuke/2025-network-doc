@@ -1,59 +1,71 @@
-# Minimal makefile for Sphinx documentation
-#
+# Sphinx & Node.js ドキュメントビルド用 Makefile
 
-# You can set these variables from the command line, and also
-# from the environment for the first two.
+# --- 変数定義 ---
 SPHINXOPTS    ?=
 SPHINXBUILD   ?= uv run sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
 
-# Update PATH to include ~/.local/bin during build
-# Put it first so that "make" without argument is like "make help".
-help:
+# --- nvmセットアップ関数 ---
+define nvm_setup
+	set -e; \
+	if [ ! -f "$${HOME}/.nvm/nvm.sh" ]; then \
+		echo "nvm をインストールします..."; \
+		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash; \
+	else \
+		echo "nvm は既にインストールされています。"; \
+	fi; \
+	. "$${HOME}/.nvm/nvm.sh"; \
+	nvm install --lts; \
+	nvm use --lts
+endef
+
+# --- ターゲット定義 ---
+
+.PHONY: help clean distclean serve setup-uv node_modules
+
+help: setup-uv
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help Makefile
-
 clean:
-	pwd
-	ls -l
-	rm -vfr build
+	rm -vfr $(BUILDDIR)
 
 distclean: clean
 	rm -fr .venv node_modules
-	# エディタの中間保存ファイルなども削除
-	find . -type f -name ".DS_Store" -or -name ".*.swp" -or -name "*~" -or -name "*.bak" -or -name "*.orig" -delete
+	find . -type f \( -name ".DS_Store" -or -name ".*.swp" -or -name "*~" -or -name "*.bak" -or -name "*.orig" \) -delete 
+	rm -f .uv-installed
 
-serve:
+serve: setup-uv
+	export PATH=$${HOME}/.local/bin:$$PATH; \
 	uv run sphinx-autobuild -b html --host 0.0.0.0 --port 8000 \
-		--watch source --ignore "*.pyc" \
-		source build/html
+		--watch $(SOURCEDIR) --ignore "*.pyc" \
+		$(SOURCEDIR) $(BUILDDIR)/html
 
-setup: node_modules/.ok
-	# uv
-	command -v uv >/dev/null || pip install uv || pip install uv --break-system-packages
+setup-uv: .uv-installed
 
-node_modules/.ok:
-	# node.jsまわり(nvm,npm)のセットアップ→必要となるモジュールのインストール
-	if [ -f "$${HOME}/.nvm/nvm.sh" ]; then \
-		echo "nvm is already installed."; \
-	else \
-		echo "Installing nvm..."; \
-		curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash; \
-	fi
-	# . $${HOME}/.nvm/nvm.sh || command -v npm >/dev/null || curl -L https://www.npmjs.com/install.sh | sh
-	[ -f "$${HOME}/.nvm/nvm.sh" ] && . "$${HOME}/.nvm/nvm.sh"; \
-	command -v nvm >/dev/null || exit 1; \
-	nvm install --lts; \
-	nvm use --lts; \
-	npm install --verbose
+.uv-installed:
+	set -e; \
+	command -v uv >/dev/null || pip install uv --break-system-packages; \
+	touch .uv-installed
+
+node_modules: node_modules/.ok
+
+node_modules/.ok: package.json package-lock.json
+	set -e; \
+	$(call nvm_setup); \
+	. "$${HOME}/.nvm/nvm.sh"; \
+	npm install --verbose; \
 	touch node_modules/.ok
 
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile setup
+html: setup-uv Makefile
 	set -e; \
-	. $${HOME}/.nvm/nvm.sh; \
-	export PATH=$${HOME}/.local/bin:/opt/texlive/bin/$$(uname -m)-$$(uname -s | tr A-Z a-z):$$PATH; \
+	export PATH=$${HOME}/.local/bin:$$PATH; \
+	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+# Sphinx の make mode 用キャッチオールターゲット
+%:
+	make setup-uv node_modules
+	set -e; \
+	export PATH=$${HOME}/.local/bin:$$(pwd)/node_modules/.bin:/opt/texlive/bin/$$(uname -m)-$$(uname -s | tr A-Z a-z):$$PATH; \
+	. "$${HOME}/.nvm/nvm.sh"; \
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
