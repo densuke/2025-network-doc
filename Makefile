@@ -30,11 +30,11 @@ serve:
 		--watch source --ignore "*.pyc" \
 		source build/html
 
-setup: node_modules
+setup: node_modules/.ok
 	# uv
 	command -v uv >/dev/null || pip install uv || pip install uv --break-system-packages
 
-node_modules: package.json package-lock.json
+node_modules/.ok: package.json package-lock.json
 	# node.jsまわり(nvm,npm)のセットアップ→必要となるモジュールのインストール
 	. $${HOME}/.nvm/nvm.sh || command -v npm >/dev/null || curl -L https://www.npmjs.com/install.sh | sh
 	[ -f "$${HOME}/.nvm/nvm.sh" ] && . "$${HOME}/.nvm/nvm.sh"
@@ -42,6 +42,7 @@ node_modules: package.json package-lock.json
 		nvm install --lts
 		nvm use --lts
 		npm install --verbose
+		touch node_modules/.ok
 	else
 		echo "警告: nvm コマンドが見つかりません。npm関連の処理が期待通りに動作しない可能性があります。" >&2
 	fi
