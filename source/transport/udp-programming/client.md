@@ -33,15 +33,13 @@ UDPでのechoクライアントを記述して、基本的なネットワーク�
 :lines: 6
 ```
 
-
-
 ネットワークの通信では、ソケット(socket)という概念を使用します。
 言葉として聞くであろうソケットであり、言い換えればケーブルのようなものです。
 ただ、ソケットでは『皮』と『中身』を決めてあげる必要があります。
 
 - 皮: ソケットをケーブルと見立てたときの皮であり、どのような材質で相手までひっぱるかになります。
-    - シンボル`AS_INET`(`socket.AF_INET`)は、IPv4のインターネットプロトコルを使用することを意味します。
-    - 今回は使いませんが、IPv6もちろん可能で、`AS_INET6`(`socket.AF_INET6`)を使うこともできます。
+    - シンボル`AF_INET`(`socket.AF_INET`)は、IPv4のインターネットプロトコルを使用することを意味します。
+    - 今回は使いませんが、IPv6もちろん可能で、`AF_INET6`(`socket.AF_INET6`)を使うこともできます。
 - 中身: ソケット(ケーブル)の中身の材質みたいなものです、具体的にはTCPを使うかUDPを使うかということになります。
     - シンボル`SOCK_DGRAM`(`socket.SOCK_DGRAM`)は、UDPを使用することを意味します。
     - TCPを使う場合は、`SOCK_STREAM`(`socket.SOCK_STREAM`)を使います。
@@ -57,11 +55,11 @@ TCPは**ストリーム通信**という仕組みを用いて行うため、指�
 
 ```{literalinclude} sources/echo/echo-client.py
 :language: python
-:lines: 12-14
+:lines: 10-12
 :emphasize-lines: 3
 ```
 
-見ての通りで、生成したソケット(`socket`)を用いての`sendto()` です。
+見ての通りで、生成したソケット(`sock`)を用いての`sendto()` です。
 送りたいデータと送り先をしているだけとなっています。相手との接続確認とかありません。
 
 ### データの受信
@@ -76,7 +74,7 @@ TCPは**ストリーム通信**という仕組みを用いて行うため、指�
 
 ```{literalinclude} sources/echo/echo-client.py
 :language: python
-:lines: 17-19
+:lines: 15-17
 :emphasize-lines: 2
 ```
 
