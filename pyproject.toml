@@ -13,3 +13,8 @@ dev = [
     "sphinx-rtd-theme>=3.0.2",
     "sphinxcontrib-mermaid>=1.0.0",
 ]
+
+[tool.uv.workspace]
+members = [
+    "source/transport/udp-programming/sources/echo",
+]
