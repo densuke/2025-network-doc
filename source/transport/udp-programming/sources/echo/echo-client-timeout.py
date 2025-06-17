@@ -13,10 +13,13 @@ def main():
 
         # Receive response
         print('応答待ち')
-        sock.settimeout(1.0)
-        data, server = sock.recvfrom(4096)
-        print(f'受信しました: {data}')
         # タイムアウトを1秒に設定
+        sock.settimeout(1.0)
+        try:
+            data, server = sock.recvfrom(4096)
+            print(f'受信しました: {data}')
+        except socket.timeout:
+            print('応答がありませんでした。タイムアウトしました。')
 
     print('終了します')
 
