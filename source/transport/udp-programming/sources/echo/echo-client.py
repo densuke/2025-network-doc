@@ -9,7 +9,7 @@ def main():
         
         message = b'Hello, World!' # 送信したいデータ列(バイト列に変換しておく)
         print(f'送信内容: {message}')
-        sent = sock.sendto(message, server_address)
+        sock.sendto(message, server_address)
 
         # Receive response
         print('応答待ち')
