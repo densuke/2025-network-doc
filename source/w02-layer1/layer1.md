@@ -12,7 +12,8 @@
     - RJ-45、SCコネクタなど
     - ![RJ-45コネクタの例](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Ethernet_RJ45_connector_p1160054.jpg/440px-Ethernet_RJ45_connector_p1160054.jpg)
     - [SCコネクタの例(サンワサプライ)](https://www.sanwa.co.jp/product/network/hikaricable/scsc.html)
-- 伝送メディア（ケーブル、無線など）
+- 伝送メディア
+    - ケーブル、無線など
 - 信号の電圧レベル、周波数、光パルスなど
 - ビットの符号化方式
 
