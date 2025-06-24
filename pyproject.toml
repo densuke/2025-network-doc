@@ -17,4 +17,5 @@ dev = [
 [tool.uv.workspace]
 members = [
     "source/transport/udp-programming/sources/echo",
+    "source/transport/tcp-programming/source",
 ]

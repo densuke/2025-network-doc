@@ -15,3 +15,4 @@
    dns.md
    dhcp.md
    udp-programming/index.rst
+   tcp-programming/index.rst

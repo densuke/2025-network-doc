@@ -6,6 +6,7 @@ requires-python = ">=3.13.0"
 members = [
     "2025-network-doc",
     "echo",
+    "source",
 ]
 
 [[package]]
@@ -323,6 +324,11 @@ sdist = { url = "https://files.pythonhosted.org/packages/44/7b/af302bebf22c749c5
 wheels = [
     { url = "https://files.pythonhosted.org/packages/ed/dc/c02e01294f7265e63a7315fe086dd1df7dacb9f840a804da846b96d01b96/snowballstemmer-2.2.0-py2.py3-none-any.whl", hash = "sha256:c8e1716e83cc398ae16824e5572ae04e0d9fc2c6b985fb0f900f5f0c96ecba1a", size = 93002, upload-time = "2021-11-16T18:38:34.792Z" },
 ]
+
+[[package]]
+name = "source"
+version = "0.1.0"
+source = { virtual = "source/transport/tcp-programming/source" }
 
 [[package]]
 name = "sphinx"
