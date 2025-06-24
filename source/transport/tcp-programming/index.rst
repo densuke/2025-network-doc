@@ -1,5 +1,3 @@
-.. _tcp-programming:
-==========================================
 TCPでのプログラミング体験
 ===========================================
 
@@ -14,5 +12,5 @@ TCPでのプログラミング体験
    client.md
    server.md
    test.md
-   .. multiple-client.md
+   multiple-client.md
    

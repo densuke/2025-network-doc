@@ -1,5 +1,5 @@
 import socket
-import ast # 現在は不要でした(削除可能)
+import multiprocessing  # マルチプロセス対応のため追加
 
 HOST = '127.0.0.1'  # ローカルホスト
 PORT = 10000        # 任意の空いているポート番号
@@ -43,8 +43,10 @@ def run_server():
             # 4. accept()で、クライアントからの接続要求を受け入れ、
             #    新しいソケット(conn)とクライアントのアドレス(addr)を取得
             conn, addr = sock.accept()
-            with conn:
-                handle_client(conn, addr)
+            # マルチプロセスでクライアントを処理
+            process = multiprocessing.Process(target=handle_client, args=(conn, addr))
+            process.start()
+            conn.close() # 親プロセス側では閉じておく
     finally:
         print("[server] Shutting down")
         sock.close()

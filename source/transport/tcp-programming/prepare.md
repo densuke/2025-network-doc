@@ -33,7 +33,7 @@ cd ~/tcp-programming
 code --reuse-window .
 ```
 
-````{note}
+````
 
 
 ## Pythonの利用を宣言する

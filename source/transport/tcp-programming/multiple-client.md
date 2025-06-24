@@ -45,3 +45,50 @@ sequenceDiagram
 [^lock]: Pythonでは`threading.Lock`を使うことができます。Javaだと`synchronized`キーワードを使うことができます。
 
 非同期I/Oは比較的最近の技術で、Pythonでは`asyncio`モジュールを使うことで実現できます。
+
+## マルチプロセス型のサーバー
+
+ここでは比較的実装の簡単な、マルチプロセス型のサーバーを実装してみます。
+マルチプロセス型のサーバーは、各クライアントの接続を別々のプロセスで処理するため、各プロセスが独立して動作します。
+
+```{literalinclude} source/calc_server_multiprocess.py
+:language: python
+:linenos:
+```
+
+少しわかりにくいですね、変更点を出すとこうなります。
+
+```{literalinclude} source/calc_server_multiprocess.py
+:language: python
+:linenos:
+:diff: source/calc_server.py
+```
+
+見ての通りで、接続状態を保持する {code}`conn`を利用して、{code}`multiprocessing.Process`を使って新しい子プロセスを生成しています。
+
+現代OSの基礎概念のひとつで、プロセスからプロセスを生成する際の考え方があります。
+自身(実行中のプロセス自身)のコピーをコピーするもので、UNIX(Linux)界隈では`fork`と呼ばれています。
+
+```{mermaid}
+flowchart TD
+    subgraph 親プロセス
+        P[カーネル空間]
+        A[ユーザープロセス]
+    end
+    P -- fork要求 --> K[カーネル]
+    K -- プロセス複製 --> C[子プロセス]
+    C -.->|独立して実行| A
+    style K fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#bbf,stroke:#333,stroke-width:2px
+    style A fill:#bfb,stroke:#333,stroke-width:2px
+```
+
+```{note}
+Windowsでは`fork`は存在しません、代わりに`CreateProcess`というAPIが存在します。
+これは、子プロセスを生成することに変わりませんが、親プロセスの状態をコピーするわけではありません。
+実際に起動させたいプログラムを指定して起動させます。
+```
+
+forkでは親プロセスの状態をコピーして動くため、『開いているファイル』や『開いているソケット』などもコピーを持つことになります。
+そこで、コピー元(親プロセス)側は即座にソケット(接続)を閉じておくことにしましょう。これで「なぜか二股になっていた』状態が解消します。
+そして`while`のループの冒頭に戻り、次の `sock.accept()` で次の接続を待つようになります。
