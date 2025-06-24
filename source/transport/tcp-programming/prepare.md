@@ -25,15 +25,10 @@ cd ~/tcp-programming
 code --reuse-window .
 ```
 
-````{note}
+```{note}
 - VS Codeの`--reuse-window`オプションは、すでに開いているウィンドウを再利用するためのものです。
 - 場合によっては再度ログインの扱いとなり、パスワードを聞かれることがあります。
-```bash
-cd ~/tcp-programming
-code --reuse-window .
 ```
-
-````
 
 
 ## Pythonの利用を宣言する
