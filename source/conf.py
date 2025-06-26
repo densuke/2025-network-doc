@@ -14,7 +14,9 @@ author = '佐藤 大輔 <densuke@st.kobedenshi.ac.jp>'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ['myst_parser', 'sphinx_rtd_theme',
-            'sphinxcontrib.mermaid',]
+            'sphinxcontrib.mermaid', 'sphinx.ext.todo',]
+
+todo_include_todos = True
 
 
 templates_path = ['_templates']
