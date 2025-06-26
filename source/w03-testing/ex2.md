@@ -59,8 +59,7 @@ dependencies = []
 
 そして、`main.py`が存在しているはずなので、必要なコードにしてみます。
 
-```{code-block}
-:language: python
+```{code-block} python
 :linenos: true
 :emphasize-lines: 2
 :caption: ex2/main.py
