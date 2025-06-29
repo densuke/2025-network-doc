@@ -24,13 +24,26 @@ endef
 
 .PHONY: help clean distclean serve setup-uv node_modules
 
+mermaid:
+	uv run scripts/process_mermaid.py
+
+
 help: setup-uv
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 clean:
-	rm -vfr $(BUILDDIR)
+	@$(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-distclean: clean
+mermaid-clean:
+	@echo "Cleaning Mermaid generated files..."
+	@rm -rf $(SOURCEDIR)/.mermaid_temp
+	@find $(SOURCEDIR) -name "mermaid_*.png" -delete
+	@find $(SOURCEDIR) -type f -name "*.mmd" -delete
+	@find $(SOURCEDIR) -type d -name "_images" -delete
+	@echo "Mermaid generated files cleaned."
+	docker container prune -f --filter "label=mermaid-cli"
+
+distclean: clean mermaid-clean
 	rm -fr .venv node_modules
 	find . -type f \( -name ".DS_Store" -or -name ".*.swp" -or -name "*~" -or -name "*.bak" -or -name "*.orig" \) -delete 
 	rm -f .uv-installed
@@ -61,6 +74,12 @@ html: setup-uv Makefile
 	set -e; \
 	export PATH=$${HOME}/.local/bin:$$PATH; \
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+latexpdf: setup-uv mermaid Makefile
+	set -e; \
+	export PATH=$${HOME}/.local/bin:$$PATH; \
+	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
 
 # Sphinx の make mode 用キャッチオールターゲット
 %:

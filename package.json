@@ -4,7 +4,8 @@
   "description": "ネットワーク(2025年度)向け資料",
   "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+     "mermaid-single": "docker run --rm -v \"$PWD\":/data minlag/mermaid-cli -i \"/data/$MMD_FILE\" -o \"/data/$PNG_FILE\""
   },
   "repository": {
     "type": "git",
