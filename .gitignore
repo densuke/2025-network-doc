@@ -52,3 +52,6 @@ Thumbs.db
 
 # node.js(npm)のモジュール
 node_modules/
+
+.mermaid_temp/
+mermaid_[0-9a-f]*.png
