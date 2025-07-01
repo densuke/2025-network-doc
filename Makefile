@@ -24,7 +24,7 @@ endef
 
 .PHONY: help clean distclean serve setup-uv node_modules
 
-mermaid:
+mermaid: setup-uv node_modules
 	uv run scripts/process_mermaid.py
 
 
@@ -41,7 +41,6 @@ mermaid-clean:
 	@find $(SOURCEDIR) -type f -name "*.mmd" -delete
 	@find $(SOURCEDIR) -type d -name "_images" -delete
 	@echo "Mermaid generated files cleaned."
-	docker container prune -f --filter "label=mermaid-cli"
 
 distclean: clean mermaid-clean
 	rm -fr .venv node_modules
