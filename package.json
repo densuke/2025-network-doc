@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/densuke/2025-network-doc#readme",
   "dependencies": {
-    "@mermaid-js/mermaid-cli": "github:mermaid-js/mermaid-cli"
+    "@google/gemini-cli": "^0.1.9",
+    "@mermaid-js/mermaid-cli": "github:mermaid-js/mermaid-cli",
+    "@playwright/test": "^1.53.2",
+    "install": "^0.13.0"
   }
 }
