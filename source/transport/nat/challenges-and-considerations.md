@@ -64,10 +64,10 @@ graph TD
     end
 
     Client -- "リクエスト (Src:192.168.1.10)" --> HomeRouter
-    HomeRouter -- "変換 (Src:192.168.1.100)" --> ISP_NAT
+    HomeRouter -- "変換 (Src:100.64.12.34)" --> ISP_NAT
     ISP_NAT -- "変換 (Src:203.0.113.10)" --> External
     External -- "応答 (Dst:203.0.113.10)" --> ISP_NAT
-    ISP_NAT -- "逆変換 (Dst:192.168.1.100)" --> HomeRouter
+    ISP_NAT -- "逆変換 (Dst:100.64.12.34)" --> HomeRouter
     HomeRouter -- "逆変換 (Dst:192.168.1.10)" --> Client
 
     style External fill:#cfc,stroke:#333,stroke-width:2px
