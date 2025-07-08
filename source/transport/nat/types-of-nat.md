@@ -83,14 +83,12 @@ graph TD
 
 プロキシサーバーはアプリケーション層で動作するのに対し、NATはネットワーク層で動作します。NATはIPアドレスとポート番号を透過的に変換しますが、プロキシサーバーは特定のアプリケーションプロトコルを理解し、そのプロトコルに沿って通信を中継します。これにより、より詳細な制御やキャッシュなどの付加価値を提供できます。
 
-```{mermaid}
 graph TD
     subgraph プライベートネットワーク
         A["クライアント (192.168.1.10)"]
     end
-    Router[ルーター]
-    subgraph Router
-        Proxy[プロキシサーバー]
+    subgraph "ゲートウェイ"
+        Proxy["プロキシサーバー"]
     end
     C[インターネット]
 
@@ -100,10 +98,8 @@ graph TD
     Proxy -- 代理応答 --> A
 
     style A fill:#f9f,stroke:#333,stroke-width:2px
-    style Router fill:#bbf,stroke:#333,stroke-width:2px
     style Proxy fill:#bbf,stroke:#333,stroke-width:2px
     style C fill:#cfc,stroke:#333,stroke-width:2px
-```
 
 プロキシサーバーを使うことの副次的なメリットとして、『キャッシュ』の効果が当時それなりにありました。
 しかし、現在では利用者ごとにカスタム化されたページも多く、恩恵にはあまりあずかれないことが多いです。
