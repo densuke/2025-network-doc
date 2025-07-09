@@ -5,8 +5,7 @@
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "mermaid-single-debug": "echo docker run --rm -w /data -v \"$PWD\":/data docker.io/minlag/mermaid-cli -i \"$MMD_FILE\" -o \"$PNG_FILE\"",
-    "mermaid-single": "docker run --rm -w /data -v \"$PWD\":/data docker.io/minlag/mermaid-cli -i \"$MMD_FILE\" -o \"$PNG_FILE\""
+    "mermaid-single": "docker run --rm -v \"$PWD\":/data docker.io/minlag/mermaid-cli -i \"/data/$MMD_FILE\" -o \"/data/$PNG_FILE\""
   },
   "repository": {
     "type": "git",

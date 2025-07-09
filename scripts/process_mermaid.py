@@ -46,6 +46,13 @@ def process_mermaid_blocks():
                         print(f"Generating {png_filepath}...")
                         try:
                             subprocess.run(
+                                ["npm", "run", "mermaid-single-debug"],
+                                check=True,
+                                capture_output=False,
+                                text=True,
+                                env={**os.environ, "MMD_FILE": mmd_filepath, "PNG_FILE": png_filepath}
+                            )
+                            subprocess.run(
                                 ["npm", "run", "mermaid-single"],
                                 check=True,
                                 capture_output=True,
