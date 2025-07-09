@@ -74,8 +74,7 @@ jobs:
             /app/ /tmp/app/
           # コンテナ内の/var/run/docker.sockソケットファイルのグループを調整する
           docker compose $COMPOSE_FILES exec -u root app bash -c "apt-get update; apt-get install -y docker.io"
-          docker compose $COMPOSE_FILES exec -u root app chgrp docker /var/run/docker.sock
-          docker compose $COMPOSE_FILES exec -u root app adduser worker docker
+          docker compose $COMPOSE_FILES exec -u root app adduser worker $(stat -c '%G' /var/run/docker.sock)
           
           # コピー先でビルドを実行する
           docker compose $COMPOSE_FILES exec app make -C /tmp/app latexpdf
