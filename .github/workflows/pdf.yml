@@ -74,7 +74,7 @@ jobs:
             /app/ /tmp/app/
           # コンテナ内にdockerをインストールする
           
-          docker compose $COMPOSE_FILES exec app sh -c "curl -fsSL https://get.docker.com/rootless | sh"
+          # docker compose $COMPOSE_FILES exec app sh -c "curl -fsSL https://get.docker.com/rootless | sh"
           # docker compose $COMPOSE_FILES exec -u root app sh -c "apt-get update && apt-get install -y ca-certificates curl"
           # docker compose $COMPOSE_FILES exec -u root app sh -c "curl -fsSL https://get.docker.com | sh"
           # docker compose $COMPOSE_FILES exec -u root app sh -c "adduser docker worker; chgrp docker /var/run/docker.sock"
