@@ -5,8 +5,8 @@
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    mermaid-single-debug": "echo ./node_modules/.bin/mmdc -i "$MMD_FILE" -o "$PNG_FILE"",
-    "mermaid-single": "./node_modules/.bin/mmdc -i "$MMD_FILE" -o "$PNG_FILE"
+    "mermaid-single-debug": "echo ./node_modules/.bin/mmdc -i \"$MMD_FILE\" -o \"$PNG_FILE\"",
+    "mermaid-single": "./node_modules/.bin/mmdc -i \"$MMD_FILE\" -o \"$PNG_FILE\""
   },
   "repository": {
     "type": "git",
