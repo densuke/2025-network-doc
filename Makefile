@@ -25,6 +25,7 @@ endef
 .PHONY: help clean distclean serve setup-uv node_modules
 
 mermaid: setup-uv node_modules
+    . "$${HOME}/.nvm/nvm.sh" && \
 	uv run scripts/process_mermaid.py
 
 
