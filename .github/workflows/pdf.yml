@@ -72,10 +72,15 @@ jobs:
             --exclude='.venv' \
             --exclude='node_modules' \
             /app/ /tmp/app/
-          # コンテナ内の/var/run/docker.sockソケットファイルのグループを調整する
-          docker compose $COMPOSE_FILES exec -u root app bash -c "apt-get update; apt-get install -y docker.io"
-          docker compose $COMPOSE_FILES exec -u root app adduser worker $(stat -c '%G' /var/run/docker.sock)
+          # コンテナ内にdockerをインストールする
           
+          docker compose $COMPOSE_FILES exec app sh -c "curl -fsSL https://get.docker.com/rootless | sh"
+          # docker compose $COMPOSE_FILES exec -u root app sh -c "apt-get update && apt-get install -y ca-certificates curl"
+          # docker compose $COMPOSE_FILES exec -u root app sh -c "curl -fsSL https://get.docker.com | sh"
+          # docker compose $COMPOSE_FILES exec -u root app sh -c "adduser docker worker; chgrp docker /var/run/docker.sock"
+          # docker compose $COMPOSE_FILES exec -u root app sh -c "chmod g+rw /var/run/docker.sock"
+          # docker compose $COMPOSE_FILES exec app sh -c "docker run --rm hello-world" || exit 1
+
           # コピー先でビルドを実行する
           docker compose $COMPOSE_FILES exec app make -C /tmp/app latexpdf
           # 成果物の受け取りを行う(PDF部分のみ)
