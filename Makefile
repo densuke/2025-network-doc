@@ -78,6 +78,7 @@ html: setup-uv Makefile
 latexpdf: setup-uv mermaid Makefile
 	set -e; \
 	export PATH=$${HOME}/.local/bin:$$PATH; \
+	. "$${HOME}/.nvm/nvm.sh" && \
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 
