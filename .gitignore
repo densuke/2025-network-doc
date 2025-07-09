@@ -53,5 +53,9 @@ Thumbs.db
 # node.js(npm)のモジュール
 node_modules/
 
+# Gemini CLI
+.gemini/
+!./gemini/styleguide.md
+
 .mermaid_temp/
 mermaid_[0-9a-f]*.png

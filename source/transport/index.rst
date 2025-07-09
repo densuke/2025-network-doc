@@ -17,3 +17,4 @@
    dhcp.md
    udp-programming/index.rst
    tcp-programming/index.rst
+   nat/index.rst
