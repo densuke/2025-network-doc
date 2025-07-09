@@ -23,7 +23,7 @@ def process_mermaid_blocks():
                     content = f.read()
 
                 # Find all mermaid blocks
-                mermaid_blocks = re.findall(r"""``\{mermaid\}\n(.*?)\n```""", content, re.DOTALL)
+                mermaid_blocks = re.findall(r"""`{mermaid}\n(.*?)\n```""", content, re.DOTALL)
                 
                 if not mermaid_blocks:
                     continue
