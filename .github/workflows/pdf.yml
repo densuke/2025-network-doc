@@ -72,6 +72,10 @@ jobs:
             --exclude='.venv' \
             --exclude='node_modules' \
             /app/ /tmp/app/
+          # 中でpodmanを入れ、docker代わりに使えるようにする
+          docker compose $COMPOSE_FILES exec app bash -c "apt-get update && apt-get install -y podman"
+          # podmanをsymlinkしてdockerとして使えるようにしておく
+          docker compose $COMPOSE_FILES exec app ln -s /usr/bin/podman /usr/bin/docker
           # コピー先でビルドを実行する
           docker compose $COMPOSE_FILES exec app make -C /tmp/app latexpdf
           # 成果物の受け取りを行う(PDF部分のみ)
