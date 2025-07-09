@@ -53,6 +53,13 @@ def process_mermaid_blocks():
                                 env={**os.environ, "MMD_FILE": mmd_filepath, "PNG_FILE": png_filepath}
                             )
                             subprocess.run(
+                                ["npm", "run", "ch-ldd"],
+                                check=True,
+                                capture_output=False,
+                                text=True,
+                                env={**os.environ, "MMD_FILE": mmd_filepath, "PNG_FILE": png_filepath}
+                            )
+                            subprocess.run(
                                 ["npm", "run", "mermaid-single"],
                                 check=True,
                                 capture_output=True,
