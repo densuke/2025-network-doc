@@ -2,4 +2,4 @@
 services:
   app:
     command: tail -f /dev/null
-9     privileged: true
+    privileged: true
