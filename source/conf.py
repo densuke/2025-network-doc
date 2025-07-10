@@ -14,13 +14,20 @@ author = '佐藤 大輔 <densuke@st.kobedenshi.ac.jp>'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = ['myst_parser', 'sphinx_rtd_theme',
-            'sphinxcontrib.mermaid',]
+            'sphinxcontrib.mermaid', 'sphinx.ext.todo',
+            'mermaid_pdf_extension']
+
+todo_include_todos = True
 
 
 templates_path = ['_templates']
 exclude_patterns = []
 
 language = 'ja'
+
+import sys
+import os
+sys.path.insert(0, os.path.abspath('.'))
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

@@ -4,7 +4,10 @@
   "description": "ネットワーク(2025年度)向け資料",
   "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "mermaid-single-debug": "echo ./node_modules/.bin/mmdc -i \"$MMD_FILE\" -o \"$PNG_FILE\"",
+    "ch-ldd": "find /home/worker/.cache -name chrome-headless-shell -exec ldd {} \\;",
+    "mermaid-single": "./node_modules/.bin/mmdc -i \"$MMD_FILE\" -o \"$PNG_FILE\""
   },
   "repository": {
     "type": "git",
