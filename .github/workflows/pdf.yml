@@ -80,12 +80,12 @@ jobs:
           # docker compose $COMPOSE_FILES exec -u root app sh -c "adduser docker worker; chgrp docker /var/run/docker.sock"
           # docker compose $COMPOSE_FILES exec -u root app sh -c "chmod g+rw /var/run/docker.sock"
           # docker compose $COMPOSE_FILES exec app sh -c "docker run --rm hello-world" || exit 1
+          # libegl-mali-xlnx \
           LIBS="libasound2t64 \
             libatk-bridge2.0-0t64 \
             libatk1.0-0t64 \
             libatspi2.0-0t64 \
             libdrm2 \
-            libegl-mali-xlnx \
             libgbm1 \
             liboss4-salsa-asound2 \
             libxcomposite1 \
