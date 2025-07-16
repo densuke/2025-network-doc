@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "env": {}
+    },
+    "youtube": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anaisbetts/mcp-youtube"
+      ],
+      "env": {}
+    }
+  }
+}

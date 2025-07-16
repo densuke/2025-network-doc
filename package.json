@@ -17,10 +17,10 @@
   },
   "homepage": "https://github.com/densuke/2025-network-doc#readme",
   "dependencies": {
-    "@google/gemini-cli": "^0.1.9",
+    "@google/gemini-cli": "^0.1.12",
     "@mermaid-js/mermaid-cli": "github:mermaid-js/mermaid-cli"
   },
   "devDependencies": {
-    "@playwright/test": "^1.53.2"
+    "@playwright/test": "^1.54.1"
   }
 }
