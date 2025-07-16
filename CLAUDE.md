@@ -33,7 +33,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 # 初回セットアップ (uv + Node.js環境構築)
 make setup-uv node_modules
 
-# クリーンビルド用の完全クリーンアップ  
+# クリーンビルド用の完全クリーンアップ
 make distclean
 ```
 
