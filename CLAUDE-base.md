@@ -136,8 +136,8 @@ gitのコミットメッセージの頭に、どういった目的のコミッ�
             ```yaml
             steps:
             - name: Docker向けQEMUのセットアップ
-                uses: docker/setup-qemu-action@v2
-                with:
+              uses: docker/setup-qemu-action@v2
+              with:
                 platforms: linux/amd64,linux/arm64
             ```
 - Docker Buildxを使う場合は、`docker/setup-buildx-action`を使うとよい
