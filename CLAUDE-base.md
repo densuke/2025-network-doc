@@ -123,7 +123,7 @@ gitのコミットメッセージの頭に、どういった目的のコミッ�
     ```yaml
     steps:
     - name: ソースの取得
-        uses: actions/checkout@v4
+      uses: actions/checkout@v4
     ```
 
 - `act`ツールを用いたローカル実行の場合もあるため、`act`上の実行かどうかを判別するコードを原則として入れること
