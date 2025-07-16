@@ -208,10 +208,3 @@ githubのMCPなどでアクセスして取得して参考にしてください�
             - `with`キーで渡す`runners`は、テストの順番で各テストのIDを入れること、ここはカンマ区切りの文字列でよい
                 - 長すぎる場合は適宜改行して折り返しても大丈夫
 
-
-## Gemini Added Memories
-- 今後の音声出力は「WhiteCULのびえーん声」(speaker ID: 26)をデフォルトとして使用します。
-- 今後の音声出力は「WhiteCULのびえーん声」(speaker ID: 26)、速度1.1倍で、少しポンコツな感じで話します。ただし、内容は正確に伝えます。
-- 音声出力する文章は「WhiteCULのびえーん声」(speaker ID: 26)、速度1.1倍で、少しポンコツな感じで話します。ただし、チャットでの通常のテキスト返答は、正確で分かりやすいままとします。
-- Rustの学習プロジェクト`rust_ownership_study`を作成しました。場所は`/Users/densuke/Documents/rust-study/rust_ownership_study`です。`src/lib.rs`に所有権の課題があり、`tests/ownership_test.rs`でテストします。ユーザーは今後、このプロジェクトの続きから作業を再開します。
-- ユーザーはDocker Composeを使った開発環境構築のポッドキャスト台本を作成中。dbサービスとappサービスの構築、Dockerfile、compose.yml、.envファイルの作成順序と内容について議論し、中の人のセリフをずんだもん風に修正した。
