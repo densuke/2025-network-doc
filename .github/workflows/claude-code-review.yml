@@ -10,17 +10,6 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-    # Optional: Only run on specific file changes
-    # paths:
-    #   - "src/**/*.ts"
-    #   - "src/**/*.tsx"
-    #   - "src/**/*.js"
-    #   - "src/**/*.jsx"
-
-# 並列起動しないようにマークを付け、最後の起動以外はキャンセルさせる
-concurrency:
-  group: claude-code
-  cancel-in-progress: true
 
 
 jobs:
