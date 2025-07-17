@@ -465,10 +465,10 @@ IPv6オンリー環境からIPv4サービスへのアクセスを実現します
 
 #### 現代的なレコードタイプ
 
-- **CAA レコード**: SSL証明書発行権限の制限
-- **TLSA レコード**: DANE(DNS-based Authentication of Named Entities)
-- **SVCB/HTTPS レコード**: HTTP/3、QUIC等のサービス発見
-- **ZONEMD レコード**: DNSゾーンの完全性検証
+- **CAAレコード**: SSL証明書発行権限の制限
+- **TLSAレコード**: DANE(DNS-based Authentication of Named Entities)
+- **SVCB/HTTPSレコード**: HTTP/3、QUIC等のサービス発見
+- **ZONEMDレコード**: DNSゾーンの完全性検証
 
 ### セキュリティ強化技術
 
