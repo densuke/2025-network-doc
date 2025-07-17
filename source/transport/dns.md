@@ -438,8 +438,8 @@ DNSレスポンスの完全性と認証を保証する技術です。
 
 #### IPv6でのDNS
 
-- **AAAA レコード**: IPv6アドレスの正引き対応
-- **PTR レコード IPv6**: IPv6の逆引き(.ip6.arpa)
+- **AAAAレコード**: IPv6アドレスの正引き対応
+- **PTRレコード IPv6**: IPv6の逆引き(.ip6.arpa)
 - **Dual Stack DNS**: IPv4/IPv6両対応のDNSサーバー運用
 
 #### DNS64/NAT64連携
