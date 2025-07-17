@@ -89,7 +89,7 @@ Webブラウザでのリアルタイム通信を実現する技術です。
 
 - **P2P通信**: ブラウザ同士の直接通信でビデオ会議やファイル共有を実現
 - **SRTP over UDP**: 暗号化された音声・映像ストリーミング
-- **DTLS**: UDP上でのセキュアな通信を提供するDatagramTransport Layer Security
+- **DTLS**: UDP上でのセキュアな通信を提供するDatagram Transport Layer Security
 - **低遅延**: UDPベースによる20-100msの低遅延通信
 
 ### DNS over HTTPS (DoH) / DNS over TLS (DoT)
