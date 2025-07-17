@@ -250,3 +250,111 @@ sequenceDiagram
 
 そのため、企業での端末利用においては、MACアドレスのランダム化を無効にすることが推奨される場合があります。
 
+## 現代的なDHCP技術
+
+```{note}
+この部分は高度な専門技術に関する内容です。応用情報技術者試験レベルを超える内容のため、初学者の方はスルーしても構いません。
+```
+
+2025年現在、DHCPは従来のIPv4環境だけでなく、IPv6やクラウド環境、IoT等の新しいネットワーク環境に対応するため、様々な拡張技術が導入されています。
+
+### DHCPv6
+
+IPv6ネットワークでのアドレス自動構成を提供するDHCPv6は、IPv4のDHCPとは異なる特徴を持っています。
+
+#### IPv6での二重自動構成
+
+IPv6では以下の2つの自動構成方式が存在します。
+
+- **SLAAC (Stateless Address Autoconfiguration)**: ルーター広告(RA)によるステートレス構成
+- **DHCPv6**: ステートフル構成によるアドレス配布
+
+#### DHCPv6の動作モード
+
+- **Stateful DHCPv6**: IPv6アドレス、DNS情報、その他のネットワーク設定を配布
+- **Stateless DHCPv6**: IPv6アドレスはSLAACで取得し、DNS情報等のみをDHCPv6で取得
+- **Prefix Delegation**: ISPから複数のIPv6プレフィックスを委任される場合の配布
+
+#### 実装の現状と課題
+
+- **Android**: DHCPv6非対応、SLAACのみサポート
+- **iOS/macOS**: SLAACを優先、DHCPv6は補助的に使用
+- **Windows**: DHCPv6とSLAACの両方をサポート
+- **Linux**: 設定により両方の方式を選択可能
+
+### DHCP Relay Agent とOption 82
+
+大規模ネットワークでの認証と管理を強化するDHCP技術です。
+
+#### DHCP Relay Agent
+
+- **VLAN間での DHCP**: 異なるサブネット間でのDHCP通信中継
+- **ブロードキャスト変換**: ブロードキャストパケットをユニキャストに変換
+- **DHCP Server 冗長化**: 複数のDHCPサーバーへの負荷分散
+
+#### Option 82 (DHCP Relay Agent Information)
+
+- **回線識別**: スイッチのポート情報やVLAN情報をDHCPパケットに付加
+- **認証連携**: RADIUSサーバーとの連携による端末認証
+- **ネットワーク管理**: 端末の物理的位置や接続回線の特定
+
+### クラウド環境でのDHCP
+
+#### Software Defined Networking (SDN) とDHCP
+
+- **OpenStack Neutron**: クラウド環境でのDHCP as a Service
+- **Kubernetes**: Pod間ネットワーキングでのDHCP活用
+- **Container Networking**: Docker、Podmanなどでの動的アドレス割り当て
+
+#### Cloud-Native DHCP
+
+- **Infrastructure as Code**: Terraform、Ansibleによる DHCP 設定自動化
+- **API駆動管理**: RESTful APIによるDHCP設定とリース管理
+- **Multi-Cloud**: 複数クラウド間でのDHCP設定統合管理
+
+### IoT とDHCP
+
+#### 軽量DHCP
+
+IoTデバイス向けの軽量DHCP実装が開発されています。
+
+- **省電力対応**: バッテリー駆動デバイス向けの最適化
+- **帯域制限対応**: 低速回線でのDHCP通信最適化
+- **セキュリティ**: IoTデバイス向けの認証強化
+
+#### 大規模IoTでのDHCP
+
+- **スケーラビリティ**: 数千〜数万台のIoTデバイス対応
+- **デバイス管理**: MACアドレスベースのデバイス分類と設定適用
+- **ネットワーク分離**: IoTデバイス専用VLANでの隔離
+
+### DHCP セキュリティの強化
+
+#### DHCP Snooping
+
+- **不正DHCPサーバー対策**: 信頼されたDHCPサーバーのみを許可
+- **DHCP Starvation攻撃対策**: アドレスプール枯渇攻撃の防止
+- **IP Source Guard**: DHCPで割り当てられた以外のIPアドレス使用を防止
+
+#### 暗号化DHCP
+
+- **DHCP over TLS**: DHCP通信の暗号化
+- **802.1X連携**: IEEE 802.1X認証とDHCPの統合
+- **Certificate-based Authentication**: 証明書ベース認証の導入
+
+### 最新のDHCP管理技術
+
+#### 自動化とオーケストレーション
+
+- **IPAM (IP Address Management)**: IPアドレス管理の統合化
+- **Network Automation**: NetBox、Napalm等のネットワーク自動化ツール連携
+- **Zero Touch Provisioning**: 新規デバイスの完全自動設定
+
+#### 監視と分析
+
+- **DHCP Analytics**: リース情報の分析とネットワーク最適化
+- **機械学習**: 異常な DHCP 挙動の自動検知
+- **Real-time Monitoring**: Prometheus、Grafana等でのDHCP監視
+
+これらの技術により、DHCPは単純なアドレス配布から、現代的なネットワーク管理の重要な基盤技術へと発展しています。
+
