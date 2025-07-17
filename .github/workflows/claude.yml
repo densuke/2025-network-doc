@@ -9,6 +9,11 @@ on:
     types: [opened, assigned]
   pull_request_review:
     types: [submitted]
+  
+# 並列起動しないようにマークを付け、最後の起動以外はキャンセルさせる
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   claude:
