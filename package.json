@@ -21,6 +21,6 @@
     "@mermaid-js/mermaid-cli": "github:mermaid-js/mermaid-cli"
   },
   "devDependencies": {
-    "@playwright/test": "^1.54.1"
+    "@playwright/test": "^1.54.2"
   }
 }
