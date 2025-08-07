@@ -56,3 +56,4 @@ node_modules/
 # Gemini CLI
 .gemini/
 !./gemini/styleguide.md
+.claude/settings.local.json
