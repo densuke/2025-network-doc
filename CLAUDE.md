@@ -80,10 +80,11 @@ make distclean
 - `docker/`: PDFビルド用Docker設定
 
 ### Mermaid図表処理システム
-1. `scripts/process_mermaid.py`: Markdownファイル内の`{mermaid}`ブロックを検出
-2. 各ブロックをMD5ハッシュで一意識別し、`.mmd`ファイルとして保存
-3. `@mermaid-js/mermaid-cli`でPNG画像を生成
-4. 生成されたPNGは各ディレクトリの`_images/`サブディレクトリに配置
+1. MyST Parserが`{mermaid}`ブロック(directive記法)を検出
+2. `sphinxcontrib.mermaid`拡張が自動処理を実行
+3. HTML出力: JavaScript版Mermaidでクライアント側レンダリング
+4. LaTeX/PDF出力: 各ブロックをハッシュベースで`mermaid-{hash}.pdf`として`build/latex/`に生成
+5. LaTeX処理で自動的に最終PDF文書に埋め込み
 
 ### CI/CDワークフロー
 - **HTML公開**: `.github/workflows/html.yml` → GitHub Pages
@@ -104,9 +105,10 @@ make distclean
 - **シェバン**: `#!/usr/bin/env python`
 
 ### Mermaid図表
-- MarkdownファイルでMermaidブロックを使用する際は`{mermaid}`構文
-- 図表変更時は`make mermaid`で再生成が必要
-- 生成されたPNGファイルはGit管理対象
+- MarkdownファイルでMermaidブロックを使用する際は`{mermaid}`構文(MyST Parser directive記法)
+- 図表処理は`sphinxcontrib.mermaid`拡張による自動処理
+- HTML/PDFビルド時に自動的に適切な形式で出力される(手動での画像生成は不要)
+- LaTeX/PDF出力時は`build/latex/mermaid-{hash}.pdf`として自動生成される
 
 ### PDF生成時の制約
 - Dockerコンテナ内でLaTeX処理を実行
@@ -116,17 +118,11 @@ make distclean
 ## プロジェクト固有のコマンド
 
 ```bash
-# Mermaid図表のみ再生成
-make mermaid
-
 # 開発サーバー起動 (自動リロード)
 make serve
 
 # Node.js依存関係の確認
 npm run ch-ldd
-
-# 単一Mermaidファイルの処理 (環境変数使用)
-MMD_FILE=input.mmd PNG_FILE=output.png npm run mermaid-single
 ```
 
 ## ワークスペース構成
