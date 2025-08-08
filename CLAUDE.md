@@ -79,12 +79,18 @@ make distclean
 - `scripts/`: ビルド補助スクリプト
 - `docker/`: PDFビルド用Docker設定
 
-### Mermaid図表処理システム
+### Mermaid図表処理システム (軽量版)
 1. MyST Parserが`{mermaid}`ブロック(directive記法)を検出
-2. `sphinxcontrib.mermaid`拡張が自動処理を実行
+2. `sphinx_mermaid_lightweight`拡張が3段階フォールバック処理を実行
 3. HTML出力: JavaScript版Mermaidでクライアント側レンダリング
-4. LaTeX/PDF出力: 各ブロックをハッシュベースで`mermaid-{hash}.pdf`として`build/latex/`に生成
-5. LaTeX処理で自動的に最終PDF文書に埋め込み
+4. LaTeX/PDF出力: 
+   - プライマリ: mermaid.ink API経由でPDF生成
+   - セカンダリ: Kroki API経由でPDF生成
+   - フォールバック: ローカルmermaid-cli実行
+5. 生成されたPDFは`build/_mermaid_cache/mermaid-{hash}.pdf`としてキャッシュ
+6. LaTeX処理で自動的に最終PDF文書に埋め込み
+
+**利点**: Playwright/Puppeteer依存を完全排除、軽量、高速、マルチプラットフォーム対応
 
 ### CI/CDワークフロー
 - **HTML公開**: `.github/workflows/html.yml` → GitHub Pages
@@ -104,16 +110,23 @@ make distclean
 - **docstring**: Googleスタイルで記述
 - **シェバン**: `#!/usr/bin/env python`
 
-### Mermaid図表
+### Mermaid図表 (軽量版)
 - MarkdownファイルでMermaidブロックを使用する際は`{mermaid}`構文(MyST Parser directive記法)
-- 図表処理は`sphinxcontrib.mermaid`拡張による自動処理
+- 図表処理は軽量版`sphinx_mermaid_lightweight`拡張による外部API優先処理
 - HTML/PDFビルド時に自動的に適切な形式で出力される(手動での画像生成は不要)
-- LaTeX/PDF出力時は`build/latex/mermaid-{hash}.pdf`として自動生成される
+- **設定可能**:
+  - `mermaid_use_ink`: mermaid.ink API使用(デフォルト: True)
+  - `mermaid_use_kroki`: Kroki API使用(デフォルト: True)  
+  - `mermaid_use_cli`: ローカルmermaid-cli使用(デフォルト: True)
+  - `mermaid_kroki_url`: Kroki APIエンドポイント(デフォルト: https://kroki.io)
+- LaTeX/PDF出力時は`build/_mermaid_cache/mermaid-{hash}.pdf`として生成・キャッシュ
 
-### PDF生成時の制約
-- Dockerコンテナ内でLaTeX処理を実行
-- 依存ライブラリが多いため、CIでの実行時間が長い
-- ローカルでのPDF生成にはDockerが必要
+### PDF生成時の制約 (軽量版で大幅改善)
+- **従来**: Playwright/Puppeteerによる重い依存関係 → **軽量版**: 外部API利用で依存排除
+- **従来**: linux/amd64限定 → **軽量版**: マルチプラットフォーム対応
+- **従来**: 大量のブラウザライブラリ → **軽量版**: 最小限の依存関係
+- Dockerコンテナ内でのLaTeX処理は継続(文書生成のため)
+- 軽量化により開発コンテナサイズとビルド時間を大幅短縮
 
 ## プロジェクト固有のコマンド
 
