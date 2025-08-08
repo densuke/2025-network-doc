@@ -57,7 +57,7 @@ node_modules/.ok: package.json package-lock.json
 	npm install --verbose; \
 	touch node_modules/.ok
 
-html: setup-uv Makefile
+html: setup-uv node_modules Makefile
 	set -e; \
 	export PATH=$${HOME}/.local/bin:$$PATH; \
 	$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
