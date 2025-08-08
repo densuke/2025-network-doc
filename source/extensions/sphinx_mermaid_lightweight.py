@@ -277,9 +277,6 @@ class MermaidRenderer:
             レンダリングされた画像データ、失敗時はNone
         """
         try:
-            # 一時ファイル作成
-            import tempfile
-            
             with tempfile.NamedTemporaryFile(mode='w', suffix='.mmd', delete=False) as mmd_file:
                 mmd_file.write(mermaid_code)
                 mmd_path = mmd_file.name
@@ -415,7 +412,7 @@ def render_mermaid_latex(self, node: mermaid_node) -> None:
         # figure環境で[H]オプション+adjustboxを使用してスマート調整
         latex_code = f'''\\begin{{figure}}[H]
 \\centering
-\\adjustbox{{max width={max_width},max height={max_height},center}}{{\\oldincludegraphics{{{rel_path}}}}}
+\\adjustbox{{max width={max_width},max height={max_height},center}}{{\\includegraphics{{{rel_path}}}}}  
 \\end{{figure}}'''
         
         self.body.append(latex_code)
