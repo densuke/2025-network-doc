@@ -35,6 +35,29 @@ language = 'ja'
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
+# -- Mermaid.js setup from node_modules ------------------
+import shutil
+from pathlib import Path
+
+def copy_mermaid_assets(app, config):
+    """Copy Mermaid.js from node_modules to _static"""
+    static_dir = Path(app.outdir) / '_static'
+    static_dir.mkdir(exist_ok=True)
+    
+    # node_modulesからMermaidファイルをコピー
+    mermaid_source = Path('node_modules/mermaid/dist/mermaid.min.js')
+    mermaid_dest = static_dir / 'mermaid.min.js'
+    
+    if mermaid_source.exists():
+        shutil.copy2(mermaid_source, mermaid_dest)
+        print(f"Copied Mermaid.js: {mermaid_source} -> {mermaid_dest}")
+    else:
+        print(f"Warning: Mermaid.js not found at {mermaid_source}")
+
+def setup_mermaid(app):
+    """Setup Mermaid.js for Sphinx"""
+    app.connect('config-inited', copy_mermaid_assets)
+
 # -- LaTeX経由PDF出力の設定 ------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 latex_docclass = {'manual': 'jsbook'}
@@ -87,3 +110,8 @@ mermaid_max_height = '0.45\\textheight'  # 最大高さ（ページ高さの45%�
 # 余白問題対策設定
 mermaid_latex_format = 'png'          # LaTeX出力フォーマット (pdf/png) - PNG推奨
 mermaid_crop_pdf = True               # PDFクロッピング有効/無効
+
+# -- Setup Mermaid.js from node_modules ------------------
+# Sphinxアプリケーション初期化時にMermaid.jsをセットアップ
+def setup(app):
+    setup_mermaid(app)
