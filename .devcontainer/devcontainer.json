@@ -45,8 +45,7 @@
 	// Uncomment the next line to run commands after the container is created.
 	"postCreateCommand": "make serve",
 	"features": {
-		"ghcr.io/devcontainers-extra/features/actionlint:1": {},
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+		"ghcr.io/devcontainers-extra/features/actionlint:1": {}
 	}
 
 	// Configure tool-specific properties.
