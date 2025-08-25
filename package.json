@@ -22,6 +22,6 @@
     "mermaid": "^11.9.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.54.2"
+    "@playwright/test": "^1.55.0"
   }
 }
