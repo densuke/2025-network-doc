@@ -1,0 +1,36 @@
+{# RTDテーマのベーステンプレートを拡張 #}
+{% extends "!layout.html" %}
+
+{% block extrahead %}
+{{ super() }}
+<script src="{{ pathto('_static/mermaid.min.js', 1) }}"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mermaidが利用可能かチェック
+    if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            themeVariables: {
+                primaryColor: '#006bb3',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#0056b3',
+                lineColor: '#333',
+                sectionBkgColor: '#f0f8ff',
+                altSectionBkgColor: '#e6f3ff',
+                gridColor: '#ccc',
+                secondaryColor: '#ffebcc',
+                tertiaryColor: '#fff'
+            }
+        });
+        
+        // 明示的にMermaid要素をレンダリング
+        mermaid.run();
+    } else {
+        console.error('Mermaid library not loaded');
+    }
+});
+</script>
+{% endblock %}
