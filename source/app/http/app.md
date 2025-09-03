@@ -63,7 +63,7 @@ $ curl localhost:5000/users/42
 
 ## 普通のWebページとして見てみる
 
-そのまままブラウザで http://localhost:5000/users/1 にアクセスしてみると、JSONのまま表示されることがわかります.
+そのままブラウザで http://localhost:5000/users/1 にアクセスしてみると、JSONのまま表示されることがわかります。
 その一方で、ブラウザで http://localhost:5000/ にアクセスしても、404 Not found の表示となってしまいます。そこで、トップページを用意して、ちょっとしたフォームにより指定ユーザーIDの情報が出せるようなページを作ってみます。
 
 ```{literalinclude} src/api/index.html
