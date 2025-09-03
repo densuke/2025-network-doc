@@ -16,4 +16,5 @@ def get_user(user_id: int) -> Union[Response, tuple[Response, int]]:
         return jsonify({"error": "User not found"}), 404
 
 if __name__ == '__main__':
+    # 本番環境では debug=False を使用してください
     app.run(debug=True)

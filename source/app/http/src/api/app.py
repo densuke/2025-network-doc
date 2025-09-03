@@ -20,4 +20,5 @@ def index() -> Response:
     return send_from_directory(app.root_path, 'index.html')
 
 if __name__ == '__main__':
+    # 本番環境では debug=False を使用してください
     app.run(debug=True)
