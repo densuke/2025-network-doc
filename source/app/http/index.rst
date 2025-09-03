@@ -21,3 +21,4 @@ httpは、Webブラウザーや各種Webアプリケーションで広く使わ�
     notfile.md
     path-vs-file.md
     app.md
+    mime.md
