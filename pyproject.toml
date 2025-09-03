@@ -18,4 +18,5 @@ dev = [
 members = [
     "source/transport/udp-programming/sources/echo",
     "source/transport/tcp-programming/source",
+    "source/app/http/src/api",
 ]
