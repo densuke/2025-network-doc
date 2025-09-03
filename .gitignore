@@ -57,3 +57,4 @@ node_modules/
 .gemini/
 !./gemini/styleguide.md
 .claude/settings.local.json
+source/app/http/src/api/.python-version

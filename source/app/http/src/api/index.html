@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ユーザー情報取得</title>
+</head>
+<body>
+    <h1>ユーザー情報取得</h1>
+    <form id="userForm">
+        <label for="user_id">ユーザーID:</label>
+        <input type="number" id="user_id" name="user_id" required>
+        <button type="submit">取得</button>
+    </form>
+
+    <ul id="result" aria-live="polite"></ul>
+
+    <script>
+    const form = document.getElementById('userForm');
+    const result = document.getElementById('result');
+
+    function showUser(user) {
+        result.innerHTML = '';
+        const idLi = document.createElement('li');
+        idLi.textContent = `ID: ${user.id}`;
+        const nameLi = document.createElement('li');
+        nameLi.textContent = `名前: ${user.name}`;
+        result.appendChild(idLi);
+        result.appendChild(nameLi);
+    }
+
+    function showError(msg) {
+        result.innerHTML = '';
+        const li = document.createElement('li');
+        li.textContent = msg;
+        result.appendChild(li);
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('user_id').value;
+        if (!id) return;
+        try {
+            const res = await fetch(`/users/${encodeURIComponent(id)}`);
+            const data = await res.json();
+            if (res.ok) {
+                showUser(data);
+                history.replaceState(null, '', `?user_id=${id}`);
+            } else {
+                showError(data.error || 'ユーザーが見つかりません');
+            }
+        } catch (err) {
+            console.error(err);
+            showError('通信エラーが発生しました');
+        }
+    });
+
+    // ページ読み込み時にクエリに user_id があれば自動取得
+    (function initFromQuery() {
+        const params = new URLSearchParams(location.search);
+        const q = params.get('user_id');
+        if (q) {
+            document.getElementById('user_id').value = q;
+            form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+        }
+    })();
+    </script>
+</body>
+</html>
