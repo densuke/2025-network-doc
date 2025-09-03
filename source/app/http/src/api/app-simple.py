@@ -4,7 +4,7 @@ import json
 
 app: Flask = Flask(__name__)
 
-with open(app.root_path + '/users.json', 'r') as f:
+with open(app.root_path + '/users.json', 'r', encoding='utf-8') as f:
     users: List[Dict[str, Any]] = json.load(f)
 
 @app.route('/users/<int:user_id>', methods=['GET'])
