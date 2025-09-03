@@ -35,12 +35,13 @@ $ code --reuse-window . # VSCodeを起動し直す
 ```
 
 それでは、実際に動かすためにuvで環境を構築してみましょう。
+コードに含まれているように、このアプリケーションでは`Flask`というライブラリを使っているので、`uv add`を使ってインストールしてからでないと動きません。
 
 ```{code-block}
 :language: bash
 
 $ uv init
-$ uv add flask
+$ uv add flask # 依存関係としてflaskを追加
 $ uv run app.py
 ```
 
