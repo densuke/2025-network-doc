@@ -9,7 +9,8 @@ Pythonの標準モジュールでは`http`が存在しています。この中�
 :language: bash
 
 $ echo 'Hello, Simple World!' > index.html
-$ python -m http.server # localhost:8000 でサーバーが起動する
+$ uv init
+$ uv run python -m http.server # localhost:8000 でサーバーが起動する
 Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 ```
 
