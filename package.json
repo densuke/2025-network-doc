@@ -19,7 +19,7 @@
   "dependencies": {
     "@google/gemini-cli": "^0.2.2",
     "@mermaid-js/mermaid-cli": "github:mermaid-js/mermaid-cli",
-    "mermaid": "^11.10.1"
+    "mermaid": "^11.11.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0"
