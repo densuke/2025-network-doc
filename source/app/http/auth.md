@@ -221,6 +221,6 @@ sequenceDiagram
 以下は図の補足です。
 
 - KDC: Key Distribution Centerの略で、認証を行い TGT やサービスチケットを発行するサーバ。
-- TGT: Ticket Granting Ticket（再利用して各サービス用チケットを取得するためのチケット）。
-- セッション鍵: クライアントとサービス間での一時鍵（通信保護や Authenticator の生成に使用）。
+- TGT: Ticket Granting Ticket(再利用して各サービス用チケットを取得するためのチケット)。
+- セッション鍵: クライアントとサービス間での一時鍵(通信保護や Authenticator の生成に使用)。
 - Auth(Authenticator): セッション鍵で暗号化された時刻やID情報で、リプレイ防止に使われる。
