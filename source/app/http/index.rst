@@ -22,3 +22,4 @@ httpは、Webブラウザーや各種Webアプリケーションで広く使わ�
     path-vs-file.md
     app.md
     mime.md
+    edu-base64.md
