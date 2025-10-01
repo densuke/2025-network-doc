@@ -75,7 +75,7 @@ sequenceDiagram
     RP-->>Client: 登録OK
 ```
 
-補足: ここで challenge は毎回新鮮な乱数であり再利用攻撃を防ぎます。authenticatorData には RP ID ハッシュ、ユーザ存在・検証フラグ、署名カウンタなどが含まれ、署名対象は authenticatorData と clientDataHash(内部に challenge / origin / type を内包)を連結したものです。サーバは origin / RP ID 整合性と署名、さらにカウンタの単調増加を検証し、増加停止や巻き戻りがあればクローンや不正抽出の兆候として扱います。
+補足: ここで `challenge` は毎回新鮮な乱数であり再利用攻撃を防ぎます。 `authenticatorData` には RP ID ハッシュ、ユーザー存在・検証フラグ、署名カウンタなどが含まれ、署名対象は `authenticatorData` と `clientDataHash`(内部に `challenge` / `origin` / `type` を内包)を連結したものです。サーバは `origin` / `RP ID` 整合性と署名、さらにカウンタの単調増加を検証し、増加停止や巻き戻りがあればクローンや不正抽出の兆候として扱います。
 
 すでにパスキーが存在しているときの認証シーケンスは以下のようになります。
 なお、実際には認証をするサーバー側にはパスキーがあるけど、ユーザーのデバイス側にはパスキーが無い(新しいデバイスを使う等)場合もあります。
