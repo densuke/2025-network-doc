@@ -10,4 +10,5 @@
 
     etherheader-proto.md
     ipheader-proto.md
+    pubkey.md
     storage-full.md
