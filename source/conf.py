@@ -19,8 +19,26 @@ author = '佐藤 大輔 <densuke@st.kobedenshi.ac.jp>'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['myst_parser', 'sphinx_rtd_theme',
-            'sphinx_mermaid_lightweight',]
+extensions = [
+    'myst_parser',
+    'sphinx.ext.mathjax',  # HTMLでの数式表示（MathJax）
+    'sphinx_rtd_theme',
+    'sphinx_mermaid_lightweight',
+]
+
+# MyST で $...$ / $$...$$ や \begin{align} ... \end{align} を有効化
+myst_enable_extensions = [
+    'dollarmath',  # $...$ / $$...$$ 記法
+    'amsmath',     # {math} ディレクティブや環境
+]
+
+# （任意）MathJax v3 の数式番号付与などの設定
+mathjax3_config = {
+    'tex': {
+        'tags': 'ams',          # \label と \eqref による式番号
+        'useLabelIds': True,
+    }
+}
 
 
 templates_path = ['_templates']

@@ -58,3 +58,4 @@ node_modules/
 !./gemini/styleguide.md
 .claude/settings.local.json
 source/app/http/src/api/.python-version
+.vscode/settings.json
