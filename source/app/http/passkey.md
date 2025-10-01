@@ -56,6 +56,9 @@
 
 簡潔に言えば、RP はチャレンジ発行・署名／attestation の検証・公開鍵管理・アカウント紐付けを正しく行い、セキュリティとプライバシーを両立する運用を担う。 -->
 
+
+登録時(パスキーがまだ存在しない場合)のシーケンスは、大雑把には以下のようになっています。
+
 ```{mermaid}
 sequenceDiagram
     autonumber
@@ -74,26 +77,14 @@ sequenceDiagram
     Client->>RP: 登録結果
     RP-->>RP: 検証 & 保存
     RP-->>Client: 登録OK
-
-    %% 認証フェーズ
-    User->>Client: サインイン
-    Client->>RP: get開始
-    RP-->>Client: challenge
-    Client->>Auth: getAssertion()
-    Auth-->>Auth: 生体/PIN再確認
-    Auth-->>Client: signature + authData + credId
-    Client->>RP: 認証結果
-    RP-->>RP: 署名/カウンタ検証
-    RP-->>Client: 認証OK
 ```
 
 補足: ここで challenge は毎回新鮮な乱数であり再利用攻撃を防ぎます。authenticatorData には RP ID ハッシュ、ユーザ存在・検証フラグ、署名カウンタなどが含まれ、署名対象は authenticatorData と clientDataHash（内部に challenge / origin / type を内包）を連結したものです。サーバは origin / RP ID 整合性と署名、さらにカウンタの単調増加を検証し、増加停止や巻き戻りがあればクローンや不正抽出の兆候として扱います。
-    Auth-->>Auth: 生体/PIN再確認
-    Auth-->>Client: signature + authData + credId
-    Client->>RP: 認証結果
-    RP-->>RP: 署名/カウンタ検証
-    RP-->>Client: 認証OK
-```
+
+すでにパスキーが存在しているときの認証シーケンスは以下のようになります。
+なお、実際には認証をするサーバー側にはパスキーがあるけど、ユーザーのデバイス側にはパスキーが無い(新しいデバイスを使う等)場合もあります。
+この場合にQRコードを画面に提示して、すでにパスキーが存在しているデバイス(主にスマートフォン)で読み取って認証を行う場合もあります。
+
 
 補足:
 - challenge: 毎回ランダム。再利用(リプレイ)防止
@@ -101,5 +92,26 @@ sequenceDiagram
 - 署名対象: authenticatorData + clientDataHash(含: challenge, origin, type)
 - origin / RP ID 検証によりフィッシングサイトでは正しい署名が成立しない
 - 署名カウンタ増加停止 = クローン/不正抽出疑い
+
+```{mermaid}
+sequenceDiagram
+    autonumber
+    participant User
+    participant Client as ブラウザ/OS
+    participant Auth as 認証器
+    participant RP as サーバ(RP)
+
+    %% 認証フェーズ
+    User->>Client: サインイン
+    Client->>RP: assertion開始
+    RP-->>Client: challenge + allowCredentials
+    Client->>Auth: getAssertion()
+    Auth-->>Auth: 生体/PIN検証
+    Auth-->>Client: credentialId + signature + authData
+    Client->>RP: 認証結果
+    RP-->>RP: 署名検証 & カウンタ確認
+    RP-->>Client: 認証OK & セッション確立
+    Client-->>User: ログイン完了
+```
 
 
