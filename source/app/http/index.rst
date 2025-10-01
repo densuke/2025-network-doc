@@ -24,4 +24,5 @@ httpは、Webブラウザーや各種Webアプリケーションで広く使わ�
     mime.md
     edu-base64.md
     auth.md
+    passkey.md
     cookie.md
