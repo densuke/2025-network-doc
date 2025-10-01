@@ -1,8 +1,7 @@
 {
-    "python-envs.pythonProjects": [
-        
-    ],
+    "python-envs.pythonProjects": [],
     "makefile.configureOnOpen": false,
+    "peacock.remoteColor": "#832561",
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#ab307e",
         "activityBar.background": "#ab307e",
@@ -21,6 +20,5 @@
         "titleBar.activeForeground": "#e7e7e7",
         "titleBar.inactiveBackground": "#83256199",
         "titleBar.inactiveForeground": "#e7e7e799"
-    },
-    "peacock.remoteColor": "#832561"
+    }
 }
