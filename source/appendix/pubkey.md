@@ -99,7 +99,7 @@
 1. ボブは次を計算します。
 
   $$
-  B = g^b \bmod p = 5^{15} \bmod 23 = 30517578125 \bmod 23 = 13
+  B = g^b \bmod p = 5^{15} \bmod 23 = 30517578125 \bmod 23 = 19
   $$
  
 1. ボブは \( B \) をアリスに送ります。あくまでアリスに送られるのはBの値である19のみです。
@@ -115,7 +115,7 @@
   - 素数 \( p = 23 \)
   - 原始根 \( g = 5 \)
   - 秘密の値 \( a = 6 \) ※ アリスだけが知っている秘密の情報
-  - ボブから受け取った値 \( B = 19 \)
+  - ボブから受け取った値 \( B = 13 \)
 - ボブ側
   - 素数 \( p = 23 \)
   - 原始根 \( g = 5 \)
@@ -153,9 +153,9 @@ sequenceDiagram
     Alice->>Alice: A = g^a mod p = 5^6 mod 23 = 8
     Alice->>Bob: p=23, g=5, A=8
     Bob->>Bob: b = 15
-    Bob->>Bob: B = g^b mod p = 5^15 mod 23 = 13
-    Bob->>Alice: B=19
-    Alice->>Alice: s = B^a mod p = 19^6 mod 23 = 2
+  Bob->>Bob: B = g^b mod p = 5^15 mod 23 = 19
+  Bob->>Alice: B=19
+  Alice->>Alice: s = B^a mod p = 19^6 mod 23 = 2
     Bob->>Bob: s = A^b mod p = 8^15 mod 23 = 2
 ```
 
