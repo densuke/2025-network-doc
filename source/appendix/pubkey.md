@@ -153,7 +153,7 @@ sequenceDiagram
     Alice->>Alice: A = g^a mod p = 5^6 mod 23 = 8
     Alice->>Bob: p=23, g=5, A=8
     Bob->>Bob: b = 15
-    Bob->>Bob: B = g^b mod p = 5^15 mod 23 = 19
+    Bob->>Bob: B = g^b mod p = 5^15 mod 23 = 13
     Bob->>Alice: B=19
     Alice->>Alice: s = B^a mod p = 19^6 mod 23 = 2
     Bob->>Bob: s = A^b mod p = 8^15 mod 23 = 2
