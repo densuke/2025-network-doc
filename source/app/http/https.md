@@ -93,8 +93,8 @@ sequenceDiagram
     S->>CAi: CSR送付
     CAi->>CAi: CSR検証 (ポリシー/ドメイン実在性等)
     CAi->>CAi: TBS(Certificate情報)生成
-    CAi->>CAi: ハッシュ = Hash(TBS)
-    CAi->>CAi: 署名 = Sign_CA_i(hash)
+    CAi->>CAi: ハッシュ=Hash(TBS)
+    CAi->>CAi: 署名=Sign_CA_i(hash)
     CAi-->>S: サーバー証明書 (TBS + 署名)
     note over CAi,CAr: 中間CA証明書自体は CAr の秘密鍵で署名済み
 ```
@@ -114,7 +114,7 @@ sequenceDiagram
     Client->>Server: ClientHello
     Server-->>Client: ServerHello + サーバー証明書 + 中間CA証明書
     Client->>Client: TBSを抽出 / 署名アルゴリズム確認 / 有効期限確認
-    Client->>Client: hash = Hash(TBS)
+    Client->>Client: hash=Hash(TBS)
     Client->>CAi: チェーン内から中間CAの公開鍵を取得
     Client->>CAi: サーバー証明書署名検証 (Verify(signature, hash, CAi_pub))
     alt 署名検証が成功
@@ -132,7 +132,7 @@ HTTPSでは、TLS/SSLを使用して通信内容を暗号化します。
 これにより、第三者が通信内容を傍受しても、内容を理解することができなくなります。
 TLS では最終的に「対称鍵(レコード暗号用セッション鍵)」でアプリケーションデータを暗号化します。セッション鍵自体はハンドシェイクで安全に合意され、TLS 1.3 では ECDHE(楕円曲線 Diffie-Hellman)を必須として“前方秘匿性 (Forward Secrecy)”を確保します。過去の TLS 1.2 以前では RSA 鍵交換(前方秘匿性なし)もありましたが現行では非推奨です。
 
-TLS 1.3 ではハンドシェイクの各段階(Early / Handshake / Application)で秘密が段階的に派生し、さらに必要に応じて KeyUpdate メッセージで“再鍵装”が可能です。これにより長時間同じ鍵を使い続けるリスクが軽減されます(TLS 1.2 以前は実運用で頻繁な再鍵装は少なく、再接続や再ネゴシエーションで更新する形が主流でした)。
+TLS 1.3 ではハンドシェイクの各段階(Early / Handshake / Application)で秘密が段階的に派生し、さらに必要に応じて KeyUpdate メッセージで“再鍵装”が可能です。これにより長時間同じ鍵を使い続けるリスクが軽減されます(TLS 1.2 以前は実運用で頻繁な鍵更新は少なく、再接続や再ネゴシエーションで更新する形が主流でした)。
 
 ```{note}
 悪意のある監視者は、長時間通信内容を(暗号化されていても)傍受し、蓄積して解析します。
