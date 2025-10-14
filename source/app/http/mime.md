@@ -3,7 +3,7 @@
 HTTPレスポンスは、HTMLだけでなく画像、動画、JSON、PDFなど様々な形式のデータを扱います。
 ブラウザはどのようにして「このデータがどういう形式なのか」を判定しているのでしょうか。
 
-その答えがMIME（Multipurpose Internet Mail Extensions）です。
+その答えがMIME(Multipurpose Internet Mail Extensions)です。
 
 ## MIMEとは
 

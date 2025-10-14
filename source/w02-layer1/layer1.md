@@ -18,8 +18,8 @@
 - ビットの符号化方式
 
 ## 代表的な規格・技術
-- RS-232C（シリアル通信）
-- イーサネット（10BASE-T、100BASE-TX、1000BASE-Tなど）
-- 光ファイバー通信規格（SONET/SDHなど）
-- USB（Universal Serial Bus）
-- 無線通信規格（Wi-Fi、Bluetoothなど）
+- RS-232C(シリアル通信)
+- イーサネット(10BASE-T、100BASE-TX、1000BASE-Tなど)
+- 光ファイバー通信規格(SONET/SDHなど)
+- USB(Universal Serial Bus)
+- 無線通信規格(Wi-Fi、Bluetoothなど)
