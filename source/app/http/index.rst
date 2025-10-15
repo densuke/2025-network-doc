@@ -26,4 +26,5 @@ httpは、Webブラウザーや各種Webアプリケーションで広く使わ�
     auth.md
     passkey.md
     cookie.md
+    https.md
     webapp.md
