@@ -59,3 +59,4 @@ node_modules/
 .claude/settings.local.json
 source/app/http/src/api/.python-version
 .vscode/settings.json
+.vscode/settings.json
