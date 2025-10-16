@@ -38,7 +38,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        # Pythonのモジュール依存性の関係でまだ3.14が使わない(ワークアラウンド)
+        # Pythonのモジュール依存性の関係でまだ3.14が使えない(ワークアラウンド)
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
