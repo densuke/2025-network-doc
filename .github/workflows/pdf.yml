@@ -37,6 +37,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      # Pythonのモジュール依存性の関係でまだ3.14が使わない(ワークアラウンド)
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
       - name: build PDF doc
         run: |
           # リリース情報を設定
@@ -98,3 +102,4 @@ jobs:
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

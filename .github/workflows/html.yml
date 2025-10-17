@@ -38,6 +38,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        # Pythonのモジュール依存性の関係でまだ3.14が使えない(ワークアラウンド)
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
       # リリース時のバージョンを設定する
       # タグにより本アクションが発火した場合はタグ名がリリースバージョンとなる
       # mainブランチがタグと無関係に発火した場合はlatestとする
@@ -85,3 +89,4 @@ jobs:
       - name: Deploy to GitHub Pages
         if: ${{ !env.ACT }}
         uses: actions/deploy-pages@v4
+
