@@ -20,3 +20,4 @@
     :caption: 目次:
 
     http/index.rst
+    smtp/index.rst
