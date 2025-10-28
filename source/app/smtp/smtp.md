@@ -39,7 +39,7 @@ fugahoge@example.com
   - mail: サードレベルドメイン(3LD: Third Level Domain)
 
 メールにおけるドメインは、アドレスとメールボックス、およびメールサーバーの管理団体としての意味も持ちます。そのドメインを収容できるメールサーバーを何らかの形で用意し、受け取ったメールを保存するメールボックス構造を保持します。
-そしてそのメールを利用者が読み書きできるようにアクセス環境の準備も必要です（読み出しには POP3/IMAP などのプロトコルが用いられます）。
+そしてそのメールを利用者が読み書きできるようにアクセス環境の準備も必要です (読み出しには POP3/IMAP などのプロトコルが用いられます).
 
 ## ユーザー(username)
 
@@ -77,12 +77,12 @@ SMTP(Simple Mail Transfer Protocol)は、電子メールの送信に使用され
 ```{note}
 SMTP には、役割に応じた呼び名があります。
 
-- MUA: Mail User Agent（ユーザーが使うメーラー）
-- MSA: Mail Submission Agent（ユーザーからの送信を受け付けるサーバー、587/TCP など）
-- MTA: Mail Transfer Agent（サーバー間でメールを中継する、25/TCP）
-- MDA: Mail Delivery Agent（最終的にメールボックスへ配送する）
+- MUA: Mail User Agent (ユーザーが使うメーラー)
+- MSA: Mail Submission Agent (ユーザーからの送信を受け付けるサーバー、587/TCP など)
+- MTA: Mail Transfer Agent (サーバー間でメールを中継する、25/TCP)
+- MDA: Mail Delivery Agent (最終的にメールボックスへ配送する)
 
-また、宛先の決定など配送処理が参照するのは SMTP のエンベロープ（MAIL FROM/RCPT TO）であり、ヘッダの From:/To: と一致しない場合があります。
+また、宛先の決定など配送処理が参照するのは SMTP のエンベロープ (MAIL FROM/RCPT TO) であり、ヘッダの From:/To: と一致しない場合があります。
 ```
 
 ### メールの転送
