@@ -1,0 +1,17 @@
+[project]
+name = "smtp-mail-resolver"
+version = "0.1.0"
+description = "メールアドレスからMXレコードとIPアドレスを取得"
+requires-python = ">=3.12"
+dependencies = [
+    "dnspython>=2.8.0",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.18.2",
+    "pytest>=8.4.2",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "."
