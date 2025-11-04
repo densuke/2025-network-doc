@@ -29,7 +29,7 @@ ESMTP(Extended SMTP)は、SMTPの拡張版であり、追加のコマンドや�
 SMTPSは、SMTP over SSL/TLSの略で、SMTP通信を暗号化するための方式です。主に2つのやり方があります。
 
 - STARTTLS による明示的アップグレード: 平文で始まるSMTP(主に 25/TCP や 587/TCP)のセッションを、STARTTLSコマンドでTLSに切り替える方式
-- いわゆる SMTPS(implicit TLS): 最初からTLSで開始する方式で、465/TCP(“submissions”)が用いられます（RFC 8314）
+- いわゆる SMTPS(implicit TLS): 最初からTLSで開始する方式で、465/TCP(“submissions”)が用いられます(RFC 8314)
 
 どちらもSMTPの基本フローは同じですが、暗号化の開始タイミングが異なります。
 
