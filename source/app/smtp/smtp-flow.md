@@ -129,7 +129,8 @@ Cc: cc@example.com
 Bcc: bcc@example.com
 ```
 
-これに対応するSMTPコマンドは、以下のようになります（アドレスは角括弧で囲むのが正式な書式です）。
+これに対応するSMTPコマンドは、以下のようになります(アドレスは角括弧で囲むのが正式な書式です)
+。
 
 ```
 MAIL FROM:<sender@example.com>
