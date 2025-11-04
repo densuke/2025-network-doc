@@ -22,7 +22,7 @@ async def handle_client(reader: asyncio.StreamReader, writer: asyncio.StreamWrit
                 break
 
             try:
-                # 安全な評価（同期版と同じロジック）
+                # 安全な評価(同期版と同じロジック)
                 tree = ast.parse(expr, mode='eval')
                 safe_nodes = (
                     ast.Expression, ast.Constant, ast.BinOp, ast.UnaryOp,

@@ -21,7 +21,7 @@ author = '佐藤 大輔 <densuke@st.kobedenshi.ac.jp>'
 
 extensions = [
     'myst_parser',
-    'sphinx.ext.mathjax',  # HTMLでの数式表示（MathJax）
+    'sphinx.ext.mathjax',  # HTMLでの数式表示(MathJax)
     'sphinx_rtd_theme',
     'sphinx_mermaid_lightweight',
 ]
@@ -32,7 +32,7 @@ myst_enable_extensions = [
     'amsmath',     # {math} ディレクティブや環境
 ]
 
-# （任意）MathJax v3 の数式番号付与などの設定
+# (任意)MathJax v3 の数式番号付与などの設定
 mathjax3_config = {
     'tex': {
         'tags': 'ams',          # \label と \eqref による式番号
@@ -97,7 +97,7 @@ latex_elements = {
         \setlength{\floatsep}{12pt plus 2pt minus 2pt}
         \setlength{\textfloatsep}{18pt plus 2pt minus 4pt}
         \setlength{\intextsep}{12pt plus 2pt minus 2pt}
-        % 画像の最大サイズ制御（既存画像にも適用）
+        % 画像の最大サイズ制御(既存画像にも適用)
         \usepackage{adjustbox}
         \let\oldincludegraphics\includegraphics
         \renewcommand{\includegraphics}[2][]{\adjustbox{max width=0.9\textwidth,max height=0.7\textheight,center}{\oldincludegraphics[#1]{#2}}}
@@ -111,7 +111,7 @@ master_doc = 'index'
 latex_documents = [
     (master_doc, 'network2025.tex', 'ネットワーク(2025)関連資料', author, 'manual'),
 ]
-# 図表の配置制御を最適化（Mermaidは個別に[H]制御）
+# 図表の配置制御を最適化(Mermaidは個別に[H]制御)
 latex_elements['figure_align'] = 'htbp'
 
 # -- Lightweight Mermaid設定 ------------------------------
@@ -122,8 +122,8 @@ mermaid_use_cli = True      # ローカルmermaid-cli使用 (フォールバッ�
 mermaid_kroki_url = 'https://kroki.io'  # Kroki APIエンドポイント
 
 # LaTeX/PDF出力時の画像サイズ制御
-mermaid_max_width = '0.6\\textwidth'     # 最大幅（ページ幅の60%に制限）
-mermaid_max_height = '0.45\\textheight'  # 最大高さ（ページ高さの45%に制限）
+mermaid_max_width = '0.6\\textwidth'     # 最大幅(ページ幅の60%に制限)
+mermaid_max_height = '0.45\\textheight'  # 最大高さ(ページ高さの45%に制限)
 
 # 余白問題対策設定
 mermaid_latex_format = 'png'          # LaTeX出力フォーマット (pdf/png) - PNG推奨
