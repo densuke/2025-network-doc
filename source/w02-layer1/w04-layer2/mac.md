@@ -11,7 +11,7 @@ MACアドレスは、有線(イーサーネット)や無線(Wi-Fi)、Bluetooth�
 48ビットでの重複の心配はあると思いますが、同一ネットワーク内に極端に端末(数万台など)が存在しない限りまず重複は起きないでしょうし、ネットワーク管理者もそこまでフラットに大量の機材を配置するようなことはしません。よってい重複は考えないでください(1敗)。
 
 - 最初の24ビット
-    - OUI（Organizationally Unique Identifier）
+    - OUI(Organizationally Unique Identifier)
       - ただし現在はOUIではなくMA-Lと呼ばれたりします
         - MAC Address Block Large
         - Largeとあるように、MiddleとSmallもあります(要は区画の大きさ)

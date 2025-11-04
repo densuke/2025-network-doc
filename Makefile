@@ -50,7 +50,7 @@ setup-uv: .uv-installed
 
 node_modules: node_modules/.ok
 
-node_modules/.ok: package.json package-lock.json
+node_modules/.ok: package.json
 	set -e; \
 	$(call nvm_setup); \
 	. "$${HOME}/.nvm/nvm.sh"; \

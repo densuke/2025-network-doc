@@ -9,7 +9,7 @@ with socket.create_connection((HOST, PORT)) as sock:
     print(f"[client] Connected to {HOST}:{PORT}")
     session_cost = 0
     while True:
-        expr = input("計算式を入力してください（例: 2+3, quitで終了）: ")
+        expr = input("計算式を入力してください(例: 2+3, quitで終了): ")
         try:
             node = ast.parse(expr, mode='eval')
             cost = calc_cost(node)

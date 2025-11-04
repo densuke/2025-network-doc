@@ -7,7 +7,7 @@ PORT = 10000
 COST_LIMIT = 1200  # セッション内のコスト上限
 
 def safe_eval(expr):
-    """安全な式評価（数値演算のみ）"""
+    """安全な式評価(数値演算のみ)"""
     node = ast.parse(expr, mode='eval')
     for n in ast.walk(node):
         if not isinstance(n, (ast.Expression, ast.BinOp, ast.UnaryOp, ast.Constant, ast.Add, ast.Sub, ast.Mult, ast.Div, ast.Pow, ast.USub, ast.UAdd, ast.Mod, ast.FloorDiv, ast.BitXor, ast.BitOr, ast.BitAnd, ast.LShift, ast.RShift)):

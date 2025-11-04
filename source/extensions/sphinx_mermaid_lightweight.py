@@ -394,7 +394,7 @@ def render_mermaid_latex(self, node: mermaid_node) -> None:
     renderer = MermaidRenderer(app)
     mermaid_code = node['code']
     
-    # LaTeX出力用フォーマットを決定（PDFまたはPNG）
+    # LaTeX出力用フォーマットを決定(PDFまたはPNG)
     latex_format = getattr(app.config, 'mermaid_latex_format', 'pdf')
     
     # 画像ファイル生成
@@ -404,7 +404,7 @@ def render_mermaid_latex(self, node: mermaid_node) -> None:
         # 相対パス計算
         rel_path = os.path.relpath(image_path, self.builder.outdir)
         
-        # Mermaid図表用のスマートサイジング（グローバル設定をバイパス）
+        # Mermaid図表用のスマートサイジング(グローバル設定をバイパス)
         # adjustboxの代わりに直接includegraphicsでスマート制御
         max_width = getattr(app.config, "mermaid_max_width", "0.8\\textwidth")
         max_height = getattr(app.config, "mermaid_max_height", "0.6\\textheight")
