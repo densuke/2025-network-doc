@@ -53,7 +53,7 @@ SMTP(25/tcp)で接続した直後はまだ開始状態にあるため、そこ�
 sequenceDiagram
     autonumber
     participant Client as クライアント(MUA/MTA)
-    participant Server as サーバ(MTA)
+    participant Server as サーバー(MTA)
     
     Note over Client,Server: 接続確立
     Client->>Server: TCP接続確立(25/tcp)
