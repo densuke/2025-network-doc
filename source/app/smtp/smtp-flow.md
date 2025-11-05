@@ -64,9 +64,9 @@ sequenceDiagram
     Server-->>Client: 250 OK
     
     Note over Client,Server: メール送信準備
-    Client->>Server: MAIL FROM sender@example.com
+    Client->>Server: MAIL FROM#58;#60;sender@example.com#62;
     Server-->>Client: 250 OK
-    Client->>Server: RCPT TO recipient@example.com
+    Client->>Server: RCPT TO#58;#60;recipient@example.com#62;
     Server-->>Client: 250 OK
     
     Note over Client,Server: メール送信
