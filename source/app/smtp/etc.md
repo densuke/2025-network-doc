@@ -5,7 +5,7 @@
 ## IMAP(IMAP4)
 
 メールの取得にはPOP3以外にIMAPというプロトコルもあります。
-IMAPはPOP3同様にメールの取得を行うものですが、以下の点が異なります(主用な違いのみ)。
+IMAPはPOP3同様にメールの取得を行うものですが、以下の点が異なります(主要な違いのみ)。
 
 - メールボックスに対するメールはサーバー上に保存されたままにします(削除も可能)。
 - メールボックスに対するフォルダー(仮想的なグループ)が生成できるようになっており、サーバー上で分類が可能です。
@@ -26,8 +26,8 @@ APOPは、POP3の認証を強化する目的で追加されたものです。
 APOPは、パスワードを平文で送信するのではなく、チャレンジレスポンス方式を用いて認証を行います。
 これにより、パスワードが盗聴されるリスクを軽減します。
 
-しかし、あくまでAPOPはPOP3の拡張にすぎず、認証含めて全てが平文で行われています。
-無いよりはマシですが、些細なものだと考えられます。
+しかし、APOPは認証方式を強化する拡張なだけで、メールの通信内容自体は暗号化されません。
+無いよりはマシですが、現代のセキュリティ基準では不十分だと考えられます。
 
 ## POP3S/IMAP4S
 
@@ -118,8 +118,17 @@ sequenceDiagram
     Relay-->>Client: 220 relay.example.net ESMTP ready
     Client->>Relay: EHLO client.example.com
     Relay-->>Client: 250 relay.example.net
-    Client->>Relay: MAIL FROM:&lt;
-
+    Client->>Relay: MAIL FROM:<user@example.com>
+    Relay-->>Client: 250 OK
+    Client->>Relay: RCPT TO:<recipient@example.com>
+    Relay-->>Client: 250 OK
+    Client->>Relay: DATA
+    Relay-->>Client: 354 End data with <CR><LF>.<CR><LF>
+    Client-->>Relay: (メール本文)
+    Client-->>Relay: .
+    Relay-->>Client: 250 OK: queued as 12345
+    Client->>Relay: QUIT
+    Relay-->>Client: 221 Bye
 ```
 ポイントは7番のPOP3のところで、もともとメールを受信する行為は『普通に認証を行っている』『受信できるなら正当な利用者』であるという前提に立っていて、その記録をDBに保存するところにあります。
 これにより、SMTP側がDBをチェックする機能を追加することで『正当な利用者』を確認できるようにしようとしたアプローチです。

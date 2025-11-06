@@ -32,7 +32,7 @@ kobedenshi.ac.jp descriptive text "v=spf1 include:gmail.com include:aspmx.pardot
 
 ## DKIM
 
-DKIM(DomainKeys Indentified Mail)は、電子メールの送信ドメイン認証の一つで、メールの改ざん防止と送信者の正当性を確認するための仕組みです。
+DKIM(DomainKeys Identified Mail)は、電子メールの送信ドメイン認証の一つで、メールの改ざん防止と送信者の正当性を確認するための仕組みです。
 DKIMは、送信者のドメインが所有する秘密鍵を使用してメールにデジタル署名を付与し、受信者側は対応する公開鍵を使用して署名を検証します。
 この仕組みにより、以下の事が可能となります。
 
