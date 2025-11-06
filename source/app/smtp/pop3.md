@@ -39,6 +39,16 @@ POP3の主な命令は、以下のとおりです。`QUIT`は文字通りの終�
 |NOOP|何もしない(接続維持)|
 |RSET|削除指定のリセット(削除取り消し)|
 
+### その他の操作
+
+|コマンド|説明|
+|---|---|
+|TOP 番号 行数|指定したメールのヘッダと本文の一部を取得|
+|UIDL|メールの一意識別子一覧の取得| 
+|QUIT|セッションの終了|
+
+セッション(接続)終了時に、削除指定されたメールがまとめて削除されます。
+
 ## POP3を試すには
 
 SMTP同様に試すためには、POP3のサーバーが必要です。
@@ -56,6 +66,35 @@ $ sudo systemctl status dovecot # 確認したら qキーで抜けてくださ�
 
 ```bash
 $ telnet localhost 110
+Trying ::1...
+Connected to localhost.
+Escape character is '^]'.
++OK Dovecot (Debian) ready.
 USER linux
++OK
 PASS penguin
++OK Logged in.
+LIST
++OK 2 messages:
+1 490
+2 476
+.
+RETR 1
++OK 490 octets
+Return-Path: <linux@localhost>
+...(中略)...
+
+Hello, Hello, Hello, Hello.
+.
+DELE 1
++OK Marked to be deleted.
+QUIT
++OK Logging out, messages deleted.
+Connection closed by foreign host.
+```
+
+上記の例では、`linux`ユーザーのメールボックスに2通のメールが届いていることがわかります。
+1通目のメールを取得し、内容を確認した後、削除指定を行い、セッションを終了しています。
+
+MUAは、このような操作を裏で自動的に行い(もしくは手動で取得指示をして行い)、ユーザーにメールを見せていることになります。
 
