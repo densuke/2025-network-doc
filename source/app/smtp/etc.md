@@ -118,12 +118,12 @@ sequenceDiagram
     Relay-->>Client: 220 relay.example.net ESMTP ready
     Client->>Relay: EHLO client.example.com
     Relay-->>Client: 250 relay.example.net
-    Client->>Relay: MAIL FROM:<user@example.com>
+    Client->>Relay: MAIL FROM:&lt;user@example.com&gt;
     Relay-->>Client: 250 OK
-    Client->>Relay: RCPT TO:<recipient@example.com>
+    Client->>Relay: RCPT TO:&lt;recipient@example.com&gt;
     Relay-->>Client: 250 OK
     Client->>Relay: DATA
-    Relay-->>Client: 354 End data with <CR><LF>.<CR><LF>
+    Relay-->>Client: 354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;
     Client-->>Relay: (メール本文)
     Client-->>Relay: .
     Relay-->>Client: 250 OK: queued as 12345
