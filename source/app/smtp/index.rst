@@ -18,3 +18,5 @@ SMTP、メール周辺技術
     find.md
     ex-resolver.md
     smtp-flow.md
+    run.md
+    pop3.md
