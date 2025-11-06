@@ -1,0 +1,12 @@
+HELO localhost
+MAIL FROM:<linux@localhost>
+RCPT TO:<linux@localhost>
+DATA
+From: linux@localhost
+To: linux@localhost
+Subject: Hello, Postfix
+
+Hello, Hello.
+.
+QUIT
+
