@@ -3,7 +3,7 @@ services:
     # build:
     #   context: docker
     #   dockerfile: Dockerfile
-    image: ghcr.io/densuke/sphinx-texlive:20251103205612
+    image: ghcr.io/densuke/sphinx-texlive:20251110070449
 
     #user: worker
     volumes:
@@ -12,4 +12,3 @@ services:
       - "8000:8000"
     environment:
       PATH: /app/node_modules/.bin:$PATH
-      
