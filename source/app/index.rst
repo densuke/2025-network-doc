@@ -16,9 +16,10 @@
     - その他必要に応じて
 
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :caption: 目次:
 
     http/index.rst
     smtp/index.rst
+    ntp/index.rst
     
