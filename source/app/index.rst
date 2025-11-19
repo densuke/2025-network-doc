@@ -21,4 +21,5 @@
 
     http/index.rst
     smtp/index.rst
+    ntp/index.rst
     
