@@ -17,7 +17,7 @@
     ```{figure} images/snapshot-create.png
     :width: 50%
     ```
-3. スナップショットの名前を適当に設定して進めます。
+3. スナップショットにわかりやすい名前を設定して進めます。
     ```{figure} images/set-name.png
     :width: 50%
     ```
