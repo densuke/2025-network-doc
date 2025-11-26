@@ -12,3 +12,4 @@
     ipheader-proto.md
     pubkey.md
     storage-full.md
+    storage-upgrade.md
