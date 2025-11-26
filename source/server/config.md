@@ -59,7 +59,7 @@ $ uv run ansible -i hosts.yml -m apt -a 'name=htop state=present' -b -K all
 実行時にパスワードが聞かれます。エコーバックされませんが、いつものように`penguin`を入れておきましょう。しばらくすると完了します。
 
 - `-i hosts.yml`: インベントリファイル
-- '-m apt': aptモジュールを使用
+- `-m apt`: aptモジュールを使用
 - `-a 'name=htop state=present'`: モジュールに対する引数
   - `name=htop`: インストールするパッケージ名
   - `state=present`: パッケージをインストールする
