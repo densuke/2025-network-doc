@@ -26,6 +26,7 @@
    ip/index.rst
    transport/index.rst
    app/index.rst
+   server/index.rst
    appendix/index.rst
 
 ソースについて
