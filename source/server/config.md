@@ -53,7 +53,7 @@ pingモジュールは、対象ホストに対して接続が可能かという�
 例えば、パッケージを導入するモジュールである`apt`を使って、`htop`パッケージをインストールしてみましょう。
 
 ```{code-block} bash
-$ uv run ansible -i hosts.yml -m apt -a 'name=htop state=present' -b  -K all
+$ uv run ansible -i hosts.yml -m apt -a 'name=htop state=present' -b -K all
 ```
 
 実行時にパスワードが聞かれます、エコーバックされませんが、いつものように`penguin`を入れておきましょう。しばらくすると完了します。
