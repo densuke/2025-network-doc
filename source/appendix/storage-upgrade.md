@@ -78,14 +78,19 @@ zram0           253:0    0 491.8M  0 disk [SWAP]
 
 それでは、`sdc`をルート(`/`)に追加してみましょう。本来であればLVMのための処理などが必要ですが、`btrfs`の場合はbtrfsの管理下に追加するだけで終了します。
 
+```{code-block}
+:language: bash
+
 $ df -h / # before
 Filesystem               Size  Used Avail Use% Mounted on
 /dev/mapper/system-root  3.6G  1.7G  1.5G  54% /          # 残量1.5GB
-$ sudo btrfs dev add /dev/sdc / # add device
+
+$ sudo btrfs dev add /dev/sdc /                           # デバイス追加
 
 $ df -h /
 Filesystem               Size  Used Avail Use% Mounted on
 /dev/mapper/system-root  5.6G  1.7G  3.5G  33% /          # 残量3.5GB(+2GB)
+```
 
 上記のように、`btrfs dev add`コマンドで追加したいデバイスを指定し、マウントポイント(`/`)を指定するだけで完了です。
 `df -h /`で確認すると、ルートのサイズが増えていることが確認できればこれで完了です。
