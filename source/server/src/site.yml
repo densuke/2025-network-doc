@@ -1,0 +1,7 @@
+- name: サーバーの構成
+  hosts: all
+  become: true
+
+  tasks:
+    - name: 接続確認
+      ping:
