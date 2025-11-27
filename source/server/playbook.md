@@ -129,7 +129,9 @@ Playbookの実行が完了すると、各ホストに対して定義されたタ
 `htop`パッケージをインストールする操作を`ansible`コマンドで試していましたが、これをPlaybookで記述してみましょう。
 `site.yml`の`tasks`セクションに以下のタスクを追加してください。
 
-```{code-block}yaml
+```{code-block}
+:language: yaml
+
     - name: htopパッケージのインストール
       apt:
         name: htop
@@ -139,7 +141,9 @@ Playbookの実行が完了すると、各ホストに対して定義されたタ
 
 このPlaybookを実行すると、タスクが追加されたことで`htop`パッケージがインストールされます。
 
-```{code-block} bash
+```{code-block}
+:language: bash
+
 $ uv run ansible-playbook -K site.yml
 ...
 
