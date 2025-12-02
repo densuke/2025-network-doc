@@ -14,3 +14,4 @@
    ansible.md
    config.md
    playbook.md
+   apache.md
