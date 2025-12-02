@@ -13,3 +13,4 @@
 
    ansible.md
    config.md
+   apache.md
