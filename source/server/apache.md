@@ -22,7 +22,7 @@ Apache自体は、OSのパッケージ管理システム(Ubuntuのためapt)を�
 
 タスク指定の冒頭で行っておくと良いでしょう。
 
-```{code-block} 
+```{code-block}
 :language: yaml
 
   tasks:
@@ -40,7 +40,7 @@ Apache自体は、OSのパッケージ管理システム(Ubuntuのためapt)を�
     - name: 最新のパッケージリストの更新
       apt:
         update_cache: yes
-# Apache httpdのインストールと起動
+      # Apache httpdのインストールと起動
     - name: Apache httpdのインストール
       apt:
         name: apache2
@@ -63,6 +63,8 @@ Apache自体は、OSのパッケージ管理システム(Ubuntuのためapt)を�
 serviceモジュールを使って起動状態の確認と自動起動の確認をしておきましょう。
 
 ```{code-block}
+:language: yaml
+
     - name: Apache httpdサービスの起動と有効化
       service:
         name: apache2
@@ -71,13 +73,13 @@ serviceモジュールを使って起動状態の確認と自動起動の確認�
 ```
 
 - state: サービスの現在の状態(あるべき姿)を指定します。
-    - started: サービスが起動していることを保証します。停止している場合は起動します。
-    - stopped: サービスが停止していることを保証します。起動している場合は停止します。
-    - restarted: サービスを再起動します。
-    - reloaded: サービスの設定を再読み込みします(サービス自体を止めない)[^reload]。
+  - started: サービスが起動していることを保証します。停止している場合は起動します。
+  - stopped: サービスが停止していることを保証します。起動している場合は停止します。
+  - restarted: サービスを再起動します。
+  - reloaded: サービスの設定を再読み込みします(サービス自体を止めない)[^reload]。
 - enabled: サービスの自動起動設定を指定します。
-    - yes: OS起動時に自動的にサービスが起動するように設定します。
-    - no: OS起動時にサービスが自動的に起動しないように設定します。
+  - yes: OS起動時に自動的にサービスが起動するように設定します。
+  - no: OS起動時にサービスが自動的に起動しないように設定します。
 
 [^reload]: すべてのサービスが再読み込みをサポートしているわけではありません。サービスが対応していない場合、Ansibleはエラーを返します。
 
