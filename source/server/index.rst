@@ -15,3 +15,4 @@
    config.md
    playbook.md
    apache.md
+   handler.md

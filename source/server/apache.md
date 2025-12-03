@@ -186,3 +186,70 @@ $ uv run ansible-playbook -K site.yml
 ```
 
 以上の対策を行ってもうまく行かない場合は、再度佐藤までお知らせください。
+
+## ファイルの配置と動作確認
+
+この時点でサーバーは動いていると思われます。
+実際にファイルを配置して、そのファイルをサーバー経由で取得してみましょう。
+とりあえずファイル `sample.html` を作製して、配置してみます。
+
+```{literalinclude} src/sample.html
+:language: html
+```
+
+これを、サーバーのドキュメントルートに配置してみましょう。
+
+### そもそもドキュメントルートとは?
+
+ドキュメントルート(DocumentRoot)は、多くのWebサーバーで内部的に使用する概念です。
+サーバーとしてコンテンツを提供するときの起点となる場所(パス)になります。
+仮にサーバーが外部から `https://example.com/` というURLで見えているとしましょう。
+この時に、`https://example.com/sample.html` というURLでアクセスがあった場合、サーバーはドキュメントルートからの相対パスで `sample.html` というファイルを探しに行きます。
+この時、内部的にドキュメントルートを`/var/www/html`と設定していた場合は、`/var/www/html/sample.html` というファイルを探しに行くことになります。
+
+で、現在のApacheのデフォルトではどうなっているかです。
+Apacheの設定ファイルは、 `/etc/apache2/sites-available/000-default.conf` にあります。
+`grep`コマンドで確認してみましょう。
+
+```{code-block}
+:language: bash
+
+$ grep -R DocumentRoot /etc/apache2/
+/etc/apache2/sites-available/000-default.conf:  DocumentRoot /var/www/html
+/etc/apache2/sites-available/default-ssl.conf:  DocumentRoot /var/www/html
+/etc/apache2/sites-enabled/000-default.conf:    DocumentRoot /var/www/html
+```
+
+いくつかのファイルでマッチしていますが、どれも  `/var/www/html` となっています。
+
+### `copy`アクション
+
+すでに出来上がっているファイルを配置するためには、`copy`アクションを使います。
+
+```{code-block}
+:language: yaml
+
+    - name: サンプルファイルを配置(コンテンツ)
+      copy:
+        src: sample.html
+        dest: /var/www/html/sample.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+```
+
+`copy`は、引数で指定したファイル(`src`)を指定した場所(`dest`)にコピーします。
+考え方は`cp`コマンドと同様です。
+また、所有者(`owner`)、グループ(`group`)、パーミッション(`mode`)も指定できます。
+もちろん冪等性の担保も入ります。すでに同一ファイルが生成されているのであればコピー作業はスキップされます。
+
+ということで、配置が完了したら、実際にページコンテンツが取得できるかを`curl`で確認してみましょう。
+
+```{code-block}
+:language: bash
+
+$ curl http://localhost/sample.html
+...
+```
+
+これで、`sample.html`の内容が表示されれば成功です。
