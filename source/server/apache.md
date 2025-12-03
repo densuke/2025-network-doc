@@ -84,3 +84,103 @@ serviceモジュールを使って起動状態の確認と自動起動の確認�
 [^reload]: すべてのサービスが再読み込みをサポートしているわけではありません。サービスが対応していない場合、Ansibleはエラーを返します。
 
 これでApache HTTP Serverがインストールされ、起動していることが保証されました。
+
+## 動かない時のトラブルシューティング
+
+授業で実際に行うと、うまく機能しないという報告が散見されています。
+大きく3つの可能性が確認できましたので、以下に示しておきます。
+
+### `uv`入っていますか?
+
+PCの初期化や変更で、`uv`がVMに入っていない可能性があります。
+リモート接続後、ターミナルにて、
+
+```{code-block}
+:language: bash
+
+$ setup-uv
+
+```
+
+としてみてください。もし`uv`が入っていなければ、インストールが始まります。
+
+### Playbook(というかYAMLの)記述ミス
+
+YAMLの設定ミスの可能性もあります(インデントミスやスペルミス、ハイフン(`-`)の後に空白が無いなどのマーカーミス)。
+こちらについては、Ansibleのチェックツールを使うと便利です。
+
+```{code-block}
+:language: bash
+
+$ uv run ansible-playbook --syntax-check site.yml
+
+```
+
+YAMLの文法およびモジュールのパラメーターのチェックを行ってくれます。
+
+```{code-block}
+:language: bash
+:caption: 特に問題がない場合
+
+$ uv run ansible-playbook --syntax-check site.yml
+
+playbook: site.yml
+```
+
+```{code-block}
+:language: bash
+:caption: モジュール名に誤りがありそうな場合
+
+[ERROR]: couldn't resolve module/action 'ap'. This often indicates a misspelling, missing collection, or incorrect module path.
+Origin: /home/linux/server-config-ajihurai/site.yml:30:7
+
+28 #         update_cache: yes
+29
+30     - name: Apache httpdのインストール
+         ^ column 7
+
+```
+
+カラム位置や行位置が少し先へ行っているので混乱するかもしれませんが、エラーとして『`ap`という解決できないモジュール(もしくはアクション)がある』ということから類推できると思います。
+
+ちょっと怖いのが、モジュールの引数の問題です。
+こちらは動作時にしか評価できない(`--syntax-check`では通過してしまう)仕様のため『やったフリ』をするチェックオプション(`-C`)で行う必要があります。
+
+```{code-block}
+:language: bash
+:caption: モジュールの引数のミス(`name`を`nam`にした場合)
+
+$ uv run ansible-playbook -C -K site.yml
+BECOME password:
+
+...
+
+TASK [Apache httpdサービスの起動と有効化] *********************************************************************
+[ERROR]: Task failed: Module failed: missing parameter(s) required by 'state': name
+Origin: /home/linux/server-config-ajihurai/site.yml:34:7
+
+32         name: apache2
+33         state: present
+34     - name: Apache httpdサービスの起動と有効化
+         ^ column 7
+
+fatal: [localhost]: FAILED! => {"changed": false, "msg": "missing parameter(s) required by 'state': name"}
+```
+
+この場合、`state`引数のために必要な`name`引数が無いというエラーが出ています。
+少々解析が難しいかもしれませんが、そのあたりにあるというだけでも候補が絞りやすいと思います。
+
+### aptがコケてしまう
+
+`apt`モジュールでパッケージ操作を行うときに、パッケージキャッシュが正常に更新できずに失敗することが時折あるようです。
+対策として、強制的に最新版のパッケージリストを取得するようにしてみましょう。
+
+```{code-block}
+:language: bash
+
+$ sudo rm -fr /var/lib/apt
+$ sudo rm -fr /var/cache/apt
+$ sudo apt update # パッケージリストの更新(時間がかかります)
+
+$ uv run ansible-playbook -K site.yml
+```
