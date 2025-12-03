@@ -104,7 +104,7 @@ $ setup-uv
 
 としてみてください。もし`uv`が入っていなければ、インストールが始まります。
 
-### Playbook(というかYAMLの)記述ミス
+### PlaybookもしくはYAML文法ミスの可能性
 
 YAMLの設定ミスの可能性もあります(インデントミスやスペルミス、ハイフン(`-`)の後に空白が無いなどのマーカーミス)。
 こちらについては、Ansibleのチェックツールを使うと便利です。
@@ -116,7 +116,7 @@ $ uv run ansible-playbook --syntax-check site.yml
 
 ```
 
-YAMLの文法およびモジュールのパラメーターのチェックを行ってくれます。
+YAMLの文法およびモジュール名のチェックを行ってくれます。
 
 ```{code-block}
 :language: bash
@@ -170,7 +170,7 @@ fatal: [localhost]: FAILED! => {"changed": false, "msg": "missing parameter(s) r
 この場合、`state`引数のために必要な`name`引数が無いというエラーが出ています。
 少々解析が難しいかもしれませんが、そのあたりにあるというだけでも候補が絞りやすいと思います。
 
-### aptがコケてしまう
+### aptが失敗する場合(`apt`モジュール部分)
 
 `apt`モジュールでパッケージ操作を行うときに、パッケージキャッシュが正常に更新できずに失敗することが時折あるようです。
 対策として、強制的に最新版のパッケージリストを取得するようにしてみましょう。
@@ -178,9 +178,11 @@ fatal: [localhost]: FAILED! => {"changed": false, "msg": "missing parameter(s) r
 ```{code-block}
 :language: bash
 
-$ sudo rm -fr /var/lib/apt
-$ sudo rm -fr /var/cache/apt
+$ sudo apt clean
+$ sudo rm -fr /var/lib/apt/lists/*
 $ sudo apt update # パッケージリストの更新(時間がかかります)
 
 $ uv run ansible-playbook -K site.yml
 ```
+
+以上の対策を行ってもうまく行かない場合は、再度佐藤までお知らせください。
