@@ -16,3 +16,4 @@
    playbook.md
    apache.md
    handler.md
+   role.md
