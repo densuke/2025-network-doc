@@ -185,7 +185,17 @@ $ sudo apt update # パッケージリストの更新(時間がかかります)
 $ uv run ansible-playbook -K site.yml
 ```
 
-以上の対策を行ってもうまく行かない場合は、再度佐藤までお知らせください。
+### Caddyが動いているケース
+
+TCPもしくはUDPでは、ポート80番や443番がすでに他のプロセスで使用されている場合、Apacheが起動できないことがあります。
+以前の授業でCaddyサーバーを入れてみた場合、Caddyがポート80番を使用している可能性があります。
+
+```{code-block}
+:language: bash
+
+$ sudo systemctl stop caddy    # Caddyサーバーの停止 
+$ sudo systemctl disable caddy # Caddyサーバーの自動起動停止
+```
 
 ## ファイルの配置と動作確認
 
