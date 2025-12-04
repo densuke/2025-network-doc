@@ -42,7 +42,7 @@ roles/
 では、現状の構成を基に、httpdロールを作成してみましょう。
 
 まず、`roles`ディレクトリを作成します。
-その中に`httpd`ディレクトリを作製し、さらにその中に`tasks`ディレクトリを作成します。
+その中に`httpd`ディレクトリを作成し、さらにその中に`tasks`ディレクトリを作成します。
 
 ```{code-block}
 :language: bash
@@ -97,12 +97,10 @@ $ mkdir -pv roles/httpd/tasks
 これで一通りロールに移動させたので、playbookを修正してロールを呼び出すようにしましょう。
 まずはコメントアウトの形にして、動作をチェックしてから本格的に削除させましょう。
 
-```{note}
-なお巻き添えで『最新のパッケージリストの更新』もコメントアウトしています。
-これは仕様上、ロールが先に実行されてしまうため、この位置に書いても『必要でApacheをインストールした』ときには更新が行われており、意味がなくなってしまうためです。
-```
 
 ```{code-block}
+:language: yaml
+
 - name: サーバーの構成
   hosts: all
   become: true
@@ -111,9 +109,9 @@ $ mkdir -pv roles/httpd/tasks
     - httpd
 
   tasks:
-#    - name: 最新のパッケージリストの更新
-#      apt:
-#        update_cache: yes
+    - name: 最新のパッケージリストの更新
+      apt:
+        update_cache: yes
 #    - name: Apache httpdのインストール
 #      apt:
 #        name: apache2
@@ -156,13 +154,21 @@ changed: [localhost]
 ロール内タスクは『ロール名: タスク名』という形で表示されていることがわかります。
 一通り動くことがわかったら、コメントにしていたところを削除して再度確認しておきましょう。
 
+しかし、ロール実行後にパッケージ一覧の更新が行われるというねじれ現象も発生しています。
+対策として、パッケージリスト更新が先行して行われるようにするため、`pre_tasks`として記述を移動しておきましょう。
+
 ```{code-block}
-:language: bash
+:language: yaml
 :caption: site.yml
 
 - name: サーバーの構成
   hosts: all
   become: true
+
+  pre_tasks:
+    - name: 最新のパッケージリストの更新
+      apt:
+        update_cache: yes
 
   roles:
     - httpd
