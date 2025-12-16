@@ -107,7 +107,7 @@ $ mkdir -pv roles/php/meta  # NEW!
 :lines: 1-9
 ```
 
-1〜4行目がphp(php8.2-fpm)パッケージのインストール、5〜9行目がサービスの有効かと起動ということはもうおわかりでしょう。
+1〜4行目がphp(php8.2-fpm)パッケージのインストール、5〜9行目がサービスの有効化と起動ということはもうおわかりでしょう。
 
 ### Apacheとの連携
 
@@ -136,7 +136,7 @@ alias.conf            brotli.load         env.load                  macro.load  
 
 [^a2enmod]: `a2enmod`は"Apache2 enable module"の略です。
 
-```{$code-block}
+```{code-block}
 :language: bash
 
 $ sudo a2enmod proxy_fcgi setenvif
@@ -158,7 +158,7 @@ To activate the new configuration, you need to run:
 
 `command`アクションは大きく2つの使い方があります。
 
-- `command`の直下にコマンドを記述する(單純に実行する)
+- `command`の直下にコマンドを記述する(単純に実行する)
 - `command`の下に辞書を用意する ←今回はこちらを使用
   - `cmd`: 実行するコマンドライン
   - `creates`: 指定したファイルが存在する場合は実行しない(冪等性の確保)
