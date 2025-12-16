@@ -123,7 +123,6 @@ UbuntuのApacheパッケージは、拡張機能(モジュール)の構成は個
 :language: bash
 
 $ ls /etc/apache2/mods-available
-$ ls /etc/apache2/mods-available
 access_compat.load    authz_user.load     dir.load                  log_debug.load       proxy_fcgi.load      setenvif.conf
 actions.conf          autoindex.conf      dump_io.load              log_forensic.load    proxy_fdpass.load    setenvif.load
 actions.load          autoindex.load      echo.load                 lua.load             proxy_ftp.conf       slotmem_plain.load
