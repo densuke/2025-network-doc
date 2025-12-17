@@ -48,7 +48,7 @@ Apacheでは、多くのOSに対応できるようにするために、いくつ
 
 PHPとのApacheの連携については、以下の2つの方法が存在します。
 
-- Apacheの拡張モジュールとして実装する(mod_php): Apache自体にPHP言語のランタイムを追加するというかなり強引な方法です。Apacheが起動する過程(初期化処理)でPHPのランタイムの初期化されて準備完了となっています。そのためすぐにPHPスクリプトが実行できるようになります。また、PHPスクリプトのコンパイルキャッシュなども保持されているためパフォーマンスも良好となります。ただし、Apacheのプロセスが全てPHPのランタイムを抱え込む形になるため、メモリ消費が非常に大きくなります。また、Apacheのプロセスモデルとしてpreforkを使うことが前提となるため、workerやeventモデルを使うことができません。
+- Apacheの拡張モジュールとして実装する(mod_php): Apache自体にPHP言語のランタイムを追加するというかなり強引な方法です。Apacheが起動する過程(初期化処理)でPHPのランタイムが初期化されて準備完了となっています。そのためすぐにPHPスクリプトが実行できるようになります。また、PHPスクリプトのコンパイルキャッシュなども保持されているためパフォーマンスも良好となります。ただし、Apacheのプロセスが全てPHPのランタイムを抱え込む形になるため、メモリ消費が非常に大きくなります。また、Apacheのプロセスモデルとしてpreforkを使うことが前提となるため、workerやeventモデルを使うことができません。
 - 外部プロセスとして実装する(FastCGI + PHP-FPM): Apacheからは外部プロセスとしてPHPのランタイムを呼び出す形となります。具体的にはFastCGIというプロトコルを使ってApacheとPHP-FPM(PHP FastCGI Process Manager)というPHPのランタイムを管理するプロセスと通信します。この方法ではApacheのプロセスはPHPのランタイムを抱え込む必要が無いため、workerやeventモデルを使うことができます。また、PHPのランタイムも必要に応じて起動・停止できるため、メモリ消費を抑えることができます。一方で、ApacheとPHP-FPM間の通信コストが発生するため、mod_phpに比べてパフォーマンスが劣る場合があります。
 
 パフォーマンス上の理由とすると、mod_phpのほうが有利かもしれませんが、その一方でリソースの浪費やPHPプロセスをその気になればホスト単位で分離することも可能(Webサーバーの動いているサーバーとPHPランタイムの動くサーバーをホスト的に分離する)などの柔軟性から、現代ではFastCGI + PHP-FPMの組み合わせが主流となっています。
@@ -108,6 +108,40 @@ $ mkdir -pv roles/php/meta  # NEW!
 ```
 
 1〜4行目がphp(php8.2-fpm)パッケージのインストール、5〜9行目がサービスの有効化と起動ということはもうおわかりでしょう。
+
+### phpロールを組み込む
+
+あとは `site.yml`にphpロールを追加するだけです。
+
+```{literalinclude} src/site-roles.yml
+:language: yaml
+:caption: site.yml(ロール部分)
+```
+
+これでphpのロールが組み込まれました。
+この状態でエラーがないかのチェックと、実際の適用を行ってみましょう。
+
+```{code-block}
+:language: bash
+
+$ uv run ansible-playbook -K --syntax-check site.yml
+$ uv run ansible-playbook -K site.yml
+```
+
+問題なく動作すれば、PHPのインストールとサービスの起動が完了しています。
+
+一応確認方法として、`systemctl`を使ってチェックすると良いでしょう。
+
+```{code-block}
+:language: bash
+
+$ systemctl status httpd
+$ systemctl status php8.2-fpm
+```
+
+```{note}
+確認ができたらそれぞれ{kbd}`q`で抜けてください
+```
 
 ### Apacheとの連携
 
@@ -201,13 +235,4 @@ To activate the new configuration, you need to run:
 ただし、きちんと依存するロールであっても記述するようにしましょう。これは可読性の問題からも重要です。
 ```
 
-### phpロールを組み込む
-
-あとは `site.yml`にphpロールを追加するだけです。
-
-```{literalinclude} src/site-roles.yml
-:language: yaml
-:caption: site.yml(ロール部分)
-```
-
-これでphpのロールが組み込まれました。
+改めてplaybookを起動して、必要な設定が入るかどうかをチェックしておきましょう。
