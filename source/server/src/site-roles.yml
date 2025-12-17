@@ -1,0 +1,15 @@
+- name: サーバーの構成
+  hosts: all
+  become: true
+
+  pre_tasks:
+    - name: パッケージリポジトリの更新
+      apt:
+        update_cache: yes
+  
+  roles:
+    - httpd
+    - php
+
+  tasks:
+    # ...

@@ -1,0 +1,22 @@
+- name: PHPサーバーのインストール
+  apt:
+    name: php8.2-fpm
+    state: present
+- name: PHP-FPM サービス起動と有効化
+  service:
+    name: php8.2-fpm
+    state: started
+    enabled: yes
+
+- name: Apache2側に関連モジュールを有効化 #この部分は後ほど修正の見込み(apache2_moduleモジュールの作成)
+  command: 
+    cmd: a2enmod proxy_fcgi setenvif
+    creates:
+      - /etc/apache2/mods-enabled/proxy_fcgi.load
+      - /etc/apache2/mods-enabled/setenvif.load
+  notify: Apache2の再起動
+- name: Apache2にPHP-FPMのサイト設定を有効化 #後日apache2_confに変更予定
+  command:
+    cmd: a2enconf php8.2-fpm
+    creates: /etc/apache2/conf-enabled/php8.2-fpm.conf
+  notify: Apache2の再起動

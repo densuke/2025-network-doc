@@ -17,3 +17,4 @@
    apache.md
    handler.md
    role.md
+   php.md

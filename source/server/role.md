@@ -97,7 +97,6 @@ $ mkdir -pv roles/httpd/tasks
 これで一通りロールに移動させたので、playbookを修正してロールを呼び出すようにしましょう。
 まずはコメントアウトの形にして、動作をチェックしてから本格的に削除させましょう。
 
-
 ```{code-block}
 :language: yaml
 
@@ -209,4 +208,3 @@ localhost : ok=4 changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 ```
 
 このように、かなりスッキリした記述となります。
-
