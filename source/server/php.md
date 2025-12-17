@@ -186,7 +186,7 @@ To activate the new configuration, you need to run:
 :language: yaml
 :caption: roles/php/tasks/main.yml(追加部分)
 :linenos:
-:emphasize-lines: 11-22
+:emphasize-lines: 11-20
 ```
 
 `command`アクションは大きく2つの使い方があります。
