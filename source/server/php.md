@@ -270,7 +270,7 @@ To activate the new configuration, you need to run:
 2. {menuselection}`ポートの転送`ボタンを押します
 3. ポート番号部分に80を入力してEnter
 
-以上で転送ポートの準備をしてくれるので、『転送されたアドレス」側をマウスでポイントすると、地球マークのアイコンが出るようになります。そこからブラウザを開けるので確認してみてください。
+以上で転送ポートの準備をしてくれるので、『転送されたアドレス』側をマウスでポイントすると、地球マークのアイコンが出るようになります。そこからブラウザを開けるので確認してみてください。
 まずはいわゆるウェルカムページ(動作確認の静的ページ)が表示されるはずです。
 
 ```{figure} images/welcomepage.png
@@ -280,7 +280,7 @@ To activate the new configuration, you need to run:
 ウェルカムページ
 ```
 
-アドレス欄を呼び出し、`/info.php`を追加してEnterキーにてアクセスしてみてください。これでPHPが認識されれば情報が展開されます。
+アドレス欄に`/info.php`を追加してEnterキーを押してアクセスしてみてください。これでPHPが認識されれば情報が展開されます。
 
 ```{figure} images/add-info.png
 :width: 60%
@@ -350,9 +350,7 @@ phpinfo()の表示(成功)
     - setenvif
   notify: Apacheを再起動
 
-実はこの処理をラップしたモジュールとして、`apache2_module`モジュールが存在します。
-こちらを使えばファイルの作成をチェックする必要がなくなるのでより書きやすくなります。
-
+実は専用の`apache2_module`モジュールを使うことで、ファイルの作成をチェックする必要がなくなり、より簡潔に記述できます。
 ```{code-block}
 :language: yaml
 :caption: roles/php/tasks/main.yml(修正版)
