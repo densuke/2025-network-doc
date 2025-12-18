@@ -236,3 +236,133 @@ To activate the new configuration, you need to run:
 ```
 
 改めてplaybookを起動して、必要な設定が入るかどうかをチェックしておきましょう。
+
+## 動作確認
+
+ではいよいよ動作確認です。いちばん簡単なのは、PHPの情報を出すある意味のお約束です。
+
+ここではロール外タスクとして、ApacheのドキュメントルートにPHPスクリプト {file}`info.php`を配置してみましょう。
+
+```{code-block}
+:language: html
+:caption: info.php
+
+<?php phpinfo(); ?>
+```
+
+これをApacheのドキュメントルート({file}`/var/www/html/`)に配置します。
+
+```{code-block}
+:language: yaml
+- name: PHP情報表示用スクリプトを配置
+  copy:
+    src: info.php
+    dest: /var/www/html/info.php
+    owner: www-data
+    group: www-data
+    mode: '0644'
+```
+
+設定後 {file}`site.yml` をansible-playbookで適用し直してみてください。最後に動いたタスクにて、ファイルが配置されます。
+このファイルをブラウザを通してみておきたいと思います。
+
+1. vscodeの{menuselection}`ポート`ビューを開きます
+2. {menuselection}`ポートの転送`ボタンを押します
+3. ポート番号部分に80を入力してEnter
+
+以上で転送ポートの準備をしてくれるので、『転送されたアドレス」側をマウスでポイントすると、地球マークのアイコンが出るようになります。そこからブラウザを開けるので確認してみてください。
+まずはいわゆるウェルカムページ(動作確認の静的ページ)が表示されるはずです。
+
+```{figure} images/welcomepage.png
+:alt: ウェルカムページ
+:width: 60%
+
+ウェルカムページ
+```
+
+アドレス欄を呼び出し、`/info.php`を追加してEnterキーにてアクセスしてみてください。これでPHPが認識されれば情報が展開されます。
+
+```{figure} images/add-info.png
+:width: 60%
+
+/info.phpを追加
+```
+
+```{figure} images/phpinfo.png
+:width: 60%
+
+phpinfo()の表示(成功)
+```
+
+## プレイブックの整理
+
+一応動くようになったプレイブックですが、ここで一息整理しておきましょう。
+依存関係については前述なので、それ以外で少々修正を加えます。
+
+### よりよい冪等性
+
+ロール`php`のタスク定義({file}`roles/php/tasks/main.yml`)にてコマンドによる処理を行っていますが、このように記述しています。
+
+```{code-block}
+:language: yaml
+
+- name: Apache2側に関連モジュールを有効化
+  command: 
+    cmd: a2enmod proxy_fcgi setenvif
+    creates: /etc/apache2/mods-enabled/proxy_fcgi.load
+  notify: Apacheを再起動
+```
+
+ここでは、2つのモジュールを同時に有効化していますが、
+`creates`で指定しているのは1つだけです。
+これは`creates`ではファイル(パス)を1つしか記述できないためです。
+そのため、もしproxy_fcgiがすでに有効化されているけど **setenvifが無効の状態**の場合、スルーされる可能性があります。
+だとすれば2つに分けて記述するほうが良いでしょう。
+
+```{code-block}
+:language: yaml
+
+- name: proxy_fcgiモジュールを有効化
+  command: 
+    cmd: a2enmod proxy_fcgi
+    creates: /etc/apache2/mods-enabled/proxy_fcgi.load
+  notify: Apacheを再起動
+- name: setenvifモジュールを有効化
+  command: 
+    cmd: a2enmod setenvif
+    creates: /etc/apache2/mods-enabled/setenvif.load
+  notify: Apacheを再起動
+```
+
+これで、どちらか一方が無効化されている場合でも、確実に有効化されるようになります。
+
+実はこの時、やっていることは同じなので、`with_items`ループを使ってまとめることもできます。
+
+```{code-block}
+:language: yaml
+
+- name: 必要なモジュールを有効化
+  command: 
+    cmd: "a2enmod {{ item }}"
+    creates: "/etc/apache2/mods-enabled/{{ item }}.load"
+  with_items:
+    - proxy_fcgi
+    - setenvif
+  notify: Apacheを再起動
+
+実はこの処理をラップしたモジュールとして、`apache2_module`モジュールが存在します。
+こちらを使えばファイルの作成をチェックする必要がなくなるのでより書きやすくなります。
+
+```{code-block}
+:language: yaml
+:caption: roles/php/tasks/main.yml(修正版)
+
+- name: 必要なモジュールを有効化
+  apache2_module:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - proxy_fcgi
+    - setenvif
+  notify: Apacheを再起動
+```
