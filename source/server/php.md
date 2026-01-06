@@ -349,8 +349,10 @@ phpinfo()の表示(成功)
     - proxy_fcgi
     - setenvif
   notify: Apacheを再起動
+```
 
 実は専用の`apache2_module`モジュールを使うことで、ファイルの作成をチェックする必要がなくなり、より簡潔に記述できます。
+
 ```{code-block}
 :language: yaml
 :caption: roles/php/tasks/main.yml(修正版)

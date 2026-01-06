@@ -1,0 +1,49 @@
+---
+- name: MariaDBサーバーのインストール
+  apt:
+    name: mariadb-server
+    state: present
+- name: MariaDBのPythonモジュールをインストール
+  apt:
+    name: python3-pymysql
+    state: present
+
+- name: .my.cnfファイルの存在確認
+  stat:
+    path: /root/.my.cnf
+  register: mycnf_file
+
+- name: rootパスワードを設定する（初回のみ）
+  mysql_user:
+    name: root
+    host: localhost
+    password: "{{ mariadb_root_password }}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    check_implicit_admin: yes
+    state: present
+  when: not mycnf_file.stat.exists
+
+- name: .my.cnfファイルを作成
+  copy:
+    dest: /root/.my.cnf
+    content: |
+      [client]
+      user=root
+      password={{ mariadb_root_password }}
+    mode: '0600'
+    owner: root
+    group: root
+
+- name: rootパスワードを設定する（.my.cnf使用）
+  mysql_user:
+    name: root
+    host: localhost
+    password: "{{ mariadb_root_password }}"
+    state: present
+  when: mycnf_file.stat.exists
+
+- name: MariaDBサービス起動と有効化
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
