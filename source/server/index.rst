@@ -18,3 +18,4 @@
    handler.md
    role.md
    php.md
+   mysql.md
