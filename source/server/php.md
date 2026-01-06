@@ -135,7 +135,7 @@ $ uv run ansible-playbook -K site.yml
 ```{code-block}
 :language: bash
 
-$ systemctl status httpd
+$ systemctl status apache2
 $ systemctl status php8.2-fpm
 ```
 
