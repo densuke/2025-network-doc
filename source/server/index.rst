@@ -19,3 +19,4 @@
    role.md
    php.md
    mysql.md
+   wp.md
