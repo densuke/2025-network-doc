@@ -85,7 +85,8 @@ $ sudo mv wordpress /var/www/html/
 # 所有者をWebサーバーのユーザーに変更(www-data)
 $ sudo chown -R www-data:www-data /var/www/html/wordpress
 # パーミッションを調整
-$ sudo chmod -R 755 /var/www/html/wordpress
+$ sudo find /var/www/html/wordpress -type d -exec chmod 755 {} \; # ディレクトリは755
+$ sudo find /var/www/html/wordpress -type f -exec chmod 644 {} \; # ファイルは644
 ```
 
 ## ブラウザで確認してみる
