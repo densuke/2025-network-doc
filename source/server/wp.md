@@ -45,6 +45,7 @@ tar.gz形式のアーカイブ操作は、`tar`コマンドで行います。
 一般的なLinuxのコマンドからすると、少しクセがあります。
 
 ```bash
+# ファイル名(latest-ja.tar.gz)は実際にダウンロードしたものに合わせてください
 tar tvzf latest-ja.tar.gz # アーカイブの中身を確認
 tar xvzf latest-ja.tar.gz # アーカイブの展開
 ls -l # 展開されたディレクトリの確認(ディレクトリが追加されるはず)
