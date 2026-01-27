@@ -21,3 +21,4 @@
    mysql.md
    wp.md
    php-mysql.md
+   wp-role.md
