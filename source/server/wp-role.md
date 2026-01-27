@@ -41,8 +41,8 @@ $ mkdir -pv roles/wordpress/meta
 
 ---
 dependencies:
-    - role: php-mysql
     - role: php
+    - role: php-mysql
     - role: mariadb
 ```
 
@@ -68,7 +68,6 @@ mysqlの関連モジュールとして、データベースを作成するもの
 パスワードの設定がないように見えますが、これは今回の一連のロール中で`mariadb`ロールのrootに関して、 {file}`/root/.my.cnf` にログイン情報を保存しているためです。
 こちらが自動的に参照されるためパスワードの記載が不要となっています。
 
-
 ```{warning}
 今回は練習のためrootユーザーをそのまま使っています。
 本格的な運用においては、必ず専用のユーザーを作製して、切り分けて使うようにしましょう。
@@ -76,7 +75,7 @@ mysqlの関連モジュールとして、データベースを作成するもの
 
 なお、文字エンコーディングについては、以下の設定にしています。
 
-- `encodeing: utf8mb4` → UTF-8の4バイト文字まで対応
+- `encoding: utf8mb4` → UTF-8の4バイト文字まで対応
 - `collation: utf8mb4_general_ci` → 大文字小文字を区別しない(ci; Case Insensitive)照合順序
 
 ## Wordpressのダウンロードと配置
@@ -108,4 +107,4 @@ Wordpressのダウンロードとアーカイブ操作は以前扱っていま�
 そのため、より厳密に行いたいのであれば、`get_url`モジュールなどで一旦ダウンロードしてから(こちらには機能がある)、`unarchive`で展開する方法が推奨されます。
 ```
 
-以上をにより、Wordpressに必要となるデータベースの準備とWordpress本体の展開までを組み込むことが可能となっています。
+以上により、Wordpressに必要となるデータベースの準備とWordpress本体の展開までを組み込むことが可能となっています。
