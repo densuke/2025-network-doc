@@ -47,7 +47,7 @@ PHPにMySQL拡張モジュールである `php8.2-mysql` パッケージをイ�
 mkdir -pv roles/php-mysql/tasks
 ```
 
-そして、ロール内タスクを作製します。
+そして、ロール内タスクを作成します。
 
 ```{code-block}
 :language: yaml
@@ -85,7 +85,7 @@ $ dpkg -l php8.2-mysql # インストールされているか確認("ii"で始�
 要望=(U)不明/(I)インストール/(R)削除/(P)完全削除/(H)保持
 | 状態=(N)無/(I)インストール済/(C)設定/(U)展開/(F)設定失敗/(H)半インストール/(W)トリガ待ち/(T)トリガ保留
 |/ エラー?=(空欄)無/(R)要再インストール (状態,エラーの大文字=異常)
-||/ 名前           バージョン       アーキテクチ 説明
+||/ 名前            バージョン         アーキテクチャ 説明  
 +++-==============-================-============-=================================
 ii  php8.2-mysql   8.2.XXXXXXXXXXX   arm64        MySQL module for PHP
 ```
@@ -139,7 +139,7 @@ $ ls /etc/php/8.2/mods-available/m*
 /etc/php/8.2/mods-available/mysqli.ini  /etc/php/8.2/mods-available/mysqlnd.ini
 
 # fpmを使っている場合、有効なモジュール定義のリンクは以下に集められています
-$ ls ls /etc/php/8.2/fpm/conf.d/
+$ ls /etc/php/8.2/fpm/conf.d/
 ... 20-pdo_mysql.ini ...
 ```
 
@@ -178,7 +178,7 @@ $ ls /etc/php/8.2/fpm/conf.d/
     name: php8.2-mysql
     state: present
 
-- name: php-mysqlの有効化 
+- name: php-mysqlの有効化
   command:
     cmd: phpenmod mysqli
     creates: /etc/php/8.2/fpm/conf.d/20-mysqli.ini
