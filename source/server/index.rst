@@ -20,3 +20,4 @@
    php.md
    mysql.md
    wp.md
+   php-mysql.md
